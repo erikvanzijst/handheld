@@ -1,0 +1,33 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DIODE_BRIDGE
+D Diode Bridge
+K RECTIFIER DIODE
+$ENDCMP
+#
+$CMP DISP_LED_MAT_8x8_COM_ANODE
+D 8x8 LED Dot Matrix Common Anode display
+K 8x8 LED Display
+$ENDCMP
+#
+$CMP DISP_LED_MAT_8x8_COM_CAT
+D 8x8 LED Dot Matrix Common Cathode display
+K 8x8 LED Display
+$ENDCMP
+#
+$CMP PUSH_BUTTON_NO
+D Push Button (Normally Open)
+K TACTILE PUSH BUTTON
+$ENDCMP
+#
+$CMP RJ11_PTH_STAGGER
+D RJ11 4pin Through hole connector
+K RJ11 
+$ENDCMP
+#
+$CMP RJ12_PTH_STAGGER
+D RJ11 6+2 PIN PTH Staggered Pads
+K RJ11 
+$ENDCMP
+#
+#End Doc Library

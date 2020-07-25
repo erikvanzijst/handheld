@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0  Date: Sat Dec  5 11:37:53 2015
+#
+$CMP HT9032D
+D Holtek
+K HT9032D PSTN POTS CLIP FSK
+F http://www.holtek.com/pdf/comm/9032v141.pdf
+$ENDCMP
+#
+#End Doc Library

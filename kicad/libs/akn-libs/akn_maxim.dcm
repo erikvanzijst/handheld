@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP MAX7219
+D MAX7219/7221 8-Digit common-cathode 8x8 LED driver
+K LED 8-Digit 8x8
+F https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf
+$ENDCMP
+#
+#End Doc Library
