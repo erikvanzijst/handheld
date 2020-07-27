@@ -425,7 +425,7 @@ $EndComp
 Wire Wire Line
 	6275 5300 5950 5300
 Wire Wire Line
-	5950 5300 5950 6850
+	5950 5300 5950 6200
 Wire Wire Line
 	5950 6850 6275 6850
 Wire Wire Line
@@ -464,7 +464,7 @@ Wire Wire Line
 	6575 4475 6675 4475
 Wire Wire Line
 	6675 4475 6675 4500
-Text Label 4250 9725 2    50   ~ 0
+Text Label 3875 6200 2    50   ~ 0
 ~OE
 NoConn ~ 7075 7150
 Wire Wire Line
@@ -722,13 +722,13 @@ Wire Wire Line
 $Comp
 L Device:C C3
 U 1 1 5EFA155D
-P 6825 4325
-F 0 "C3" V 6573 4325 50  0000 C CNN
-F 1 "100nF" V 6664 4325 50  0000 C CNN
-F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 6863 4175 50  0001 C CNN
-F 3 "~" H 6825 4325 50  0001 C CNN
-	1    6825 4325
-	-1   0    0    1   
+P 3125 7600
+F 0 "C3" V 2873 7600 50  0000 C CNN
+F 1 "100nF" V 2964 7600 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 3163 7450 50  0001 C CNN
+F 3 "~" H 3125 7600 50  0001 C CNN
+	1    3125 7600
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	6675 4475 6825 4475
@@ -791,33 +791,31 @@ $EndComp
 $Comp
 L power:GND #PWR017
 U 1 1 5EE44BE5
-P 2975 9925
-F 0 "#PWR017" H 2975 9675 50  0001 C CNN
-F 1 "GND" H 2980 9752 50  0000 C CNN
-F 2 "" H 2975 9925 50  0001 C CNN
-F 3 "" H 2975 9925 50  0001 C CNN
-	1    2975 9925
+P 1000 3725
+F 0 "#PWR017" H 1000 3475 50  0001 C CNN
+F 1 "GND" H 1005 3552 50  0000 C CNN
+F 2 "" H 1000 3725 50  0001 C CNN
+F 3 "" H 1000 3725 50  0001 C CNN
+	1    1000 3725
 	0    1    1    0   
 $EndComp
 $Comp
 L power:VDD #PWR016
 U 1 1 5EE456DF
-P 2975 9500
-F 0 "#PWR016" H 2975 9350 50  0001 C CNN
-F 1 "VDD" H 2992 9673 50  0000 C CNN
-F 2 "" H 2975 9500 50  0001 C CNN
-F 3 "" H 2975 9500 50  0001 C CNN
-	1    2975 9500
+P 1000 3300
+F 0 "#PWR016" H 1000 3150 50  0001 C CNN
+F 1 "VDD" H 1017 3473 50  0000 C CNN
+F 2 "" H 1000 3300 50  0001 C CNN
+F 3 "" H 1000 3300 50  0001 C CNN
+	1    1000 3300
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	2975 9500 3075 9500
+	1000 3300 1100 3300
 Wire Wire Line
 	5400 9225 5400 9525
 Wire Wire Line
 	5500 9225 5500 9625
-Wire Wire Line
-	5800 9725 3650 9725
 Wire Wire Line
 	5800 9225 5800 9725
 $Comp
@@ -838,22 +836,16 @@ Wire Wire Line
 Wire Wire Line
 	6125 6550 6275 6550
 Connection ~ 6125 5000
-Text Label 4450 9325 2    50   ~ 0
+Text Label 4100 5300 2    50   ~ 0
 COLSDI0
-Text Label 4425 9525 2    50   ~ 0
+Text Label 4075 5500 2    50   ~ 0
 COLCLK
-Text Label 4225 9625 2    50   ~ 0
-LE
 Wire Wire Line
 	6050 6750 6275 6750
 Wire Wire Line
 	6050 6750 6050 5200
 Wire Wire Line
 	6050 5200 6275 5200
-Text Label 3550 10175 1    50   ~ 0
-ROWSDI
-Text Label 3450 10175 1    50   ~ 0
-ROWCLK
 $Comp
 L local:P-FET U4
 U 1 1 5F09B5FB
@@ -1060,13 +1052,13 @@ $EndComp
 $Comp
 L power:GND #PWR07
 U 1 1 5F1E6F61
-P 6825 4175
-F 0 "#PWR07" H 6825 3925 50  0001 C CNN
-F 1 "GND" V 6830 4047 50  0000 R CNN
-F 2 "" H 6825 4175 50  0001 C CNN
-F 3 "" H 6825 4175 50  0001 C CNN
-	1    6825 4175
-	-1   0    0    1   
+P 3275 7600
+F 0 "#PWR07" H 3275 7350 50  0001 C CNN
+F 1 "GND" V 3280 7472 50  0000 R CNN
+F 2 "" H 3275 7600 50  0001 C CNN
+F 3 "" H 3275 7600 50  0001 C CNN
+	1    3275 7600
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	8950 1375 8900 1375
@@ -1365,51 +1357,33 @@ F 3 "" H 8900 1375 50  0001 C CNN
 $EndComp
 Connection ~ 8900 1375
 Wire Wire Line
-	5850 4700 6275 4700
+	4100 9525 5400 9525
 Wire Wire Line
-	3650 9725 3650 10225
-Wire Wire Line
-	3850 9525 3850 10225
-Wire Wire Line
-	3850 9525 5400 9525
-Wire Wire Line
-	5500 9625 3950 9625
-Wire Wire Line
-	3950 9625 3950 10225
-Wire Wire Line
-	3250 9925 3250 10225
+	5500 9625 4475 9625
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5F939576
-P 3075 9500
-F 0 "#FLG0101" H 3075 9575 50  0001 C CNN
-F 1 "PWR_FLAG" H 3075 9673 50  0000 C CNN
-F 2 "" H 3075 9500 50  0001 C CNN
-F 3 "~" H 3075 9500 50  0001 C CNN
-	1    3075 9500
+P 1100 3300
+F 0 "#FLG0101" H 1100 3375 50  0001 C CNN
+F 1 "PWR_FLAG" H 1100 3473 50  0000 C CNN
+F 2 "" H 1100 3300 50  0001 C CNN
+F 3 "~" H 1100 3300 50  0001 C CNN
+	1    1100 3300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3350 10225 3350 9500
-Wire Wire Line
-	3350 9500 3075 9500
-Connection ~ 3075 9500
-Wire Wire Line
-	3250 9925 3075 9925
 $Comp
 L power:PWR_FLAG #FLG0102
 U 1 1 5F996FD8
-P 3075 9925
-F 0 "#FLG0102" H 3075 10000 50  0001 C CNN
-F 1 "PWR_FLAG" H 3075 10098 50  0000 C CNN
-F 2 "" H 3075 9925 50  0001 C CNN
-F 3 "~" H 3075 9925 50  0001 C CNN
-	1    3075 9925
+P 1100 3725
+F 0 "#FLG0102" H 1100 3800 50  0001 C CNN
+F 1 "PWR_FLAG" H 1100 3898 50  0000 C CNN
+F 2 "" H 1100 3725 50  0001 C CNN
+F 3 "~" H 1100 3725 50  0001 C CNN
+	1    1100 3725
 	1    0    0    -1  
 $EndComp
-Connection ~ 3075 9925
 Wire Wire Line
-	3075 9925 2975 9925
+	1100 3725 1000 3725
 $Comp
 L Graphic:Logo_Open_Hardware_Large #LOGO1
 U 1 1 5EE98802
@@ -1801,8 +1775,6 @@ NoConn ~ 9200 8175
 NoConn ~ 9300 8175
 Connection ~ 5800 9725
 Wire Wire Line
-	3850 9425 7900 9425
-Wire Wire Line
 	7325 9025 7175 9025
 Connection ~ 7000 9025
 Wire Wire Line
@@ -1817,28 +1789,455 @@ Wire Wire Line
 	8200 9325 7600 9325
 Wire Bus Line
 	12300 7850 14625 7850
-$Comp
-L MCU_Microchip_ATmega:ATxmega64D4-AU U?
-U 1 1 5F7BA44B
-P 2525 3450
-F 0 "U?" H 2525 1961 50  0000 C CNN
-F 1 "ATxmega64D4-AU" H 2525 1870 50  0000 C CNN
-F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 2525 3450 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8135-8-and-16-bit-AVR-microcontroller-ATxmega16D4-32D4-64D4-128D4_datasheet.pdf" H 2525 3450 50  0001 C CNN
-	1    2525 3450
-	1    0    0    -1  
-$EndComp
 Connection ~ 5500 9625
 Connection ~ 5400 9525
 NoConn ~ 5700 9225
 Wire Wire Line
 	5300 9225 5300 9325
 Wire Wire Line
-	3750 9325 3750 10225
-Wire Wire Line
-	3750 9325 5300 9325
-Text Label 4500 9425 2    50   ~ 0
+	4350 9325 5300 9325
+Text Label 4150 5400 2    50   ~ 0
 COLSDI16
+Wire Wire Line
+	4750 4700 6275 4700
+Wire Wire Line
+	5750 4900 5000 4900
+Connection ~ 5750 4900
+Connection ~ 6050 5200
+Wire Wire Line
+	5000 4900 5000 5100
+Wire Wire Line
+	4750 4700 4750 5000
+Wire Wire Line
+	5000 5100 3675 5100
+Wire Wire Line
+	4750 5000 3675 5000
+$Comp
+L power:GND #PWR?
+U 1 1 5F1F0970
+P 2975 4600
+F 0 "#PWR?" H 2975 4350 50  0001 C CNN
+F 1 "GND" V 2980 4472 50  0000 R CNN
+F 2 "" H 2975 4600 50  0001 C CNN
+F 3 "" H 2975 4600 50  0001 C CNN
+	1    2975 4600
+	-1   0    0    1   
+$EndComp
+$Comp
+L MCU_Microchip_ATmega:ATxmega64D4-AU U?
+U 1 1 5F7BA44B
+P 2975 6000
+F 0 "U?" H 2525 7375 50  0000 C CNN
+F 1 "ATxmega64D4-AU" H 2975 6425 50  0000 C CNN
+F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 2975 6000 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8135-8-and-16-bit-AVR-microcontroller-ATxmega16D4-32D4-64D4-128D4_datasheet.pdf" H 2975 6000 50  0001 C CNN
+	1    2975 6000
+	-1   0    0    1   
+$EndComp
+Text Label 4100 5100 2    50   ~ 0
+ROWCLK
+Text Label 4075 5000 2    50   ~ 0
+ROWSDI
+Wire Wire Line
+	3675 5200 4475 5200
+Text Label 3875 5200 2    50   ~ 0
+LE
+Wire Wire Line
+	4475 9625 4475 5200
+Connection ~ 4475 5200
+Wire Wire Line
+	4475 5200 6050 5200
+Wire Wire Line
+	4350 9325 4350 5300
+Wire Wire Line
+	4350 5300 3675 5300
+Wire Wire Line
+	4225 9425 4225 5400
+Wire Wire Line
+	4225 5400 3675 5400
+Wire Wire Line
+	4225 9425 7900 9425
+Wire Wire Line
+	4100 9525 4100 5500
+Wire Wire Line
+	4100 5500 3675 5500
+Wire Wire Line
+	3900 9725 3900 6200
+Wire Wire Line
+	3900 9725 5800 9725
+Wire Wire Line
+	3900 6200 5950 6200
+Connection ~ 5950 6200
+Wire Wire Line
+	5950 6200 5950 6850
+Wire Wire Line
+	3900 6200 3675 6200
+Connection ~ 3900 6200
+NoConn ~ 3675 6700
+NoConn ~ 3675 6800
+$Comp
+L Device:C C?
+U 1 1 5F8BB0AB
+P 6825 4325
+F 0 "C?" V 6573 4325 50  0000 C CNN
+F 1 "100nF" V 6664 4325 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 6863 4175 50  0001 C CNN
+F 3 "~" H 6825 4325 50  0001 C CNN
+	1    6825 4325
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F8BB0B5
+P 6825 4175
+F 0 "#PWR?" H 6825 3925 50  0001 C CNN
+F 1 "GND" V 6830 4047 50  0000 R CNN
+F 2 "" H 6825 4175 50  0001 C CNN
+F 3 "" H 6825 4175 50  0001 C CNN
+	1    6825 4175
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5F8DFF39
+P 2725 7600
+F 0 "C?" V 2473 7600 50  0000 C CNN
+F 1 "100nF" V 2564 7600 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 2763 7450 50  0001 C CNN
+F 3 "~" H 2725 7600 50  0001 C CNN
+	1    2725 7600
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F8DFF43
+P 2575 7600
+F 0 "#PWR?" H 2575 7350 50  0001 C CNN
+F 1 "GND" V 2580 7472 50  0000 R CNN
+F 2 "" H 2575 7600 50  0001 C CNN
+F 3 "" H 2575 7600 50  0001 C CNN
+	1    2575 7600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2975 7400 2975 7600
+Wire Wire Line
+	2875 7400 2875 7600
+Wire Wire Line
+	2875 7600 2875 7725
+Wire Wire Line
+	2875 7725 2925 7725
+Wire Wire Line
+	2975 7725 2975 7600
+Connection ~ 2875 7600
+Connection ~ 2975 7600
+$Comp
+L power:VDD #PWR?
+U 1 1 5F9714E3
+P 2925 7725
+F 0 "#PWR?" H 2925 7575 50  0001 C CNN
+F 1 "VDD" H 2942 7898 50  0000 C CNN
+F 2 "" H 2925 7725 50  0001 C CNN
+F 3 "" H 2925 7725 50  0001 C CNN
+	1    2925 7725
+	-1   0    0    1   
+$EndComp
+Connection ~ 2925 7725
+Wire Wire Line
+	2925 7725 2975 7725
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5F99E26D
+P 1175 5900
+F 0 "S?" H 850 6050 50  0000 C CNN
+F 1 "LEFT" H 775 5950 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 6100 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6200 60  0001 L CNN
+F 4 "CW181-ND" H 1375 6300 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 6400 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 6500 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 6600 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6700 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 6800 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 6900 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 7000 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 7100 60  0001 L CNN "Status"
+	1    1175 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5F9C5456
+P 1175 5675
+F 0 "S?" H 850 5825 50  0000 C CNN
+F 1 "RIGHT" H 775 5725 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5875 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5975 60  0001 L CNN
+F 4 "CW181-ND" H 1375 6075 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 6175 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 6275 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 6375 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6475 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 6575 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 6675 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 6775 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 6875 60  0001 L CNN "Status"
+	1    1175 5675
+	1    0    0    -1  
+$EndComp
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5F9C5FB7
+P 1175 5450
+F 0 "S?" H 850 5600 50  0000 C CNN
+F 1 "SOFTDROP" H 775 5500 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5650 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5750 60  0001 L CNN
+F 4 "CW181-ND" H 1375 5850 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 5950 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 6050 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 6150 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6250 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 6350 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 6450 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 6550 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 6650 60  0001 L CNN "Status"
+	1    1175 5450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	975  5900 525  5900
+Wire Wire Line
+	1375 5900 2050 5900
+Wire Wire Line
+	2050 5900 2050 5700
+Wire Wire Line
+	2050 5700 2275 5700
+Wire Wire Line
+	1375 5675 1975 5675
+Wire Wire Line
+	1975 5675 1975 5600
+Wire Wire Line
+	1975 5600 2275 5600
+Wire Wire Line
+	1375 5450 2200 5450
+Wire Wire Line
+	2200 5450 2200 5500
+Wire Wire Line
+	2200 5500 2275 5500
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5FA8729A
+P 1175 5225
+F 0 "S?" H 850 5375 50  0000 C CNN
+F 1 "HARDDROP" H 775 5275 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5425 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5525 60  0001 L CNN
+F 4 "CW181-ND" H 1375 5625 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 5725 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 5825 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 5925 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6025 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 6125 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 6225 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 6325 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 6425 60  0001 L CNN "Status"
+	1    1175 5225
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	975  5225 525  5225
+Connection ~ 525  5225
+Wire Wire Line
+	525  5225 525  5450
+Wire Wire Line
+	975  5450 525  5450
+Connection ~ 525  5450
+Wire Wire Line
+	525  5450 525  5675
+Wire Wire Line
+	975  5675 525  5675
+Connection ~ 525  5675
+Wire Wire Line
+	525  5675 525  5900
+Wire Wire Line
+	1375 5225 1800 5225
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5FB2C393
+P 1175 5000
+F 0 "S?" H 850 5150 50  0000 C CNN
+F 1 "ROTL" H 775 5050 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5200 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5300 60  0001 L CNN
+F 4 "CW181-ND" H 1375 5400 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 5500 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 5600 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 5700 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5800 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 5900 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 6000 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 6100 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 6200 60  0001 L CNN "Status"
+	1    1175 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5FB2CD6E
+P 1175 4775
+F 0 "S?" H 850 4925 50  0000 C CNN
+F 1 "ROTR" H 775 4825 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4975 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5075 60  0001 L CNN
+F 4 "CW181-ND" H 1375 5175 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 5275 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 5375 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 5475 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5575 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 5675 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 5775 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 5875 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 5975 60  0001 L CNN "Status"
+	1    1175 4775
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	975  5000 525  5000
+Connection ~ 525  5000
+Wire Wire Line
+	525  5000 525  5225
+Wire Wire Line
+	975  4775 525  4775
+Connection ~ 525  4775
+Wire Wire Line
+	525  4775 525  5000
+Wire Wire Line
+	1375 5000 1925 5000
+Wire Wire Line
+	1375 4775 1975 4775
+Wire Wire Line
+	1800 5400 2275 5400
+Wire Wire Line
+	1800 5225 1800 5400
+Wire Wire Line
+	1925 5300 2275 5300
+Wire Wire Line
+	1925 5000 1925 5300
+Wire Wire Line
+	1975 5200 2275 5200
+Wire Wire Line
+	1975 4775 1975 5200
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5FD11B86
+P 1175 4550
+F 0 "S?" H 850 4700 50  0000 C CNN
+F 1 "PAUSE" H 775 4600 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4750 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 4850 60  0001 L CNN
+F 4 "CW181-ND" H 1375 4950 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 5050 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 5150 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 5250 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5350 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 5450 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 5550 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 5650 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 5750 60  0001 L CNN "Status"
+	1    1175 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	975  4550 525  4550
+Connection ~ 525  4550
+Wire Wire Line
+	525  4550 525  4775
+Wire Wire Line
+	1375 4550 2050 4550
+Wire Wire Line
+	2050 4550 2050 5100
+Wire Wire Line
+	2050 5100 2275 5100
+$Comp
+L power:GND #PWR?
+U 1 1 5FD6E0B9
+P 525 5900
+F 0 "#PWR?" H 525 5650 50  0001 C CNN
+F 1 "GND" H 530 5727 50  0000 C CNN
+F 2 "" H 525 5900 50  0001 C CNN
+F 3 "" H 525 5900 50  0001 C CNN
+	1    525  5900
+	1    0    0    -1  
+$EndComp
+Connection ~ 525  5900
+$Comp
+L dk_Pushbutton-Switches:GPTS203211B S?
+U 1 1 5FD6EBE1
+P 1175 4325
+F 0 "S?" H 850 4475 50  0000 C CNN
+F 1 "HOLD" H 775 4375 50  0000 C CNN
+F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4525 50  0001 L CNN
+F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 4625 60  0001 L CNN
+F 4 "CW181-ND" H 1375 4725 60  0001 L CNN "Digi-Key_PN"
+F 5 "GPTS203211B" H 1375 4825 60  0001 L CNN "MPN"
+F 6 "Switches" H 1375 4925 60  0001 L CNN "Category"
+F 7 "Pushbutton Switches" H 1375 5025 60  0001 L CNN "Family"
+F 8 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5125 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/cw-industries/GPTS203211B/CW181-ND/3190590" H 1375 5225 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH PUSHBUTTON SPST 1A 30V" H 1375 5325 60  0001 L CNN "Description"
+F 11 "CW Industries" H 1375 5425 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1375 5525 60  0001 L CNN "Status"
+	1    1175 4325
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	975  4325 525  4325
+Wire Wire Line
+	525  4325 525  4550
+Wire Wire Line
+	1375 4325 2175 4325
+Wire Wire Line
+	2175 4325 2175 5000
+Wire Wire Line
+	2175 5000 2275 5000
+$Comp
+L Connector:AVR-PDI-6 J?
+U 1 1 5FDFDAE0
+P 5050 7100
+F 0 "J?" H 4720 7146 50  0000 R CNN
+F 1 "AVR-PDI-6" H 4720 7055 50  0000 R CNN
+F 2 "" V 4800 7050 50  0001 C CNN
+F 3 " ~" H 3775 6550 50  0001 C CNN
+	1    5050 7100
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 7100 3675 7100
+Wire Wire Line
+	3675 7000 4650 7000
+$Comp
+L power:VDD #PWR?
+U 1 1 5FE8E242
+P 5150 6700
+F 0 "#PWR?" H 5150 6550 50  0001 C CNN
+F 1 "VDD" H 5167 6873 50  0000 C CNN
+F 2 "" H 5150 6700 50  0001 C CNN
+F 3 "" H 5150 6700 50  0001 C CNN
+	1    5150 6700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5FE8EC1D
+P 5150 7500
+F 0 "#PWR?" H 5150 7250 50  0001 C CNN
+F 1 "GND" V 5155 7372 50  0000 R CNN
+F 2 "" H 5150 7500 50  0001 C CNN
+F 3 "" H 5150 7500 50  0001 C CNN
+	1    5150 7500
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	10275 6825 10275 9125
 Wire Bus Line
