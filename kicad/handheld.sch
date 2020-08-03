@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 1
+Sheet 1 2
 Title "Handheld gaming device"
 Date "2020-07-25"
 Rev "v0.2"
@@ -379,94 +379,8 @@ F 3 "" H 4725 8600 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4725 8725 4950 8725
-$Comp
-L 74xx:74HC595 U3
-U 1 1 5EE2D2DB
-P 6675 6650
-F 0 "U3" H 6850 7200 50  0000 R CNN
-F 1 "74HC595" V 6675 6650 50  0000 R CNN
-F 2 "local:SOIC-16_3.9x9.9mm_P1.27mm_widepads" H 6675 6650 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 6675 6650 50  0001 C CNN
-	1    6675 6650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7075 5600 7200 5600
-Wire Wire Line
-	7200 5600 7200 5925
-Wire Wire Line
-	7200 5925 6200 5925
-Wire Wire Line
-	6200 5925 6200 6250
-Wire Wire Line
-	6200 6250 6275 6250
-$Comp
-L power:GND #PWR05
-U 1 1 5EE5EF5C
-P 6675 7350
-F 0 "#PWR05" H 6675 7100 50  0001 C CNN
-F 1 "GND" V 6680 7222 50  0000 R CNN
-F 2 "" H 6675 7350 50  0001 C CNN
-F 3 "" H 6675 7350 50  0001 C CNN
-	1    6675 7350
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:GND #PWR04
-U 1 1 5EE5F5AD
-P 6575 5825
-F 0 "#PWR04" H 6575 5575 50  0001 C CNN
-F 1 "GND" V 6580 5697 50  0000 R CNN
-F 2 "" H 6575 5825 50  0001 C CNN
-F 3 "" H 6575 5825 50  0001 C CNN
-	1    6575 5825
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6275 5300 5950 5300
-Wire Wire Line
-	5950 5300 5950 6200
-Wire Wire Line
-	5950 6850 6275 6850
-Wire Wire Line
-	6275 4900 5750 4900
-Wire Wire Line
-	5750 4900 5750 6450
-Wire Wire Line
-	5750 6450 6275 6450
-$Comp
-L power:VDD #PWR03
-U 1 1 5EE68524
-P 6575 6025
-F 0 "#PWR03" H 6575 5875 50  0001 C CNN
-F 1 "VDD" V 6593 6152 50  0000 L CNN
-F 2 "" H 6575 6025 50  0001 C CNN
-F 3 "" H 6575 6025 50  0001 C CNN
-	1    6575 6025
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	6575 6025 6675 6025
-Wire Wire Line
-	6675 6025 6675 6050
-$Comp
-L power:VDD #PWR02
-U 1 1 5EE6B22D
-P 6575 4475
-F 0 "#PWR02" H 6575 4325 50  0001 C CNN
-F 1 "VDD" V 6593 4602 50  0000 L CNN
-F 2 "" H 6575 4475 50  0001 C CNN
-F 3 "" H 6575 4475 50  0001 C CNN
-	1    6575 4475
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	6575 4475 6675 4475
-Wire Wire Line
-	6675 4475 6675 4500
 Text Label 3875 6200 2    50   ~ 0
 ~OE
-NoConn ~ 7075 7150
 Wire Wire Line
 	10375 5775 10625 5775
 Wire Wire Line
@@ -670,14 +584,12 @@ L Device:R R1
 U 1 1 5EF48347
 P 6600 9325
 F 0 "R1" V 6525 9150 50  0000 C CNN
-F 1 "2.2K" V 6484 9325 50  0000 C CNN
+F 1 "1K" V 6484 9325 50  0000 C CNN
 F 2 "local:R_1206_3216Metric_Pad1.42x1.75mm_widepads" V 6530 9325 50  0001 C CNN
 F 3 "~" H 6600 9325 50  0001 C CNN
 	1    6600 9325
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	6750 9325 7000 9325
 Wire Wire Line
 	5600 9225 5600 9325
 Wire Wire Line
@@ -697,29 +609,6 @@ Connection ~ 4725 8725
 Wire Wire Line
 	4725 8600 4725 8725
 $Comp
-L Device:C C2
-U 1 1 5EF8250E
-P 6950 6025
-F 0 "C2" V 6698 6025 50  0000 C CNN
-F 1 "100nF" V 6789 6025 50  0000 C CNN
-F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 6988 5875 50  0001 C CNN
-F 3 "~" H 6950 6025 50  0001 C CNN
-	1    6950 6025
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	6675 6025 6800 6025
-Connection ~ 6675 6025
-Wire Wire Line
-	6575 5825 6675 5825
-Wire Wire Line
-	7100 5825 7100 6025
-Wire Wire Line
-	6675 5800 6675 5825
-Connection ~ 6675 5825
-Wire Wire Line
-	6675 5825 7100 5825
-$Comp
 L Device:C C3
 U 1 1 5EFA155D
 P 3125 7600
@@ -730,9 +619,6 @@ F 3 "~" H 3125 7600 50  0001 C CNN
 	1    3125 7600
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	6675 4475 6825 4475
-Connection ~ 6675 4475
 Entry Wire Line
 	10175 4625 10275 4725
 Entry Wire Line
@@ -789,63 +675,28 @@ F 3 "" H 4725 9025 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR017
-U 1 1 5EE44BE5
-P 1000 3725
-F 0 "#PWR017" H 1000 3475 50  0001 C CNN
-F 1 "GND" H 1005 3552 50  0000 C CNN
-F 2 "" H 1000 3725 50  0001 C CNN
-F 3 "" H 1000 3725 50  0001 C CNN
-	1    1000 3725
-	0    1    1    0   
-$EndComp
-$Comp
 L power:VDD #PWR016
 U 1 1 5EE456DF
-P 1000 3300
-F 0 "#PWR016" H 1000 3150 50  0001 C CNN
-F 1 "VDD" H 1017 3473 50  0000 C CNN
-F 2 "" H 1000 3300 50  0001 C CNN
-F 3 "" H 1000 3300 50  0001 C CNN
-	1    1000 3300
-	0    -1   -1   0   
+P 1450 3200
+F 0 "#PWR016" H 1450 3050 50  0001 C CNN
+F 1 "VDD" H 1467 3373 50  0000 C CNN
+F 2 "" H 1450 3200 50  0001 C CNN
+F 3 "" H 1450 3200 50  0001 C CNN
+	1    1450 3200
+	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1000 3300 1100 3300
+	1450 3200 1450 3300
 Wire Wire Line
 	5400 9225 5400 9525
 Wire Wire Line
 	5500 9225 5500 9625
 Wire Wire Line
 	5800 9225 5800 9725
-$Comp
-L power:VDD #PWR018
-U 1 1 5EF45125
-P 6125 5000
-F 0 "#PWR018" H 6125 4850 50  0001 C CNN
-F 1 "VDD" V 6143 5127 50  0000 L CNN
-F 2 "" H 6125 5000 50  0001 C CNN
-F 3 "" H 6125 5000 50  0001 C CNN
-	1    6125 5000
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	6125 6550 6125 5000
-Wire Wire Line
-	6125 5000 6275 5000
-Wire Wire Line
-	6125 6550 6275 6550
-Connection ~ 6125 5000
 Text Label 4100 5300 2    50   ~ 0
 COLSDI0
 Text Label 4075 5500 2    50   ~ 0
 COLCLK
-Wire Wire Line
-	6050 6750 6275 6750
-Wire Wire Line
-	6050 6750 6050 5200
-Wire Wire Line
-	6050 5200 6275 5200
 $Comp
 L local:P-FET U4
 U 1 1 5F09B5FB
@@ -1036,17 +887,6 @@ F 1 "P-FET" V 9250 7025 50  0000 C CNN
 F 2 "local:SOIC-8_3.9x4.9mm_P1.27mm_widepads" H 9450 7425 50  0001 C CNN
 F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 9450 7425 50  0001 C CNN
 	2    9250 7025
-	1    0    0    -1  
-$EndComp
-$Comp
-L 74xx:74HC595 U2
-U 1 1 5EE2FD5B
-P 6675 5100
-F 0 "U2" H 6850 5650 50  0000 R CNN
-F 1 "74HC595" V 6675 5125 50  0000 R CNN
-F 2 "local:SOIC-16_3.9x9.9mm_P1.27mm_widepads" H 6675 5100 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 6675 5100 50  0001 C CNN
-	1    6675 5100
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1248,102 +1088,6 @@ Wire Wire Line
 Connection ~ 9550 7425
 Wire Wire Line
 	9550 7425 9550 7475
-Wire Wire Line
-	7075 6950 8700 6950
-Wire Wire Line
-	8700 6950 8700 7475
-Wire Wire Line
-	8700 7475 8950 7475
-Wire Wire Line
-	7075 6850 8800 6850
-Wire Wire Line
-	8800 6850 8800 7075
-Wire Wire Line
-	8800 7075 8950 7075
-Wire Wire Line
-	8950 4675 8200 4675
-Wire Wire Line
-	8200 4675 8200 6250
-Wire Wire Line
-	8200 6250 7075 6250
-Wire Wire Line
-	8950 5075 8325 5075
-Wire Wire Line
-	8325 5075 8325 6350
-Wire Wire Line
-	8325 6350 7075 6350
-Wire Wire Line
-	7075 6450 8450 6450
-Wire Wire Line
-	8450 6450 8450 5475
-Wire Wire Line
-	8450 5475 8950 5475
-Wire Wire Line
-	8950 5875 8575 5875
-Wire Wire Line
-	8575 5875 8575 6550
-Wire Wire Line
-	8575 6550 7075 6550
-Wire Wire Line
-	7075 6650 8700 6650
-Wire Wire Line
-	8700 6650 8700 6275
-Wire Wire Line
-	8700 6275 8950 6275
-Wire Wire Line
-	8950 6675 8800 6675
-Wire Wire Line
-	8800 6675 8800 6750
-Wire Wire Line
-	8800 6750 7075 6750
-Wire Wire Line
-	7075 5400 8075 5400
-Wire Wire Line
-	8075 5400 8075 4275
-Wire Wire Line
-	8075 4275 8950 4275
-Wire Wire Line
-	7075 5300 7950 5300
-Wire Wire Line
-	7950 5300 7950 3875
-Wire Wire Line
-	7950 3875 8950 3875
-Wire Wire Line
-	7075 5200 7825 5200
-Wire Wire Line
-	7825 5200 7825 3475
-Wire Wire Line
-	7825 3475 8950 3475
-Wire Wire Line
-	7075 5100 7700 5100
-Wire Wire Line
-	7700 5100 7700 3075
-Wire Wire Line
-	7700 3075 8950 3075
-Wire Wire Line
-	7075 5000 7575 5000
-Wire Wire Line
-	7575 5000 7575 2675
-Wire Wire Line
-	7575 2675 8950 2675
-Wire Wire Line
-	7075 4900 7450 4900
-Wire Wire Line
-	7450 4900 7450 2275
-Wire Wire Line
-	7450 2275 8950 2275
-Wire Wire Line
-	7075 4800 7325 4800
-Wire Wire Line
-	7325 4800 7325 1875
-Wire Wire Line
-	7325 1875 8950 1875
-Wire Wire Line
-	7075 4700 7200 4700
-Wire Wire Line
-	7200 4700 7200 1475
-Wire Wire Line
-	7200 1475 8950 1475
 $Comp
 L power:VDD #PWR0101
 U 1 1 5F638642
@@ -1361,30 +1105,6 @@ Wire Wire Line
 Wire Wire Line
 	5500 9625 4475 9625
 $Comp
-L power:PWR_FLAG #FLG0101
-U 1 1 5F939576
-P 1100 3300
-F 0 "#FLG0101" H 1100 3375 50  0001 C CNN
-F 1 "PWR_FLAG" H 1100 3473 50  0000 C CNN
-F 2 "" H 1100 3300 50  0001 C CNN
-F 3 "~" H 1100 3300 50  0001 C CNN
-	1    1100 3300
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:PWR_FLAG #FLG0102
-U 1 1 5F996FD8
-P 1100 3725
-F 0 "#FLG0102" H 1100 3800 50  0001 C CNN
-F 1 "PWR_FLAG" H 1100 3898 50  0000 C CNN
-F 2 "" H 1100 3725 50  0001 C CNN
-F 3 "~" H 1100 3725 50  0001 C CNN
-	1    1100 3725
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1100 3725 1000 3725
-$Comp
 L Graphic:Logo_Open_Hardware_Large #LOGO1
 U 1 1 5EE98802
 P 11000 10575
@@ -1400,10 +1120,10 @@ ROW8
 Text Label 9625 4625 0    50   ~ 0
 ROW9
 $Comp
-L akn:DISP_LED_MAT_8x8_COM_ANODE D?
+L akn:DISP_LED_MAT_8x8_COM_ANODE D5
 U 1 1 5F1E6020
 P 15325 6575
-F 0 "D?" H 16000 7662 60  0000 C CNN
+F 0 "D5" H 16000 7662 60  0000 C CNN
 F 1 "DISP_LED_MAT_8x8_COM_ANODE" H 16000 7556 60  0000 C CNN
 F 2 "local:LED_8x8_3MM_38x38MM" H 15425 6525 60  0001 C CNN
 F 3 "" H 15425 6525 60  0000 C CNN
@@ -1411,10 +1131,10 @@ F 3 "" H 15425 6525 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L akn:DISP_LED_MAT_8x8_COM_ANODE D?
+L akn:DISP_LED_MAT_8x8_COM_ANODE D6
 U 1 1 5F1E602A
 P 15325 9125
-F 0 "D?" H 16000 10212 60  0000 C CNN
+F 0 "D6" H 16000 10212 60  0000 C CNN
 F 1 "DISP_LED_MAT_8x8_COM_ANODE" H 16000 10106 60  0000 C CNN
 F 2 "local:LED_8x8_3MM_38x38MM" H 15425 9075 60  0001 C CNN
 F 3 "" H 15425 9075 60  0000 C CNN
@@ -1626,10 +1346,10 @@ COL17
 Text Label 16900 8325 2    50   ~ 0
 COL16
 $Comp
-L local:TLC59025 U?
+L local:TLC59025 U13
 U 1 1 5F370614
 P 8550 8725
-F 0 "U?" V 9050 7850 50  0000 R CNN
+F 0 "U13" V 9050 7850 50  0000 R CNN
 F 1 "TLC59025" V 8550 8925 50  0000 R CNN
 F 2 "local:SSOP-24_3.9x8.7mm_P0.635mm_widepads" H 8550 8725 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/tlc59025.pdf" H 8550 8725 50  0001 C CNN
@@ -1683,10 +1403,10 @@ Entry Wire Line
 Entry Wire Line
 	7800 7950 7900 7850
 $Comp
-L power:GND #PWR?
+L power:GND #PWR018
 U 1 1 5F37064E
 P 9600 8725
-F 0 "#PWR?" H 9600 8475 50  0001 C CNN
+F 0 "#PWR018" H 9600 8475 50  0001 C CNN
 F 1 "GND" H 9605 8552 50  0000 C CNN
 F 2 "" H 9600 8725 50  0001 C CNN
 F 3 "" H 9600 8725 50  0001 C CNN
@@ -1696,10 +1416,10 @@ $EndComp
 Wire Wire Line
 	9500 8725 9600 8725
 $Comp
-L power:VDD #PWR?
+L power:VDD #PWR017
 U 1 1 5F37065A
 P 7325 8600
-F 0 "#PWR?" H 7325 8450 50  0001 C CNN
+F 0 "#PWR017" H 7325 8450 50  0001 C CNN
 F 1 "VDD" H 7342 8773 50  0000 C CNN
 F 2 "" H 7325 8600 50  0001 C CNN
 F 3 "" H 7325 8600 50  0001 C CNN
@@ -1709,11 +1429,11 @@ $EndComp
 Wire Wire Line
 	7325 8725 7550 8725
 $Comp
-L Device:R R?
+L Device:R R2
 U 1 1 5F370665
 P 7450 9325
-F 0 "R?" V 7243 9325 50  0000 C CNN
-F 1 "2.2K" V 7334 9325 50  0000 C CNN
+F 0 "R2" V 7350 9475 50  0000 C CNN
+F 1 "1K" V 7334 9325 50  0000 C CNN
 F 2 "local:R_1206_3216Metric_Pad1.42x1.75mm_widepads" V 7380 9325 50  0001 C CNN
 F 3 "~" H 7450 9325 50  0001 C CNN
 	1    7450 9325
@@ -1722,10 +1442,10 @@ $EndComp
 Wire Wire Line
 	8200 9225 8200 9325
 $Comp
-L Device:C C?
+L Device:C C6
 U 1 1 5F370674
 P 7325 8875
-F 0 "C?" H 7440 8921 50  0000 L CNN
+F 0 "C6" H 7440 8921 50  0000 L CNN
 F 1 "100nF" H 7440 8830 50  0000 L CNN
 F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 7363 8725 50  0001 C CNN
 F 3 "~" H 7325 8875 50  0001 C CNN
@@ -1736,10 +1456,10 @@ Connection ~ 7325 8725
 Wire Wire Line
 	7325 8600 7325 8725
 $Comp
-L power:GND #PWR?
+L power:GND #PWR010
 U 1 1 5F370681
 P 7175 9025
-F 0 "#PWR?" H 7175 8775 50  0001 C CNN
+F 0 "#PWR010" H 7175 8775 50  0001 C CNN
 F 1 "GND" H 7180 8852 50  0000 C CNN
 F 2 "" H 7175 9025 50  0001 C CNN
 F 3 "" H 7175 9025 50  0001 C CNN
@@ -1776,15 +1496,9 @@ NoConn ~ 9300 8175
 Connection ~ 5800 9725
 Wire Wire Line
 	7325 9025 7175 9025
-Connection ~ 7000 9025
-Wire Wire Line
-	7000 9025 7000 9325
 Connection ~ 7175 9025
 Wire Wire Line
 	7175 9025 7000 9025
-Wire Wire Line
-	7300 9325 7000 9325
-Connection ~ 7000 9325
 Wire Wire Line
 	8200 9325 7600 9325
 Wire Bus Line
@@ -1798,36 +1512,11 @@ Wire Wire Line
 	4350 9325 5300 9325
 Text Label 4150 5400 2    50   ~ 0
 COLSDI16
-Wire Wire Line
-	4750 4700 6275 4700
-Wire Wire Line
-	5750 4900 5000 4900
-Connection ~ 5750 4900
-Connection ~ 6050 5200
-Wire Wire Line
-	5000 4900 5000 5100
-Wire Wire Line
-	4750 4700 4750 5000
-Wire Wire Line
-	5000 5100 3675 5100
-Wire Wire Line
-	4750 5000 3675 5000
 $Comp
-L power:GND #PWR?
-U 1 1 5F1F0970
-P 2975 4600
-F 0 "#PWR?" H 2975 4350 50  0001 C CNN
-F 1 "GND" V 2980 4472 50  0000 R CNN
-F 2 "" H 2975 4600 50  0001 C CNN
-F 3 "" H 2975 4600 50  0001 C CNN
-	1    2975 4600
-	-1   0    0    1   
-$EndComp
-$Comp
-L MCU_Microchip_ATmega:ATxmega64D4-AU U?
+L MCU_Microchip_ATmega:ATxmega64D4-AU U2
 U 1 1 5F7BA44B
 P 2975 6000
-F 0 "U?" H 2525 7375 50  0000 C CNN
+F 0 "U2" H 2525 7375 50  0000 C CNN
 F 1 "ATxmega64D4-AU" H 2975 6425 50  0000 C CNN
 F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 2975 6000 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8135-8-and-16-bit-AVR-microcontroller-ATxmega16D4-32D4-64D4-128D4_datasheet.pdf" H 2975 6000 50  0001 C CNN
@@ -1844,9 +1533,6 @@ Text Label 3875 5200 2    50   ~ 0
 LE
 Wire Wire Line
 	4475 9625 4475 5200
-Connection ~ 4475 5200
-Wire Wire Line
-	4475 5200 6050 5200
 Wire Wire Line
 	4350 9325 4350 5300
 Wire Wire Line
@@ -1866,42 +1552,14 @@ Wire Wire Line
 Wire Wire Line
 	3900 9725 5800 9725
 Wire Wire Line
-	3900 6200 5950 6200
-Connection ~ 5950 6200
-Wire Wire Line
-	5950 6200 5950 6850
-Wire Wire Line
 	3900 6200 3675 6200
-Connection ~ 3900 6200
-NoConn ~ 3675 6700
 NoConn ~ 3675 6800
+NoConn ~ 3675 6700
 $Comp
-L Device:C C?
-U 1 1 5F8BB0AB
-P 6825 4325
-F 0 "C?" V 6573 4325 50  0000 C CNN
-F 1 "100nF" V 6664 4325 50  0000 C CNN
-F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 6863 4175 50  0001 C CNN
-F 3 "~" H 6825 4325 50  0001 C CNN
-	1    6825 4325
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:GND #PWR?
-U 1 1 5F8BB0B5
-P 6825 4175
-F 0 "#PWR?" H 6825 3925 50  0001 C CNN
-F 1 "GND" V 6830 4047 50  0000 R CNN
-F 2 "" H 6825 4175 50  0001 C CNN
-F 3 "" H 6825 4175 50  0001 C CNN
-	1    6825 4175
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:C C?
+L Device:C C2
 U 1 1 5F8DFF39
 P 2725 7600
-F 0 "C?" V 2473 7600 50  0000 C CNN
+F 0 "C2" V 2473 7600 50  0000 C CNN
 F 1 "100nF" V 2564 7600 50  0000 C CNN
 F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 2763 7450 50  0001 C CNN
 F 3 "~" H 2725 7600 50  0001 C CNN
@@ -1909,10 +1567,10 @@ F 3 "~" H 2725 7600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR03
 U 1 1 5F8DFF43
 P 2575 7600
-F 0 "#PWR?" H 2575 7350 50  0001 C CNN
+F 0 "#PWR03" H 2575 7350 50  0001 C CNN
 F 1 "GND" V 2580 7472 50  0000 R CNN
 F 2 "" H 2575 7600 50  0001 C CNN
 F 3 "" H 2575 7600 50  0001 C CNN
@@ -1932,10 +1590,10 @@ Wire Wire Line
 Connection ~ 2875 7600
 Connection ~ 2975 7600
 $Comp
-L power:VDD #PWR?
+L power:VDD #PWR04
 U 1 1 5F9714E3
 P 2925 7725
-F 0 "#PWR?" H 2925 7575 50  0001 C CNN
+F 0 "#PWR04" H 2925 7575 50  0001 C CNN
 F 1 "VDD" H 2942 7898 50  0000 C CNN
 F 2 "" H 2925 7725 50  0001 C CNN
 F 3 "" H 2925 7725 50  0001 C CNN
@@ -1946,10 +1604,10 @@ Connection ~ 2925 7725
 Wire Wire Line
 	2925 7725 2975 7725
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S8
 U 1 1 5F99E26D
 P 1175 5900
-F 0 "S?" H 850 6050 50  0000 C CNN
+F 0 "S8" H 850 6050 50  0000 C CNN
 F 1 "LEFT" H 775 5950 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 6100 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 6200 60  0001 L CNN
@@ -1966,10 +1624,10 @@ F 12 "Active" H 1375 7100 60  0001 L CNN "Status"
 	1    0    0    -1  
 $EndComp
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S7
 U 1 1 5F9C5456
 P 1175 5675
-F 0 "S?" H 850 5825 50  0000 C CNN
+F 0 "S7" H 850 5825 50  0000 C CNN
 F 1 "RIGHT" H 775 5725 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5875 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5975 60  0001 L CNN
@@ -1986,10 +1644,10 @@ F 12 "Active" H 1375 6875 60  0001 L CNN "Status"
 	1    0    0    -1  
 $EndComp
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S6
 U 1 1 5F9C5FB7
 P 1175 5450
-F 0 "S?" H 850 5600 50  0000 C CNN
+F 0 "S6" H 850 5600 50  0000 C CNN
 F 1 "SOFTDROP" H 775 5500 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5650 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5750 60  0001 L CNN
@@ -2026,10 +1684,10 @@ Wire Wire Line
 Wire Wire Line
 	2200 5500 2275 5500
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S5
 U 1 1 5FA8729A
 P 1175 5225
-F 0 "S?" H 850 5375 50  0000 C CNN
+F 0 "S5" H 850 5375 50  0000 C CNN
 F 1 "HARDDROP" H 775 5275 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5425 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5525 60  0001 L CNN
@@ -2063,10 +1721,10 @@ Wire Wire Line
 Wire Wire Line
 	1375 5225 1800 5225
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S4
 U 1 1 5FB2C393
 P 1175 5000
-F 0 "S?" H 850 5150 50  0000 C CNN
+F 0 "S4" H 850 5150 50  0000 C CNN
 F 1 "ROTL" H 775 5050 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 5200 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5300 60  0001 L CNN
@@ -2083,10 +1741,10 @@ F 12 "Active" H 1375 6200 60  0001 L CNN "Status"
 	1    0    0    -1  
 $EndComp
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S3
 U 1 1 5FB2CD6E
 P 1175 4775
-F 0 "S?" H 850 4925 50  0000 C CNN
+F 0 "S3" H 850 4925 50  0000 C CNN
 F 1 "ROTR" H 775 4825 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4975 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 5075 60  0001 L CNN
@@ -2129,10 +1787,10 @@ Wire Wire Line
 Wire Wire Line
 	1975 4775 1975 5200
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S2
 U 1 1 5FD11B86
 P 1175 4550
-F 0 "S?" H 850 4700 50  0000 C CNN
+F 0 "S2" H 850 4700 50  0000 C CNN
 F 1 "PAUSE" H 775 4600 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4750 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 4850 60  0001 L CNN
@@ -2160,10 +1818,10 @@ Wire Wire Line
 Wire Wire Line
 	2050 5100 2275 5100
 $Comp
-L power:GND #PWR?
+L power:GND #PWR02
 U 1 1 5FD6E0B9
 P 525 5900
-F 0 "#PWR?" H 525 5650 50  0001 C CNN
+F 0 "#PWR02" H 525 5650 50  0001 C CNN
 F 1 "GND" H 530 5727 50  0000 C CNN
 F 2 "" H 525 5900 50  0001 C CNN
 F 3 "" H 525 5900 50  0001 C CNN
@@ -2172,10 +1830,10 @@ F 3 "" H 525 5900 50  0001 C CNN
 $EndComp
 Connection ~ 525  5900
 $Comp
-L dk_Pushbutton-Switches:GPTS203211B S?
+L dk_Pushbutton-Switches:GPTS203211B S1
 U 1 1 5FD6EBE1
 P 1175 4325
-F 0 "S?" H 850 4475 50  0000 C CNN
+F 0 "S1" H 850 4475 50  0000 C CNN
 F 1 "HOLD" H 775 4375 50  0000 C CNN
 F 2 "digikey-footprints:PushButton_12x12mm_THT_GPTS203211B" H 1375 4525 50  0001 L CNN
 F 3 "http://switches-connectors-custom.cwind.com/Asset/GPTS203211BR2.pdf" H 1375 4625 60  0001 L CNN
@@ -2202,10 +1860,10 @@ Wire Wire Line
 Wire Wire Line
 	2175 5000 2275 5000
 $Comp
-L Connector:AVR-PDI-6 J?
+L Connector:AVR-PDI-6 J1
 U 1 1 5FDFDAE0
 P 5050 7100
-F 0 "J?" H 4720 7146 50  0000 R CNN
+F 0 "J1" H 4720 7146 50  0000 R CNN
 F 1 "AVR-PDI-6" H 4720 7055 50  0000 R CNN
 F 2 "" V 4800 7050 50  0001 C CNN
 F 3 " ~" H 3775 6550 50  0001 C CNN
@@ -2217,10 +1875,10 @@ Wire Wire Line
 Wire Wire Line
 	3675 7000 4650 7000
 $Comp
-L power:VDD #PWR?
+L power:VDD #PWR06
 U 1 1 5FE8E242
 P 5150 6700
-F 0 "#PWR?" H 5150 6550 50  0001 C CNN
+F 0 "#PWR06" H 5150 6550 50  0001 C CNN
 F 1 "VDD" H 5167 6873 50  0000 C CNN
 F 2 "" H 5150 6700 50  0001 C CNN
 F 3 "" H 5150 6700 50  0001 C CNN
@@ -2228,16 +1886,355 @@ F 3 "" H 5150 6700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR08
 U 1 1 5FE8EC1D
 P 5150 7500
-F 0 "#PWR?" H 5150 7250 50  0001 C CNN
+F 0 "#PWR08" H 5150 7250 50  0001 C CNN
 F 1 "GND" V 5155 7372 50  0000 R CNN
 F 2 "" H 5150 7500 50  0001 C CNN
 F 3 "" H 5150 7500 50  0001 C CNN
 	1    5150 7500
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:GND #PWR013
+U 1 1 600982F8
+P 7250 3350
+F 0 "#PWR013" H 7250 3100 50  0001 C CNN
+F 1 "GND" V 7255 3222 50  0000 R CNN
+F 2 "" H 7250 3350 50  0001 C CNN
+F 3 "" H 7250 3350 50  0001 C CNN
+	1    7250 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR015
+U 1 1 6032EDF9
+P 7250 6200
+F 0 "#PWR015" H 7250 5950 50  0001 C CNN
+F 1 "GND" V 7255 6072 50  0000 R CNN
+F 2 "" H 7250 6200 50  0001 C CNN
+F 3 "" H 7250 6200 50  0001 C CNN
+	1    7250 6200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 2250 7725 2250
+Wire Wire Line
+	7725 2250 7725 1475
+Wire Wire Line
+	7725 1475 8950 1475
+Wire Wire Line
+	7650 2350 7825 2350
+Wire Wire Line
+	7825 2350 7825 1875
+Wire Wire Line
+	7825 1875 8950 1875
+Wire Wire Line
+	7650 2450 7925 2450
+Wire Wire Line
+	7925 2450 7925 2275
+Wire Wire Line
+	7925 2275 8950 2275
+Wire Wire Line
+	7650 2950 7725 2950
+Wire Wire Line
+	7725 2950 7725 4275
+Wire Wire Line
+	7725 4275 8950 4275
+Wire Wire Line
+	7650 2850 7825 2850
+Wire Wire Line
+	7825 2850 7825 3875
+Wire Wire Line
+	7825 3875 8950 3875
+Wire Wire Line
+	7650 2750 7925 2750
+Wire Wire Line
+	7925 2750 7925 3475
+Wire Wire Line
+	7925 3475 8950 3475
+Wire Wire Line
+	7650 2650 8025 2650
+Wire Wire Line
+	8025 2650 8025 3075
+Wire Wire Line
+	8025 3075 8950 3075
+Wire Wire Line
+	7650 2550 8125 2550
+Wire Wire Line
+	8125 2550 8125 2675
+Wire Wire Line
+	8125 2675 8950 2675
+Wire Wire Line
+	7650 5100 7725 5100
+Wire Wire Line
+	7725 5100 7725 4675
+Wire Wire Line
+	7725 4675 8950 4675
+Wire Wire Line
+	7650 5200 7825 5200
+Wire Wire Line
+	7825 5200 7825 5075
+Wire Wire Line
+	7825 5075 8950 5075
+Wire Wire Line
+	7650 5300 8225 5300
+Wire Wire Line
+	8225 5300 8225 5475
+Wire Wire Line
+	8225 5475 8950 5475
+Wire Wire Line
+	7650 5800 7725 5800
+Wire Wire Line
+	7725 5800 7725 7475
+Wire Wire Line
+	7725 7475 8950 7475
+Wire Wire Line
+	7650 5700 7825 5700
+Wire Wire Line
+	7825 5700 7825 7075
+Wire Wire Line
+	7825 7075 8950 7075
+Wire Wire Line
+	7650 5600 7925 5600
+Wire Wire Line
+	7925 5600 7925 6675
+Wire Wire Line
+	7925 6675 8950 6675
+Wire Wire Line
+	7650 5500 8025 5500
+Wire Wire Line
+	8025 5500 8025 6275
+Wire Wire Line
+	8025 6275 8950 6275
+Wire Wire Line
+	7650 5400 8125 5400
+Wire Wire Line
+	8125 5400 8125 5875
+Wire Wire Line
+	8125 5875 8950 5875
+$Comp
+L 74xx:74HCT595 U3
+U 1 1 5F2F5F11
+P 7250 2650
+F 0 "U3" H 7000 3200 50  0000 C CNN
+F 1 "74HCT595" V 7325 2650 50  0000 C CNN
+F 2 "" H 7250 2650 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT595.pdf" H 7250 2650 50  0001 C CNN
+	1    7250 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HCT595 U12
+U 1 1 5F2F7A3D
+P 7250 5500
+F 0 "U12" H 7000 6050 50  0000 C CNN
+F 1 "74HCT595" V 7325 5425 50  0000 C CNN
+F 2 "" H 7250 5500 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT595.pdf" H 7250 5500 50  0001 C CNN
+	1    7250 5500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C5
+U 1 1 5F2FACBD
+P 7250 4625
+F 0 "C5" V 6998 4625 50  0000 C CNN
+F 1 "100nF" V 7089 4625 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 7288 4475 50  0001 C CNN
+F 3 "~" H 7250 4625 50  0001 C CNN
+	1    7250 4625
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR014
+U 1 1 5F2FACC7
+P 7250 4475
+F 0 "#PWR014" H 7250 4225 50  0001 C CNN
+F 1 "GND" V 7255 4347 50  0000 R CNN
+F 2 "" H 7250 4475 50  0001 C CNN
+F 3 "" H 7250 4475 50  0001 C CNN
+	1    7250 4475
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7250 4775 7250 4800
+$Comp
+L power:VDD #PWR09
+U 1 1 5F34EBE7
+P 6950 1925
+F 0 "#PWR09" H 6950 1775 50  0001 C CNN
+F 1 "VDD" H 6967 2098 50  0000 C CNN
+F 2 "" H 6950 1925 50  0001 C CNN
+F 3 "" H 6950 1925 50  0001 C CNN
+	1    6950 1925
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C4
+U 1 1 5F34EBF1
+P 7250 1775
+F 0 "C4" V 6998 1775 50  0000 C CNN
+F 1 "100nF" V 7089 1775 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 7288 1625 50  0001 C CNN
+F 3 "~" H 7250 1775 50  0001 C CNN
+	1    7250 1775
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR012
+U 1 1 5F34EBFB
+P 7250 1625
+F 0 "#PWR012" H 7250 1375 50  0001 C CNN
+F 1 "GND" V 7255 1497 50  0000 R CNN
+F 2 "" H 7250 1625 50  0001 C CNN
+F 3 "" H 7250 1625 50  0001 C CNN
+	1    7250 1625
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7250 1925 7250 2050
+Connection ~ 7250 1925
+Wire Wire Line
+	3675 5000 6325 5000
+Wire Wire Line
+	6325 5000 6325 2250
+Wire Wire Line
+	6325 2250 6850 2250
+Wire Wire Line
+	7650 3150 7650 3875
+Wire Wire Line
+	7650 3875 6850 3875
+Wire Wire Line
+	6850 3875 6850 5100
+Wire Wire Line
+	6700 5100 6700 2450
+Wire Wire Line
+	3675 5100 6700 5100
+Wire Wire Line
+	6700 2450 6850 2450
+Wire Wire Line
+	6700 5100 6700 5300
+Wire Wire Line
+	6700 5300 6850 5300
+Connection ~ 6700 5100
+Wire Wire Line
+	4475 5200 6500 5200
+Wire Wire Line
+	6500 5200 6500 5600
+Wire Wire Line
+	6500 5600 6850 5600
+Connection ~ 4475 5200
+Wire Wire Line
+	6500 5200 6500 2750
+Wire Wire Line
+	6500 2750 6850 2750
+Connection ~ 6500 5200
+Wire Wire Line
+	7250 1925 6950 1925
+Wire Wire Line
+	6775 1925 6775 2550
+Wire Wire Line
+	6775 2550 6850 2550
+Connection ~ 6950 1925
+Wire Wire Line
+	6950 1925 6775 1925
+Wire Wire Line
+	6775 2550 6775 4800
+Wire Wire Line
+	6775 5400 6850 5400
+Connection ~ 6775 2550
+Wire Wire Line
+	7250 4800 6775 4800
+Connection ~ 7250 4800
+Wire Wire Line
+	7250 4800 7250 4900
+Connection ~ 6775 4800
+Wire Wire Line
+	6775 4800 6775 5400
+Wire Wire Line
+	6850 2850 6600 2850
+Wire Wire Line
+	6600 2850 6600 5700
+Wire Wire Line
+	6600 5700 6850 5700
+Wire Wire Line
+	6600 5700 3900 5700
+Wire Wire Line
+	3900 5700 3900 6200
+Connection ~ 6600 5700
+Connection ~ 3900 6200
+$Comp
+L power:GND #PWR05
+U 1 1 5F690054
+P 2975 4600
+F 0 "#PWR05" H 2975 4350 50  0001 C CNN
+F 1 "GND" V 2980 4472 50  0000 R CNN
+F 2 "" H 2975 4600 50  0001 C CNN
+F 3 "" H 2975 4600 50  0001 C CNN
+	1    2975 4600
+	-1   0    0    1   
+$EndComp
+$Comp
+L dk_Trimmer-Potentiometers:TC33X-2-103E POT1
+U 1 1 5F692A6C
+P 7000 10125
+F 0 "POT1" V 6947 10038 60  0000 R CNN
+F 1 "2K TC33X-2-202E" V 7053 10038 60  0000 R CNN
+F 2 "digikey-footprints:Trimpot_3.8mmx3.6mm_TC33X-2-103E" H 7200 10325 60  0001 L CNN
+F 3 "https://www.bourns.com/docs/Product-Datasheets/TC33.pdf" H 7200 10425 60  0001 L CNN
+F 4 "TC33X-103ETR-ND" H 7200 10525 60  0001 L CNN "Digi-Key_PN"
+F 5 "TC33X-2-103E" H 7200 10625 60  0001 L CNN "MPN"
+F 6 "Potentiometers, Variable Resistors" H 7200 10725 60  0001 L CNN "Category"
+F 7 "Trimmer Potentiometers" H 7200 10825 60  0001 L CNN "Family"
+F 8 "https://www.bourns.com/docs/Product-Datasheets/TC33.pdf" H 7200 10925 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/bourns-inc/TC33X-2-103E/TC33X-103ETR-ND/612858" H 7200 11025 60  0001 L CNN "DK_Detail_Page"
+F 10 "TRIMMER 10K OHM 0.1W J LEAD TOP" H 7200 11125 60  0001 L CNN "Description"
+F 11 "Bourns Inc." H 7200 11225 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 7200 11325 60  0001 L CNN "Status"
+	1    7000 10125
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6750 9325 7000 9325
+Wire Wire Line
+	7000 9325 7000 9925
+Connection ~ 7000 9325
+Wire Wire Line
+	7000 9325 7300 9325
+$Comp
+L power:GND #PWR011
+U 1 1 5F720E7C
+P 7175 10450
+F 0 "#PWR011" H 7175 10200 50  0001 C CNN
+F 1 "GND" H 7180 10277 50  0000 C CNN
+F 2 "" H 7175 10450 50  0001 C CNN
+F 3 "" H 7175 10450 50  0001 C CNN
+	1    7175 10450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 10325 7000 10450
+Wire Wire Line
+	7000 10450 7175 10450
+Wire Wire Line
+	7375 10450 7375 10125
+Wire Wire Line
+	7375 10125 7300 10125
+Connection ~ 7175 10450
+Wire Wire Line
+	7175 10450 7375 10450
+$Sheet
+S 1500 975  2325 1550
+U 5F785555
+F0 "power" 50
+F1 "power.sch" 50
+$EndSheet
+Text GLabel 1350 3300 0    50   Input ~ 0
+VDD
+Wire Wire Line
+	1350 3300 1450 3300
 Wire Bus Line
 	10275 6825 10275 9125
 Wire Bus Line
