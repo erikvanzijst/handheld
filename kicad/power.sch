@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 3
 Title ""
 Date ""
 Rev ""
@@ -79,24 +79,22 @@ Wire Wire Line
 	5500 3975 6275 3975
 Wire Wire Line
 	5500 3850 5500 3975
-Text GLabel 7325 3450 2    50   Input ~ 0
-VDD
 Connection ~ 6725 3450
 $Comp
 L Device:Battery BT1
 U 1 1 5F7915DC
-P 2400 3725
-F 0 "BT1" H 2125 3800 50  0000 L CNN
-F 1 "4 x 1.5V AA" H 1825 3650 50  0000 L CNN
-F 2 "" V 2400 3785 50  0001 C CNN
-F 3 "~" V 2400 3785 50  0001 C CNN
-	1    2400 3725
-	1    0    0    -1  
+P 2075 3450
+F 0 "BT1" V 1925 3375 50  0000 L CNN
+F 1 "2 x 1.5V AA" V 2225 3225 50  0000 L CNN
+F 2 "" V 2075 3510 50  0001 C CNN
+F 3 "~" V 2075 3510 50  0001 C CNN
+	1    2075 3450
+	0    1    -1   0   
 $EndComp
 Wire Wire Line
 	4225 3450 4300 3450
 Connection ~ 4300 3450
-Text Label 2400 3450 0    50   ~ 0
+Text Label 2475 3450 2    50   ~ 0
 6V
 $Comp
 L power:PWR_FLAG #FLG02
@@ -155,7 +153,7 @@ F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 3900 50  00
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3625 3450 3200 3450
+	3625 3450 3400 3450
 Wire Wire Line
 	4225 3550 4300 3550
 Wire Wire Line
@@ -165,13 +163,12 @@ L Device:R R3
 U 1 1 5F8BFEFE
 P 3525 3825
 F 0 "R3" H 3595 3871 50  0000 L CNN
-F 1 "100K" H 3595 3780 50  0000 L CNN
+F 1 "10K" H 3595 3780 50  0000 L CNN
 F 2 "" V 3455 3825 50  0001 C CNN
 F 3 "~" H 3525 3825 50  0001 C CNN
 	1    3525 3825
 	1    0    0    -1  
 $EndComp
-Connection ~ 3525 3975
 Wire Wire Line
 	3525 3675 3525 3550
 Wire Wire Line
@@ -181,22 +178,16 @@ NoConn ~ 3725 2200
 $Comp
 L pspice:DIODE D7
 U 1 1 5F8CC172
-P 3000 3450
-F 0 "D7" H 3000 3715 50  0000 C CNN
-F 1 "1N4007" H 3000 3624 50  0000 C CNN
-F 2 "" H 3000 3450 50  0001 C CNN
-F 3 "~" H 3000 3450 50  0001 C CNN
-	1    3000 3450
+P 3200 3450
+F 0 "D7" H 3200 3715 50  0000 C CNN
+F 1 "1N4007" H 3200 3624 50  0000 C CNN
+F 2 "" H 3200 3450 50  0001 C CNN
+F 3 "~" H 3200 3450 50  0001 C CNN
+	1    3200 3450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 3450 2400 3450
-Wire Wire Line
-	2400 3450 2400 3525
-Wire Wire Line
-	2400 3975 2400 3925
-Wire Wire Line
-	2400 3975 3525 3975
+	1825 3450 1875 3450
 Wire Wire Line
 	4925 3600 4925 3450
 Wire Wire Line
@@ -205,8 +196,8 @@ $Comp
 L Device:C C7
 U 1 1 5F789842
 P 4925 3750
-F 0 "C7" H 4650 3800 50  0000 L CNN
-F 1 "4.7uF" H 4575 3650 50  0000 L CNN
+F 0 "C7" H 4725 3750 50  0000 L CNN
+F 1 "4.7uF" H 4700 3650 50  0000 L CNN
 F 2 "" H 4963 3600 50  0001 C CNN
 F 3 "~" H 4925 3750 50  0001 C CNN
 	1    4925 3750
@@ -214,10 +205,10 @@ F 3 "~" H 4925 3750 50  0001 C CNN
 $EndComp
 Connection ~ 4925 3450
 Wire Wire Line
-	4925 3450 4300 3450
+	4925 3450 4575 3450
 Connection ~ 4925 3975
 Wire Wire Line
-	4925 3975 5500 3975
+	4925 3975 5150 3975
 Wire Wire Line
 	3825 2200 3825 2375
 Wire Wire Line
@@ -259,7 +250,7 @@ Wire Wire Line
 Wire Wire Line
 	4300 2825 4300 3450
 Wire Wire Line
-	5200 3550 5075 3550
+	5200 3550 5150 3550
 Wire Wire Line
 	5075 3550 5075 3450
 Connection ~ 5075 3450
@@ -276,4 +267,63 @@ F 3 "" H 3300 2025 50  0001 C CNN
 	1    3300 2025
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:R R?
+U 1 1 5F2BAEAD
+P 5150 3825
+F 0 "R?" H 5220 3871 50  0000 L CNN
+F 1 "100K" H 5220 3780 50  0000 L CNN
+F 2 "" V 5080 3825 50  0001 C CNN
+F 3 "~" H 5150 3825 50  0001 C CNN
+	1    5150 3825
+	1    0    0    -1  
+$EndComp
+Connection ~ 5150 3975
+Wire Wire Line
+	5150 3975 5500 3975
+Wire Wire Line
+	5150 3675 5150 3550
+Connection ~ 5150 3550
+Wire Wire Line
+	5150 3550 5075 3550
+Wire Wire Line
+	4575 3450 4575 3025
+Wire Wire Line
+	4575 3025 7325 3025
+Connection ~ 4575 3450
+Wire Wire Line
+	4575 3450 4300 3450
+Text Label 7000 3025 0    50   ~ 0
+3.5-5V
+Text Notes 5275 3025 0    50   ~ 0
+Unregulated power directly from USB or\nbatteries. Ranges between 3.5 and 5V.\nDriving LEDs with constant current drivers.
+$Comp
+L Device:Battery BT?
+U 1 1 5F45FF3D
+P 2075 3975
+F 0 "BT?" V 1925 3925 50  0000 L CNN
+F 1 "2 x 1.5V AA" V 2225 3750 50  0000 L CNN
+F 2 "" V 2075 4035 50  0001 C CNN
+F 3 "~" V 2075 4035 50  0001 C CNN
+	1    2075 3975
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2275 3975 3525 3975
+Wire Wire Line
+	1875 3975 1825 3975
+Text HLabel 1825 2925 2    50   Output ~ 0
+BAT_LVL
+Wire Wire Line
+	1825 3975 1825 3450
+Connection ~ 3525 3975
+Wire Wire Line
+	2275 3450 3000 3450
+Wire Wire Line
+	1825 3450 1825 2925
+Connection ~ 1825 3450
+Text HLabel 7325 3025 2    50   Output ~ 0
+U_PWR
+Text HLabel 7325 3450 2    50   Output ~ 0
+VDD
 $EndSCHEMATC
