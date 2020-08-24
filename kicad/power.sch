@@ -60,10 +60,10 @@ Connection ~ 6475 3450
 Wire Wire Line
 	6475 3450 6725 3450
 $Comp
-L power:GND #PWR020
+L power:GND #PWR022
 U 1 1 5F78F1EA
 P 5500 3975
-F 0 "#PWR020" H 5500 3725 50  0001 C CNN
+F 0 "#PWR022" H 5500 3725 50  0001 C CNN
 F 1 "GND" H 5505 3802 50  0000 C CNN
 F 2 "" H 5500 3975 50  0001 C CNN
 F 3 "" H 5500 3975 50  0001 C CNN
@@ -97,17 +97,6 @@ Connection ~ 4300 3450
 Text Label 2475 3450 2    50   ~ 0
 6V
 $Comp
-L power:PWR_FLAG #FLG02
-U 1 1 5F793D23
-P 6725 3450
-F 0 "#FLG02" H 6725 3525 50  0001 C CNN
-F 1 "PWR_FLAG" H 6725 3623 50  0000 C CNN
-F 2 "" H 6725 3450 50  0001 C CNN
-F 3 "~" H 6725 3450 50  0001 C CNN
-	1    6725 3450
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5F794155
 P 6275 3975
@@ -122,10 +111,10 @@ Connection ~ 6275 3975
 Wire Wire Line
 	6275 3975 6725 3975
 $Comp
-L dk_USB-DVI-HDMI-Connectors:UE27AC54100 J2
+L dk_USB-DVI-HDMI-Connectors:UE27AC54100 J3
 U 1 1 5F8B701D
 P 3625 1900
-F 0 "J2" V 3692 2253 60  0000 L CNN
+F 0 "J3" V 3692 2253 60  0000 L CNN
 F 1 "UE27AC54100" V 3798 2253 60  0000 L CNN
 F 2 "digikey-footprints:USB_A_Female_UE27AC54100" H 3825 2100 60  0001 L CNN
 F 3 "https://www.amphenolcanada.com/ProductSearch/drawings/AC/UE27ACX4X0X.pdf" H 3825 2200 60  0001 L CNN
@@ -154,10 +143,6 @@ F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 3900 50  00
 $EndComp
 Wire Wire Line
 	3625 3450 3400 3450
-Wire Wire Line
-	4225 3550 4300 3550
-Wire Wire Line
-	4300 3550 4300 3450
 $Comp
 L Device:R R3
 U 1 1 5F8BFEFE
@@ -176,10 +161,10 @@ Wire Wire Line
 NoConn ~ 3625 2200
 NoConn ~ 3725 2200
 $Comp
-L pspice:DIODE D7
+L pspice:DIODE D1
 U 1 1 5F8CC172
 P 3200 3450
-F 0 "D7" H 3200 3715 50  0000 C CNN
+F 0 "D1" H 3200 3715 50  0000 C CNN
 F 1 "1N4007" H 3200 3624 50  0000 C CNN
 F 2 "" H 3200 3450 50  0001 C CNN
 F 3 "~" H 3200 3450 50  0001 C CNN
@@ -204,8 +189,6 @@ F 3 "~" H 4925 3750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 4925 3450
-Wire Wire Line
-	4925 3450 4575 3450
 Connection ~ 4925 3975
 Wire Wire Line
 	4925 3975 5150 3975
@@ -228,10 +211,10 @@ Wire Wire Line
 	4500 3975 4925 3975
 Connection ~ 3525 3550
 $Comp
-L pspice:DIODE D8
+L pspice:DIODE D2
 U 1 1 5F8D97D5
 P 3950 2825
-F 0 "D8" H 3950 3090 50  0000 C CNN
+F 0 "D2" H 3950 3090 50  0000 C CNN
 F 1 "1N4007" H 3950 2999 50  0000 C CNN
 F 2 "" H 3950 2825 50  0001 C CNN
 F 3 "~" H 3950 2825 50  0001 C CNN
@@ -257,10 +240,10 @@ Connection ~ 5075 3450
 Wire Wire Line
 	5075 3450 4925 3450
 $Comp
-L power:GND #PWR?
+L power:GND #PWR021
 U 1 1 5F8DC955
 P 3300 2025
-F 0 "#PWR?" H 3300 1775 50  0001 C CNN
+F 0 "#PWR021" H 3300 1775 50  0001 C CNN
 F 1 "GND" H 3305 1852 50  0000 C CNN
 F 2 "" H 3300 2025 50  0001 C CNN
 F 3 "" H 3300 2025 50  0001 C CNN
@@ -268,10 +251,10 @@ F 3 "" H 3300 2025 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L Device:R R4
 U 1 1 5F2BAEAD
 P 5150 3825
-F 0 "R?" H 5220 3871 50  0000 L CNN
+F 0 "R4" H 5220 3871 50  0000 L CNN
 F 1 "100K" H 5220 3780 50  0000 L CNN
 F 2 "" V 5080 3825 50  0001 C CNN
 F 3 "~" H 5150 3825 50  0001 C CNN
@@ -298,10 +281,10 @@ Text Label 7000 3025 0    50   ~ 0
 Text Notes 5275 3025 0    50   ~ 0
 Unregulated power directly from USB or\nbatteries. Ranges between 3.5 and 5V.\nDriving LEDs with constant current drivers.
 $Comp
-L Device:Battery BT?
+L Device:Battery BT2
 U 1 1 5F45FF3D
 P 2075 3975
-F 0 "BT?" V 1925 3925 50  0000 L CNN
+F 0 "BT2" V 1925 3925 50  0000 L CNN
 F 1 "2 x 1.5V AA" V 2225 3750 50  0000 L CNN
 F 2 "" V 2075 4035 50  0001 C CNN
 F 3 "~" V 2075 4035 50  0001 C CNN
@@ -322,8 +305,11 @@ Wire Wire Line
 Wire Wire Line
 	1825 3450 1825 2925
 Connection ~ 1825 3450
-Text HLabel 7325 3025 2    50   Output ~ 0
+Text HLabel 7325 3025 2    50   UnSpc ~ 0
 U_PWR
 Text HLabel 7325 3450 2    50   Output ~ 0
 VDD
+Wire Wire Line
+	4575 3450 4925 3450
+NoConn ~ 4225 3550
 $EndSCHEMATC

@@ -22,12 +22,12 @@ $ENDCMP
 #
 $CMP RJ11_PTH_STAGGER
 D RJ11 4pin Through hole connector
-K RJ11 
+K RJ11
 $ENDCMP
 #
 $CMP RJ12_PTH_STAGGER
 D RJ11 6+2 PIN PTH Staggered Pads
-K RJ11 
+K RJ11
 $ENDCMP
 #
 #End Doc Library
