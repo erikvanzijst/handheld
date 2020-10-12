@@ -1,8 +1,33 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP DMN601
+D DMN601DMK DUAL N-CHANNEL ENHANCEMENT MODE MOSFET
+F https://www.diodes.com/assets/Datasheets/ds30657.pdf
+$ENDCMP
+#
+$CMP N-FET
+D DMN3018SSD SOIC8 N-CHANNEL ENHANCEMENT MODE MOSFET
+F https://www.diodes.com/assets/Datasheets/DMN3018SSD.pdf
+$ENDCMP
+#
+$CMP NSI45015
+D NSI45015WT1G CONSTANT CURRENT REGULATOR 15MA SOD-123
+F https://www.onsemi.com/pub/Collateral/NSI45015W-D.PDF
+$ENDCMP
+#
+$CMP NX7002
+D NX7002AKS, 60 V, dual N-channel Trench MOSFET
+F https://assets.nexperia.com/documents/data-sheet/NX7002AKS.pdf
+$ENDCMP
+#
 $CMP P-FET
 D P-CHANNEL ENHANCEMENT MODE MOSFET
 F https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf
+$ENDCMP
+#
+$CMP SN54LV574
+D OCTAL EDGE-TRIGGERED D-TYPE FLIP-FLOPS WITH 3-STATE OUTPUTS
+F https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf
 $ENDCMP
 #
 $CMP TLC59025
