@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 3 3
+Sheet 3 4
 Title ""
 Date ""
 Rev ""
@@ -698,6 +698,8 @@ Wire Bus Line
 Text HLabel 2100 3525 0    50   UnSpc ~ 0
 ROW[1..16]
 Text HLabel 2100 4550 0    50   UnSpc ~ 0
+COL[0..23]
+Text HLabel 25   850  0    50   UnSpc ~ 0
 COL[0..23]
 Wire Bus Line
 	7175 3525 7175 5825
