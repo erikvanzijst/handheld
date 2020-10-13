@@ -30,6 +30,11 @@ D OCTAL EDGE-TRIGGERED D-TYPE FLIP-FLOPS WITH 3-STATE OUTPUTS
 F https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf
 $ENDCMP
 #
+$CMP TFBS4711
+D TFBS4711-TR3 Serial Infrared Transceiver (SIR), 115.2 kbit/s
+F https://www.vishay.com/docs/82633/tfbs4711.pdf
+$ENDCMP
+#
 $CMP TLC59025
 D Low Power 16-Channel Constant Current LED Sink Driver
 F http://www.ti.com/lit/ds/symlink/tlc59025.pdf
