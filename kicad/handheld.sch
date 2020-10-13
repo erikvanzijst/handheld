@@ -13,17 +13,17 @@ Comment2 ""
 Comment3 "Email: erik.van.zijst@gmail.com"
 Comment4 "Author: Erik van Zijst"
 $EndDescr
-Text Label 5575 6150 2    50   ~ 0
+Text Label 7000 2225 2    50   ~ 0
 ~OE
 $Comp
 L Device:C C2
 U 1 1 5EFA155D
-P 4825 7550
-F 0 "C2" V 4573 7550 50  0000 C CNN
-F 1 "100nF" V 4664 7550 50  0000 C CNN
-F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 4863 7400 50  0001 C CNN
-F 3 "~" H 4825 7550 50  0001 C CNN
-	1    4825 7550
+P 4825 7050
+F 0 "C2" V 4573 7050 50  0000 C CNN
+F 1 "100nF" V 4664 7050 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 4863 6900 50  0001 C CNN
+F 3 "~" H 4825 7050 50  0001 C CNN
+	1    4825 7050
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -37,19 +37,19 @@ F 3 "" H 3350 2125 50  0001 C CNN
 	1    3350 2125
 	1    0    0    -1  
 $EndComp
-Text Label 5800 5250 2    50   ~ 0
+Text Label 7300 1850 2    50   ~ 0
 COLSDI0
-Text Label 5775 5450 2    50   ~ 0
+Text Label 7275 2050 2    50   ~ 0
 COLCLK
 $Comp
 L power:GND #PWR05
 U 1 1 5F1E6F61
-P 4975 7550
-F 0 "#PWR05" H 4975 7300 50  0001 C CNN
-F 1 "GND" V 4980 7422 50  0000 R CNN
-F 2 "" H 4975 7550 50  0001 C CNN
-F 3 "" H 4975 7550 50  0001 C CNN
-	1    4975 7550
+P 4975 7050
+F 0 "#PWR05" H 4975 6800 50  0001 C CNN
+F 1 "GND" V 4980 6922 50  0000 R CNN
+F 2 "" H 4975 7050 50  0001 C CNN
+F 3 "" H 4975 7050 50  0001 C CNN
+	1    4975 7050
 	0    -1   -1   0   
 $EndComp
 $Comp
@@ -63,67 +63,63 @@ F 3 "~" H 1125 10700 50  0001 C CNN
 	1    1125 10700
 	1    0    0    -1  
 $EndComp
-Text Label 5850 5350 2    50   ~ 0
+Text Label 7350 1950 2    50   ~ 0
 COLSDI16
 $Comp
-L MCU_Microchip_ATmega:ATxmega64D4-AU U1
+L MCU_Microchip_ATmega:ATxmega64D4-AU U2
 U 1 1 5F7BA44B
-P 4675 5950
-F 0 "U1" H 4225 7325 50  0000 C CNN
-F 1 "ATxmega64D4-AU" H 4675 6375 50  0000 C CNN
-F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 4675 5950 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8135-8-and-16-bit-AVR-microcontroller-ATxmega16D4-32D4-64D4-128D4_datasheet.pdf" H 4675 5950 50  0001 C CNN
-	1    4675 5950
+P 15175 8125
+F 0 "U2" H 14725 9500 50  0000 C CNN
+F 1 "ATxmega64D4-AU" H 15175 8550 50  0000 C CNN
+F 2 "Package_QFP:TQFP-44_10x10mm_P0.8mm" H 15175 8125 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8135-8-and-16-bit-AVR-microcontroller-ATxmega16D4-32D4-64D4-128D4_datasheet.pdf" H 15175 8125 50  0001 C CNN
+	1    15175 8125
 	-1   0    0    1   
 $EndComp
-Text Label 5800 5050 2    50   ~ 0
+Text Label 7300 1650 2    50   ~ 0
 ROWCLK
-Text Label 5775 4950 2    50   ~ 0
+Text Label 7275 1550 2    50   ~ 0
 ROWSDI
-Text Label 5575 5150 2    50   ~ 0
+Text Label 7075 1750 2    50   ~ 0
 LE
 Wire Wire Line
-	6050 5250 5375 5250
+	7550 1850 6875 1850
 Wire Wire Line
-	5925 5350 5375 5350
+	7425 1950 6875 1950
 Wire Wire Line
-	5800 5450 5375 5450
-Wire Wire Line
-	5600 6150 5375 6150
-NoConn ~ 5375 6750
-NoConn ~ 5375 6650
+	7300 2050 6875 2050
 $Comp
 L Device:C C1
 U 1 1 5F8DFF39
-P 4425 7550
-F 0 "C1" V 4173 7550 50  0000 C CNN
-F 1 "100nF" V 4264 7550 50  0000 C CNN
-F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 4463 7400 50  0001 C CNN
-F 3 "~" H 4425 7550 50  0001 C CNN
-	1    4425 7550
+P 4425 7050
+F 0 "C1" V 4173 7050 50  0000 C CNN
+F 1 "100nF" V 4264 7050 50  0000 C CNN
+F 2 "local:C_0805_2012Metric_Pad1.15x1.40mm_widepads" H 4463 6900 50  0001 C CNN
+F 3 "~" H 4425 7050 50  0001 C CNN
+	1    4425 7050
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR03
 U 1 1 5F8DFF43
-P 4275 7550
-F 0 "#PWR03" H 4275 7300 50  0001 C CNN
-F 1 "GND" V 4280 7422 50  0000 R CNN
-F 2 "" H 4275 7550 50  0001 C CNN
-F 3 "" H 4275 7550 50  0001 C CNN
-	1    4275 7550
+P 4275 7050
+F 0 "#PWR03" H 4275 6800 50  0001 C CNN
+F 1 "GND" V 4280 6922 50  0000 R CNN
+F 2 "" H 4275 7050 50  0001 C CNN
+F 3 "" H 4275 7050 50  0001 C CNN
+	1    4275 7050
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	4675 7350 4675 7550
+	4675 6850 4675 7050
 Wire Wire Line
-	4575 7350 4575 7550
+	4575 6850 4575 7050
 Wire Wire Line
-	4575 7550 4575 7675
+	4575 7050 4575 7175
 Wire Wire Line
-	4675 7675 4675 7550
-Connection ~ 4575 7550
-Connection ~ 4675 7550
+	4675 7175 4675 7050
+Connection ~ 4575 7050
+Connection ~ 4675 7050
 $Comp
 L dk_Pushbutton-Switches:GPTS203211B S8
 U 1 1 5F99E26D
@@ -383,57 +379,57 @@ Wire Wire Line
 $Comp
 L Connector:AVR-PDI-6 J2
 U 1 1 5FDFDAE0
-P 6750 7050
-F 0 "J2" H 6420 7096 50  0000 R CNN
-F 1 "AVR-PDI-6" H 6420 7005 50  0000 R CNN
-F 2 "" V 6500 7000 50  0001 C CNN
-F 3 " ~" H 5475 6500 50  0001 C CNN
-	1    6750 7050
+P 6750 6550
+F 0 "J2" H 6420 6596 50  0000 R CNN
+F 1 "AVR-PDI-6" H 6420 6505 50  0000 R CNN
+F 2 "" V 6500 6500 50  0001 C CNN
+F 3 " ~" H 5475 6000 50  0001 C CNN
+	1    6750 6550
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	6350 7050 5375 7050
+	6350 6550 5375 6550
 Wire Wire Line
-	5375 6950 6350 6950
+	5375 6450 6350 6450
 $Comp
-L power:GND #PWR08
+L power:GND #PWR07
 U 1 1 5FE8EC1D
-P 6850 7450
-F 0 "#PWR08" H 6850 7200 50  0001 C CNN
-F 1 "GND" V 6855 7322 50  0000 R CNN
-F 2 "" H 6850 7450 50  0001 C CNN
-F 3 "" H 6850 7450 50  0001 C CNN
-	1    6850 7450
+P 6850 6950
+F 0 "#PWR07" H 6850 6700 50  0001 C CNN
+F 1 "GND" V 6855 6822 50  0000 R CNN
+F 2 "" H 6850 6950 50  0001 C CNN
+F 3 "" H 6850 6950 50  0001 C CNN
+	1    6850 6950
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5600 5850 5600 6150
 $Comp
 L power:GND #PWR04
 U 1 1 5F690054
-P 4675 4550
-F 0 "#PWR04" H 4675 4300 50  0001 C CNN
-F 1 "GND" V 4680 4422 50  0000 R CNN
-F 2 "" H 4675 4550 50  0001 C CNN
-F 3 "" H 4675 4550 50  0001 C CNN
-	1    4675 4550
+P 4675 3250
+F 0 "#PWR04" H 4675 3000 50  0001 C CNN
+F 1 "GND" V 4680 3122 50  0000 R CNN
+F 2 "" H 4675 3250 50  0001 C CNN
+F 3 "" H 4675 3250 50  0001 C CNN
+	1    4675 3250
 	-1   0    0    1   
 $EndComp
 $Sheet
-S 3700 1175 2325 1550
+S 3700 1175 1100 1450
 U 5F785555
 F0 "power" 50
 F1 "power.sch" 50
 F2 "BAT_LVL" O L 3700 2500 50 
 F3 "U_PWR" O L 3700 2275 50 
 F4 "VDD" O L 3700 2125 50 
+F5 "USB_D-" I R 4800 2400 50 
+F6 "USB_D+" I R 4800 2500 50 
 $EndSheet
 Wire Wire Line
-	3700 2500 3350 2500
+	3700 2500 3175 2500
 Wire Wire Line
-	3350 2500 3350 6350
+	3175 2500 3175 6350
 Wire Wire Line
-	3350 6350 3975 6350
+	3175 6350 3975 6350
 Text GLabel 3075 2125 0    50   UnSpc ~ 0
 VDD
 Wire Wire Line
@@ -444,99 +440,175 @@ Wire Wire Line
 	3075 2275 3700 2275
 Connection ~ 3350 2125
 $Sheet
-S 12625 5975 1125 575 
+S 9900 5025 1125 575 
 U 5F613F5E
 F0 "matrix" 50
 F1 "matrix.sch" 50
-F2 "ROW[1..16]" U L 12625 6200 50 
-F3 "COL[0..23]" U L 12625 6400 50 
+F2 "ROW[1..16]" U L 9900 5250 50 
+F3 "COL[0..23]" U L 9900 5450 50 
 $EndSheet
-NoConn ~ 5375 5850
-NoConn ~ 5375 5950
-NoConn ~ 5375 6050
+NoConn ~ 5375 6150
+NoConn ~ 5375 6250
 NoConn ~ 3975 5850
 NoConn ~ 3975 5950
 NoConn ~ 3975 6050
 NoConn ~ 3975 6150
-NoConn ~ 3975 6450
-NoConn ~ 3975 6550
-NoConn ~ 3975 6650
-NoConn ~ 3975 6750
-NoConn ~ 3975 6850
-NoConn ~ 3975 6950
-NoConn ~ 3975 7050
 $Comp
 L dk_Rectangular-Connectors-Headers-Male-Pins:61300311121 J1
 U 1 1 5F933175
-P 6675 4400
-F 0 "J1" H 6587 4412 50  0000 R CNN
-F 1 "61300311121" H 6587 4503 50  0000 R CNN
-F 2 "digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm" H 6875 4600 60  0001 L CNN
-F 3 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 6875 4700 60  0001 L CNN
-F 4 "732-5316-ND" H 6875 4800 60  0001 L CNN "Digi-Key_PN"
-F 5 "61300311121" H 6875 4900 60  0001 L CNN "MPN"
-F 6 "Connectors, Interconnects" H 6875 5000 60  0001 L CNN "Category"
-F 7 "Rectangular Connectors - Headers, Male Pins" H 6875 5100 60  0001 L CNN "Family"
-F 8 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 6875 5200 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/wurth-electronics-inc/61300311121/732-5316-ND/4846825" H 6875 5300 60  0001 L CNN "DK_Detail_Page"
-F 10 "CONN HEADER VERT 3POS 2.54MM" H 6875 5400 60  0001 L CNN "Description"
-F 11 "Wurth Electronics Inc." H 6875 5500 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 6875 5600 60  0001 L CNN "Status"
-	1    6675 4400
+P 3550 3450
+F 0 "J1" V 3425 3450 50  0000 R CNN
+F 1 "61300311121" H 3775 3250 50  0000 R CNN
+F 2 "digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm" H 3750 3650 60  0001 L CNN
+F 3 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3750 3750 60  0001 L CNN
+F 4 "732-5316-ND" H 3750 3850 60  0001 L CNN "Digi-Key_PN"
+F 5 "61300311121" H 3750 3950 60  0001 L CNN "MPN"
+F 6 "Connectors, Interconnects" H 3750 4050 60  0001 L CNN "Category"
+F 7 "Rectangular Connectors - Headers, Male Pins" H 3750 4150 60  0001 L CNN "Family"
+F 8 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3750 4250 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/wurth-electronics-inc/61300311121/732-5316-ND/4846825" H 3750 4350 60  0001 L CNN "DK_Detail_Page"
+F 10 "CONN HEADER VERT 3POS 2.54MM" H 3750 4450 60  0001 L CNN "Description"
+F 11 "Wurth Electronics Inc." H 3750 4550 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 3750 4650 60  0001 L CNN "Status"
+	1    3550 3450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3975 3650 3700 3650
+$Comp
+L power:GND #PWR06
+U 1 1 5F9AF30E
+P 3700 3450
+F 0 "#PWR06" H 3700 3200 50  0001 C CNN
+F 1 "GND" V 3705 3322 50  0000 R CNN
+F 2 "" H 3700 3450 50  0001 C CNN
+F 3 "" H 3700 3450 50  0001 C CNN
+	1    3700 3450
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	5375 5550 6475 5550
-Wire Wire Line
-	6475 5550 6475 4550
-Wire Wire Line
-	5375 5650 6575 5650
-Wire Wire Line
-	6575 5650 6575 4550
-$Comp
-L power:GND #PWR07
-U 1 1 5F9AF30E
-P 6675 4550
-F 0 "#PWR07" H 6675 4300 50  0001 C CNN
-F 1 "GND" V 6680 4422 50  0000 R CNN
-F 2 "" H 6675 4550 50  0001 C CNN
-F 3 "" H 6675 4550 50  0001 C CNN
-	1    6675 4550
-	1    0    0    -1  
-$EndComp
-Text Notes 6450 4325 0    50   ~ 0
+Text Notes 3475 3675 1    50   ~ 0
 UART
 Wire Wire Line
 	3350 2125 3700 2125
-Text GLabel 4625 7775 3    50   Input ~ 0
+Text GLabel 4625 7275 3    50   Input ~ 0
 VDD
 Wire Wire Line
-	4575 7675 4625 7675
+	4575 7175 4625 7175
 Wire Wire Line
-	4625 7675 4625 7775
-Connection ~ 4625 7675
+	4625 7175 4625 7275
+Connection ~ 4625 7175
 Wire Wire Line
-	4625 7675 4675 7675
-Text GLabel 6850 6650 1    50   UnSpc ~ 0
+	4625 7175 4675 7175
+Text GLabel 6850 6150 1    50   UnSpc ~ 0
 VDD
 $Sheet
-S 10500 5175 1350 1450
+S 7775 4225 1350 1450
 U 6011206E
 F0 "Matrix Driver" 50
 F1 "matrix_driver.sch" 50
-F2 "COL[0..23]" I R 11850 6400 50 
-F3 "ROW[1..16]" I R 11850 6200 50 
-F4 "D[0..8]" I L 10500 6200 50 
-F5 "ROWSDI" I L 10500 5450 50 
-F6 "LE" I L 10500 5550 50 
-F7 "ROWCLK" I L 10500 5350 50 
-F8 "~OE" I L 10500 5750 50 
-F9 "SEGCLK0" I L 10500 6300 50 
-F10 "SEGCLK1" I L 10500 6400 50 
-F11 "SEGCLK2" I L 10500 6500 50 
+F2 "COL[0..23]" I R 9125 5450 50 
+F3 "ROW[1..16]" I R 9125 5250 50 
+F4 "D[0..7]" I L 7775 5250 50 
+F5 "ROWSDI" I L 7775 4500 50 
+F6 "LE" I L 7775 4600 50 
+F7 "ROWCLK" I L 7775 4400 50 
+F8 "~OE" I L 7775 4800 50 
+F9 "SEGCLK0" I L 7775 5350 50 
+F10 "SEGCLK1" I L 7775 5450 50 
+F11 "SEGCLK2" I L 7775 5550 50 
 $EndSheet
 Wire Bus Line
-	11850 6400 12625 6400
+	9125 5450 9900 5450
 Wire Bus Line
-	11850 6200 12625 6200
+	9125 5250 9900 5250
+$Comp
+L MCU_Microchip_ATmega:ATxmega64C3-AU U1
+U 1 1 60F7F62B
+P 4675 5050
+F 0 "U1" H 5175 3275 50  0000 C CNN
+F 1 "ATxmega64C3-AU" H 4675 5050 50  0000 C CNN
+F 2 "Package_QFP:TQFP-64_14x14mm_P0.8mm" H 4675 5050 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-8492-8-and-16-bit-AVR-microcontroller-ATxmega32C3_64C3_128C3_192C3_256C3_datasheet.pdf" H 4675 5050 50  0001 C CNN
+	1    4675 5050
+	-1   0    0    1   
+$EndComp
+Wire Bus Line
+	7775 5250 6000 5250
+Entry Wire Line
+	5900 4950 6000 4850
+Wire Wire Line
+	5900 4950 5375 4950
+Entry Wire Line
+	5900 5050 6000 4950
+Wire Wire Line
+	5900 5050 5375 5050
+Entry Wire Line
+	5900 5150 6000 5050
+Wire Wire Line
+	5900 5150 5375 5150
+Entry Wire Line
+	5900 5250 6000 5150
+Wire Wire Line
+	5900 5250 5375 5250
+Entry Wire Line
+	5900 5350 6000 5250
+Wire Wire Line
+	5900 5350 5375 5350
+Entry Wire Line
+	5900 5450 6000 5350
+Wire Wire Line
+	5900 5450 5375 5450
+Entry Wire Line
+	5900 5550 6000 5450
+Wire Wire Line
+	5900 5550 5375 5550
+Entry Wire Line
+	5900 5650 6000 5550
+Wire Wire Line
+	5900 5650 5375 5650
+Text Label 5725 5650 0    50   ~ 0
+D0
+Text Label 5725 5550 0    50   ~ 0
+D1
+Text Label 5725 5450 0    50   ~ 0
+D2
+Text Label 5725 5350 0    50   ~ 0
+D3
+Text Label 5725 5250 0    50   ~ 0
+D4
+Text Label 5725 5150 0    50   ~ 0
+D5
+Text Label 5725 5050 0    50   ~ 0
+D6
+Text Label 5725 4950 0    50   ~ 0
+D7
+Text Label 5425 3650 0    50   ~ 0
+D-
+Text Label 5425 3550 0    50   ~ 0
+D+
+Wire Wire Line
+	5375 3550 5575 3550
+Wire Wire Line
+	4800 2500 5575 2500
+Wire Wire Line
+	5575 2500 5575 3550
+Wire Wire Line
+	4800 2400 5675 2400
+Wire Wire Line
+	5675 2400 5675 3650
+Wire Wire Line
+	5375 3650 5675 3650
+Text Label 6125 5250 0    50   ~ 0
+D[0..7]
+Connection ~ 6000 5250
+Wire Wire Line
+	3700 3550 3975 3550
+Wire Bus Line
+	6000 5250 6000 5550
+Wire Bus Line
+	6000 4850 6000 5250
+Text Label 3725 3650 0    50   ~ 0
+RX
+Text Label 3725 3550 0    50   ~ 0
+TX
 $EndSCHEMATC
