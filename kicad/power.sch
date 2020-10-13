@@ -83,18 +83,18 @@ Connection ~ 6725 3450
 $Comp
 L Device:Battery BT1
 U 1 1 5F7915DC
-P 2075 3450
-F 0 "BT1" V 1925 3375 50  0000 L CNN
-F 1 "2 x 1.5V AA" V 2225 3225 50  0000 L CNN
-F 2 "" V 2075 3510 50  0001 C CNN
-F 3 "~" V 2075 3510 50  0001 C CNN
-	1    2075 3450
+P 2075 3350
+F 0 "BT1" V 1925 3275 50  0000 L CNN
+F 1 "2 x 1.5V AA" V 2225 3125 50  0000 L CNN
+F 2 "" V 2075 3410 50  0001 C CNN
+F 3 "~" V 2075 3410 50  0001 C CNN
+	1    2075 3350
 	0    1    -1   0   
 $EndComp
 Wire Wire Line
 	4225 3450 4300 3450
 Connection ~ 4300 3450
-Text Label 2475 3450 2    50   ~ 0
+Text Label 2450 3350 2    50   ~ 0
 6V
 $Comp
 L power:PWR_FLAG #FLG01
@@ -170,7 +170,7 @@ F 3 "~" H 3200 3450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1825 3450 1875 3450
+	1825 3350 1875 3350
 Wire Wire Line
 	4925 3600 4925 3450
 Wire Wire Line
@@ -220,12 +220,9 @@ F 3 "~" H 3950 2825 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3525 2200 3525 2825
-Wire Wire Line
 	3750 2825 3525 2825
-Connection ~ 3525 2825
 Wire Wire Line
-	3525 2825 3525 3550
+	3525 2825 3525 3050
 Wire Wire Line
 	4150 2825 4300 2825
 Wire Wire Line
@@ -293,16 +290,14 @@ Wire Wire Line
 	2275 3975 3525 3975
 Wire Wire Line
 	1875 3975 1825 3975
-Text HLabel 1825 2925 2    50   Output ~ 0
+Text HLabel 1825 2825 2    50   Output ~ 0
 BAT_LVL
 Wire Wire Line
-	1825 3975 1825 3450
+	1825 3975 1825 3350
 Connection ~ 3525 3975
 Wire Wire Line
-	2275 3450 3000 3450
-Wire Wire Line
-	1825 3450 1825 2925
-Connection ~ 1825 3450
+	1825 3350 1825 2825
+Connection ~ 1825 3350
 Text HLabel 7325 3025 2    50   UnSpc ~ 0
 U_PWR
 Text HLabel 7325 3450 2    50   Output ~ 0
@@ -326,4 +321,39 @@ Text HLabel 2125 2375 0    50   Input ~ 0
 USB_D-
 Text HLabel 2125 2475 0    50   Input ~ 0
 USB_D+
+$Comp
+L dk_Slide-Switches:JS202011SCQN S?
+U 1 1 5F865FA4
+P 2725 3150
+F 0 "S?" H 2700 2875 50  0000 C CNN
+F 1 "JS202011SCQN" H 2700 3550 50  0000 C CNN
+F 2 "digikey-footprints:Switch_Slide_JS202011SCQN" H 2925 3350 50  0001 L CNN
+F 3 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3450 60  0001 L CNN
+F 4 "401-2002-1-ND" H 2925 3550 60  0001 L CNN "Digi-Key_PN"
+F 5 "JS202011SCQN" H 2925 3650 60  0001 L CNN "MPN"
+F 6 "Switches" H 2925 3750 60  0001 L CNN "Category"
+F 7 "Slide Switches" H 2925 3850 60  0001 L CNN "Family"
+F 8 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3950 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/c-k/JS202011SCQN/401-2002-1-ND/1640098" H 2925 4050 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH SLIDE DPDT 300MA 6V" H 2925 4150 60  0001 L CNN "Description"
+F 11 "C&K" H 2925 4250 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 2925 4350 60  0001 L CNN "Status"
+	1    2725 3150
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	2925 3450 3000 3450
+Wire Wire Line
+	2275 3350 2525 3350
+Wire Wire Line
+	2925 3050 3525 3050
+Connection ~ 3525 3050
+Wire Wire Line
+	3525 3050 3525 3550
+Wire Wire Line
+	3525 2200 3525 2575
+Wire Wire Line
+	3525 2575 2525 2575
+Wire Wire Line
+	2525 2575 2525 2950
 $EndSCHEMATC
