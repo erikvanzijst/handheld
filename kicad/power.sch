@@ -43,7 +43,7 @@ U 1 1 5F78D3BA
 P 6225 3450
 F 0 "L1" V 6044 3450 50  0000 C CNN
 F 1 "10uH" V 6135 3450 50  0000 C CNN
-F 2 "" H 6225 3450 50  0001 C CNN
+F 2 "local:CDRH5D18NP" H 6225 3450 50  0001 C CNN
 F 3 "http://products.sumida.com/products/pdf/CDRH5D18,5D18BHP.pdf" H 6225 3450 50  0001 C CNN
 	1    6225 3450
 	0    1    1    0   
@@ -281,7 +281,6 @@ Text HLabel 7325 3450 2    50   Output ~ 0
 VDD
 Wire Wire Line
 	4575 3450 4925 3450
-NoConn ~ 4225 3550
 Text Label 3625 2300 1    50   ~ 0
 D-
 Text Label 3725 2300 1    50   ~ 0
@@ -339,4 +338,8 @@ Wire Wire Line
 	4925 3975 5500 3975
 Wire Wire Line
 	5075 3550 5200 3550
+Wire Wire Line
+	4225 3550 4300 3550
+Wire Wire Line
+	4300 3550 4300 3450
 $EndSCHEMATC
