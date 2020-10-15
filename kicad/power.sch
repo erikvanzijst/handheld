@@ -42,9 +42,9 @@ L Device:L L1
 U 1 1 5F78D3BA
 P 6225 3450
 F 0 "L1" V 6044 3450 50  0000 C CNN
-F 1 "2.2uH" V 6135 3450 50  0000 C CNN
+F 1 "10uH" V 6135 3450 50  0000 C CNN
 F 2 "" H 6225 3450 50  0001 C CNN
-F 3 "~" H 6225 3450 50  0001 C CNN
+F 3 "http://products.sumida.com/products/pdf/CDRH5D18,5D18BHP.pdf" H 6225 3450 50  0001 C CNN
 	1    6225 3450
 	0    1    1    0   
 $EndComp
@@ -189,8 +189,6 @@ $EndComp
 Connection ~ 4925 3450
 Connection ~ 4925 3975
 Wire Wire Line
-	4925 3975 5150 3975
-Wire Wire Line
 	3825 2200 3825 2225
 Wire Wire Line
 	3825 2225 4500 2225
@@ -228,8 +226,6 @@ Wire Wire Line
 Wire Wire Line
 	4300 2825 4300 3450
 Wire Wire Line
-	5200 3550 5150 3550
-Wire Wire Line
 	5075 3550 5075 3450
 Connection ~ 5075 3450
 Wire Wire Line
@@ -245,25 +241,6 @@ F 3 "" H 3300 2025 50  0001 C CNN
 	1    3300 2025
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:R R5
-U 1 1 5F2BAEAD
-P 5150 3825
-F 0 "R5" H 5220 3871 50  0000 L CNN
-F 1 "100K" H 5220 3780 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5080 3825 50  0001 C CNN
-F 3 "~" H 5150 3825 50  0001 C CNN
-	1    5150 3825
-	1    0    0    -1  
-$EndComp
-Connection ~ 5150 3975
-Wire Wire Line
-	5150 3975 5500 3975
-Wire Wire Line
-	5150 3675 5150 3550
-Connection ~ 5150 3550
-Wire Wire Line
-	5150 3550 5075 3550
 Wire Wire Line
 	4575 3450 4575 3025
 Wire Wire Line
@@ -358,4 +335,8 @@ Wire Wire Line
 	2525 2575 2525 2950
 NoConn ~ 2925 2850
 NoConn ~ 2925 3250
+Wire Wire Line
+	4925 3975 5500 3975
+Wire Wire Line
+	5075 3550 5200 3550
 $EndSCHEMATC
