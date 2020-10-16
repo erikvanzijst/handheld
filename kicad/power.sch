@@ -342,4 +342,28 @@ Wire Wire Line
 	4225 3550 4300 3550
 Wire Wire Line
 	4300 3550 4300 3450
+$Comp
+L local:P-FET U?
+U 2 1 5F952E8F
+P 3925 4300
+AR Path="/6011206E/5F952E8F" Ref="U?"  Part="2" 
+AR Path="/5F785555/5F952E8F" Ref="U3"  Part="2" 
+F 0 "U3" H 3675 4500 50  0000 C CNN
+F 1 "P-FET" V 3925 4300 50  0000 C CNN
+F 2 "local:SOIC-8_3.9x4.9mm_P1.27mm_widepads" H 4125 4700 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 4700 50  0001 C CNN
+	2    3925 4300
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4225 4350
+NoConn ~ 4225 4250
+Wire Wire Line
+	3625 4350 3625 4300
+Wire Wire Line
+	3625 4300 3525 4300
+Connection ~ 3625 4300
+Wire Wire Line
+	3625 4300 3625 4250
+Wire Wire Line
+	3525 4300 3525 3975
 $EndSCHEMATC
