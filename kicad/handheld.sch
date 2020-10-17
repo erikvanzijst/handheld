@@ -167,7 +167,7 @@ U 1 1 5F933175
 P 3325 3075
 F 0 "J2" V 3200 3075 50  0000 R CNN
 F 1 "61300311121" H 3550 2875 50  0000 R CNN
-F 2 "digikey-footprints:PinHeader_1x3_P2.54_Drill1.1mm" H 3525 3275 60  0001 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 3525 3275 60  0001 L CNN
 F 3 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3525 3375 60  0001 L CNN
 F 4 "732-5316-ND" H 3525 3475 60  0001 L CNN "Digi-Key_PN"
 F 5 "61300311121" H 3525 3575 60  0001 L CNN "MPN"
@@ -591,7 +591,7 @@ U 1 1 5F91B7A4
 P 3100 6925
 F 0 "J1" V 2972 7305 50  0000 L CNN
 F 1 "Conn_01x08" V 3063 7305 50  0000 L CNN
-F 2 "Connector_PinSocket_2.00mm:PinSocket_1x08_P2.00mm_Horizontal" H 3100 6925 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Horizontal" H 3100 6925 50  0001 C CNN
 F 3 "~" H 3100 6925 50  0001 C CNN
 	1    3100 6925
 	0    1    1    0   
