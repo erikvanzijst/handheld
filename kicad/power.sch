@@ -136,7 +136,7 @@ U 1 1 5F8BAAF4
 P 3925 3500
 F 0 "U3" H 3925 3815 50  0000 C CNN
 F 1 "P-FET" H 3925 3724 50  0000 C CNN
-F 2 "local:SOIC-8_3.9x4.9mm_P1.27mm_widepads" H 4125 3900 50  0001 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 4125 3900 50  0001 C CNN
 F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 3900 50  0001 C CNN
 	1    3925 3500
 	1    0    0    -1  
@@ -350,7 +350,7 @@ AR Path="/6011206E/5F952E8F" Ref="U?"  Part="2"
 AR Path="/5F785555/5F952E8F" Ref="U3"  Part="2" 
 F 0 "U3" H 3675 4500 50  0000 C CNN
 F 1 "P-FET" V 3925 4300 50  0000 C CNN
-F 2 "local:SOIC-8_3.9x4.9mm_P1.27mm_widepads" H 4125 4700 50  0001 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 4125 4700 50  0001 C CNN
 F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 4700 50  0001 C CNN
 	2    3925 4300
 	1    0    0    -1  
