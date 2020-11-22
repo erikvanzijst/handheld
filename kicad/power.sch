@@ -158,17 +158,6 @@ Wire Wire Line
 	3525 3675 3525 3550
 Wire Wire Line
 	3525 3550 3625 3550
-$Comp
-L pspice:DIODE D1
-U 1 1 5F8CC172
-P 3200 3450
-F 0 "D1" H 3200 3715 50  0000 C CNN
-F 1 "MRA4007" H 3200 3624 50  0000 C CNN
-F 2 "Diode_SMD:D_SMA_Handsoldering" H 3200 3450 50  0001 C CNN
-F 3 "https://www.onsemi.com/pub/Collateral/MRA4003T3-D.PDF" H 3200 3450 50  0001 C CNN
-	1    3200 3450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1825 3350 1875 3350
 Wire Wire Line
@@ -206,23 +195,12 @@ Connection ~ 4500 3975
 Wire Wire Line
 	4500 3975 4925 3975
 Connection ~ 3525 3550
-$Comp
-L pspice:DIODE D2
-U 1 1 5F8D97D5
-P 3950 2825
-F 0 "D2" H 3950 3090 50  0000 C CNN
-F 1 "MRA4007" H 3950 2999 50  0000 C CNN
-F 2 "Diode_SMD:D_SMA_Handsoldering" H 3950 2825 50  0001 C CNN
-F 3 "https://www.onsemi.com/pub/Collateral/MRA4003T3-D.PDF" H 3950 2825 50  0001 C CNN
-	1    3950 2825
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3750 2825 3525 2825
 Wire Wire Line
 	3525 2825 3525 3050
 Wire Wire Line
-	4150 2825 4300 2825
+	4050 2825 4300 2825
 Wire Wire Line
 	4300 2825 4300 3450
 Wire Wire Line
@@ -318,7 +296,7 @@ F 12 "Active" H 2925 4350 60  0001 L CNN "Status"
 	1    0    0    1   
 $EndComp
 Wire Wire Line
-	2925 3450 3000 3450
+	2925 3450 3100 3450
 Wire Wire Line
 	2275 3350 2525 3350
 Wire Wire Line
@@ -366,4 +344,26 @@ Wire Wire Line
 	3625 4300 3625 4250
 Wire Wire Line
 	3525 4300 3525 3975
+$Comp
+L Diode:MRA4003T3G D1
+U 1 1 5FBA69DF
+P 3250 3450
+F 0 "D1" H 3250 3233 50  0000 C CNN
+F 1 "MRA4003T3G" H 3250 3324 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 3250 3275 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub_link/Collateral/MRA4003T3-D.PDF" H 3250 3450 50  0001 C CNN
+	1    3250 3450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Diode:MRA4003T3G D2
+U 1 1 5FBAF34B
+P 3900 2825
+F 0 "D2" H 3900 2608 50  0000 C CNN
+F 1 "MRA4003T3G" H 3900 2699 50  0000 C CNN
+F 2 "Diode_SMD:D_SMA" H 3900 2650 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub_link/Collateral/MRA4003T3-D.PDF" H 3900 2825 50  0001 C CNN
+	1    3900 2825
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

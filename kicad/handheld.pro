@@ -1,4 +1,4 @@
-update=Friday, October 16, 2020 at 03:35:34 PM
+update=Saturday, November 21, 2020 at 05:26:12 PM
 version=1
 last_client=kicad
 [general]
@@ -64,7 +64,7 @@ CopperTextThickness=0.3048
 CopperTextItalic=0
 CopperTextUpright=1
 EdgeCutLineWidth=0.03809999999999999
-CourtyardLineWidth=0.0508
+CourtyardLineWidth=0.05
 OthersLineWidth=0.1524
 OthersTextSizeV=1.016
 OthersTextSizeH=1.016
@@ -245,6 +245,17 @@ Enabled=0
 [pcbnew/Netclasses/Default]
 Name=Default
 Clearance=0.1524
+TrackWidth=0.1778
+ViaDiameter=0.508
+ViaDrill=0.254
+uViaDiameter=0.6858
+uViaDrill=0.3302
+dPairWidth=0.1524
+dPairGap=0.254
+dPairViaGap=0.25
+[pcbnew/Netclasses/1]
+Name=VDD
+Clearance=0.254
 TrackWidth=0.1778
 ViaDiameter=0.508
 ViaDrill=0.254
