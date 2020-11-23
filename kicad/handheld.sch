@@ -49,12 +49,12 @@ $EndComp
 $Comp
 L Graphic:Logo_Open_Hardware_Large #LOGO1
 U 1 1 5EE98802
-P 1150 7275
-F 0 "#LOGO1" H 1150 7775 50  0001 C CNN
-F 1 "Logo_Open_Hardware_Large" H 1150 6875 50  0001 C CNN
-F 2 "" H 1150 7275 50  0001 C CNN
-F 3 "~" H 1150 7275 50  0001 C CNN
-	1    1150 7275
+P 1275 7200
+F 0 "#LOGO1" H 1275 7700 50  0001 C CNN
+F 1 "Logo_Open_Hardware_Large" H 1275 6800 50  0001 C CNN
+F 2 "" H 1275 7200 50  0001 C CNN
+F 3 "~" H 1275 7200 50  0001 C CNN
+	1    1275 7200
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -400,108 +400,104 @@ Wire Wire Line
 $Comp
 L dk_Alarms-Buzzers-and-Sirens:PS1240P02BT BZ1
 U 1 1 5F87649F
-P 1225 3325
-F 0 "BZ1" H 1323 3078 60  0000 C CNN
-F 1 "PS1240P02BT" H 1323 3184 60  0000 C CNN
-F 2 "digikey-footprints:Piezo_Transducer_THT_PS1240P02BT" H 1425 3525 60  0001 L CNN
-F 3 "https://product.tdk.com/info/en/catalog/datasheets/piezoelectronic_buzzer_ps_en.pdf" H 1425 3625 60  0001 L CNN
-F 4 "445-2525-1-ND" H 1425 3725 60  0001 L CNN "Digi-Key_PN"
-F 5 "PS1240P02BT" H 1425 3825 60  0001 L CNN "MPN"
-F 6 "Audio Products" H 1425 3925 60  0001 L CNN "Category"
-F 7 "Alarms, Buzzers, and Sirens" H 1425 4025 60  0001 L CNN "Family"
-F 8 "https://product.tdk.com/info/en/catalog/datasheets/piezoelectronic_buzzer_ps_en.pdf" H 1425 4125 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/tdk-corporation/PS1240P02BT/445-2525-1-ND/935930" H 1425 4225 60  0001 L CNN "DK_Detail_Page"
-F 10 "AUDIO PIEZO TRANSDUCER 30V TH" H 1425 4325 60  0001 L CNN "Description"
-F 11 "TDK Corporation" H 1425 4425 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 1425 4525 60  0001 L CNN "Status"
-	1    1225 3325
+P 1275 6450
+F 0 "BZ1" H 1373 6203 60  0000 C CNN
+F 1 "PS1240P02BT" H 1373 6309 60  0000 C CNN
+F 2 "digikey-footprints:Piezo_Transducer_THT_PS1240P02BT" H 1475 6650 60  0001 L CNN
+F 3 "https://product.tdk.com/info/en/catalog/datasheets/piezoelectronic_buzzer_ps_en.pdf" H 1475 6750 60  0001 L CNN
+F 4 "445-2525-1-ND" H 1475 6850 60  0001 L CNN "Digi-Key_PN"
+F 5 "PS1240P02BT" H 1475 6950 60  0001 L CNN "MPN"
+F 6 "Audio Products" H 1475 7050 60  0001 L CNN "Category"
+F 7 "Alarms, Buzzers, and Sirens" H 1475 7150 60  0001 L CNN "Family"
+F 8 "https://product.tdk.com/info/en/catalog/datasheets/piezoelectronic_buzzer_ps_en.pdf" H 1475 7250 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/tdk-corporation/PS1240P02BT/445-2525-1-ND/935930" H 1475 7350 60  0001 L CNN "DK_Detail_Page"
+F 10 "AUDIO PIEZO TRANSDUCER 30V TH" H 1475 7450 60  0001 L CNN "Description"
+F 11 "TDK Corporation" H 1475 7550 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 1475 7650 60  0001 L CNN "Status"
+	1    1275 6450
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	2200 3475 3750 3475
 $Comp
 L Device:R_POT RV2
 U 1 1 5F890273
-P 2200 3325
-F 0 "RV2" H 2130 3371 50  0000 R CNN
-F 1 "2K" H 2130 3280 50  0000 R CNN
-F 2 "Potentiometer_SMD:Potentiometer_Bourns_TC33X_Vertical" H 2200 3325 50  0001 C CNN
-F 3 "~" H 2200 3325 50  0001 C CNN
-	1    2200 3325
+P 2250 6450
+F 0 "RV2" H 2180 6496 50  0000 R CNN
+F 1 "2K" H 2180 6405 50  0000 R CNN
+F 2 "Potentiometer_SMD:Potentiometer_Bourns_TC33X_Vertical" H 2250 6450 50  0001 C CNN
+F 3 "~" H 2250 6450 50  0001 C CNN
+	1    2250 6450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR05
 U 1 1 5F89CA0B
-P 2200 3175
-F 0 "#PWR05" H 2200 2925 50  0001 C CNN
-F 1 "GND" V 2205 3047 50  0000 R CNN
-F 2 "" H 2200 3175 50  0001 C CNN
-F 3 "" H 2200 3175 50  0001 C CNN
-	1    2200 3175
+P 2250 6300
+F 0 "#PWR05" H 2250 6050 50  0001 C CNN
+F 1 "GND" V 2255 6172 50  0000 R CNN
+F 2 "" H 2250 6300 50  0001 C CNN
+F 3 "" H 2250 6300 50  0001 C CNN
+	1    2250 6300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1325 3325 2050 3325
+	1375 6450 2100 6450
 $Comp
 L power:GND #PWR02
 U 1 1 5F8A383B
-P 1325 3425
-F 0 "#PWR02" H 1325 3175 50  0001 C CNN
-F 1 "GND" V 1330 3297 50  0000 R CNN
-F 2 "" H 1325 3425 50  0001 C CNN
-F 3 "" H 1325 3425 50  0001 C CNN
-	1    1325 3425
+P 1375 6550
+F 0 "#PWR02" H 1375 6300 50  0001 C CNN
+F 1 "GND" V 1380 6422 50  0000 R CNN
+F 2 "" H 1375 6550 50  0001 C CNN
+F 3 "" H 1375 6550 50  0001 C CNN
+	1    1375 6550
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R_PHOTO R1
 U 1 1 5F8A50CF
-P 1575 6225
-F 0 "R1" V 1782 6225 50  0000 C CNN
-F 1 "R_PHOTO" V 1691 6225 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_5.1x4.3mm_P3.4mm_Vertical" V 1625 5975 50  0001 L CNN
-F 3 "https://cdn-learn.adafruit.com/downloads/pdf/photocells.pdf" H 1575 6175 50  0001 C CNN
-	1    1575 6225
+P 1500 5825
+F 0 "R1" V 1707 5825 50  0000 C CNN
+F 1 "R_PHOTO" V 1616 5825 50  0000 C CNN
+F 2 "OptoDevice:R_LDR_5.1x4.3mm_P3.4mm_Vertical" V 1550 5575 50  0001 L CNN
+F 3 "https://cdn-learn.adafruit.com/downloads/pdf/photocells.pdf" H 1500 5775 50  0001 C CNN
+	1    1500 5825
 	0    1    -1   0   
 $EndComp
-Text GLabel 1350 6225 0    50   Input ~ 0
+Text GLabel 1275 5825 0    50   Input ~ 0
 VDD
 Wire Wire Line
-	1350 6225 1425 6225
+	1275 5825 1350 5825
 $Comp
 L Device:R R3
 U 1 1 5F8AB810
-P 2050 6225
-F 0 "R3" V 1843 6225 50  0000 C CNN
-F 1 "10K" V 1934 6225 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1980 6225 50  0001 C CNN
-F 3 "~" H 2050 6225 50  0001 C CNN
-	1    2050 6225
+P 1975 5825
+F 0 "R3" V 1768 5825 50  0000 C CNN
+F 1 "10K" V 1859 5825 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 1905 5825 50  0001 C CNN
+F 3 "~" H 1975 5825 50  0001 C CNN
+	1    1975 5825
 	0    1    -1   0   
 $EndComp
 $Comp
 L power:GND #PWR06
 U 1 1 5F8AC3B2
-P 2275 6225
-F 0 "#PWR06" H 2275 5975 50  0001 C CNN
-F 1 "GND" V 2280 6097 50  0000 R CNN
-F 2 "" H 2275 6225 50  0001 C CNN
-F 3 "" H 2275 6225 50  0001 C CNN
-	1    2275 6225
+P 2200 5825
+F 0 "#PWR06" H 2200 5575 50  0001 C CNN
+F 1 "GND" V 2205 5697 50  0000 R CNN
+F 2 "" H 2200 5825 50  0001 C CNN
+F 3 "" H 2200 5825 50  0001 C CNN
+	1    2200 5825
 	0    -1   1    0   
 $EndComp
 Wire Wire Line
-	2200 6225 2275 6225
+	2125 5825 2200 5825
 Wire Wire Line
-	1725 6225 1825 6225
+	1650 5825 1750 5825
 Wire Wire Line
-	3750 6075 1825 6075
+	1750 5675 1750 5825
+Connection ~ 1750 5825
 Wire Wire Line
-	1825 6075 1825 6225
-Connection ~ 1825 6225
-Wire Wire Line
-	1825 6225 1900 6225
+	1750 5825 1825 5825
 $Comp
 L Device:R_POT RV1
 U 1 1 5F8C41C9
@@ -557,13 +553,8 @@ Wire Wire Line
 Connection ~ 1925 1500
 Wire Wire Line
 	1925 1500 2100 1500
-NoConn ~ 3750 3375
-NoConn ~ 5150 3375
-NoConn ~ 5150 3475
-NoConn ~ 3750 3975
 NoConn ~ 3750 4275
 NoConn ~ 3750 5875
-NoConn ~ 3750 6175
 $Comp
 L Connector_Generic:Conn_01x08 J1
 U 1 1 5F91B7A4
@@ -599,15 +590,9 @@ Wire Wire Line
 Wire Wire Line
 	3000 6725 3000 5475
 Wire Wire Line
-	3000 5475 3750 5475
-Wire Wire Line
 	3100 6725 3100 5575
 Wire Wire Line
-	3100 5575 3750 5575
-Wire Wire Line
-	3200 6725 3200 5675
-Wire Wire Line
-	3200 5675 3750 5675
+	3200 6725 3200 6225
 Wire Wire Line
 	3625 3550 3625 5975
 Wire Wire Line
@@ -615,91 +600,53 @@ Wire Wire Line
 Wire Wire Line
 	2950 3550 3625 3550
 Wire Wire Line
-	3750 3675 2850 3675
-Wire Wire Line
-	2850 3675 2850 4425
-Wire Wire Line
-	2850 4425 2700 4425
-Wire Wire Line
 	2700 4425 2700 6725
 Wire Wire Line
-	3750 3775 2950 3775
-Wire Wire Line
-	2950 3775 2950 4500
-Wire Wire Line
-	2950 4500 2800 4500
-Wire Wire Line
 	2800 4500 2800 6725
-Wire Wire Line
-	3750 3875 3050 3875
-Wire Wire Line
-	3050 3875 3050 5375
-Wire Wire Line
-	3050 5375 2900 5375
 Wire Wire Line
 	2900 5375 2900 6725
 Text Notes 2750 7075 0    50   ~ 0
 GPIO Expansion
-Wire Wire Line
-	625  5750 925  5750
 $Comp
 L power:GND #PWR01
 U 1 1 5F9C511C
-P 925 5750
-F 0 "#PWR01" H 925 5500 50  0001 C CNN
-F 1 "GND" H 930 5577 50  0000 C CNN
-F 2 "" H 925 5750 50  0001 C CNN
-F 3 "" H 925 5750 50  0001 C CNN
-	1    925  5750
+P 625 4350
+F 0 "#PWR01" H 625 4100 50  0001 C CNN
+F 1 "GND" H 630 4177 50  0000 C CNN
+F 2 "" H 625 4350 50  0001 C CNN
+F 3 "" H 625 4350 50  0001 C CNN
+	1    625  4350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3275 5275 3750 5275
+	3275 3975 3750 3975
 Wire Wire Line
-	2550 5250 2550 5175
+	3275 3875 3750 3875
 Wire Wire Line
-	2550 5175 3750 5175
+	3275 3675 3750 3675
 Wire Wire Line
-	3275 5075 3750 5075
-Wire Wire Line
-	2250 4800 2250 4975
-Wire Wire Line
-	2250 4975 3750 4975
-Wire Wire Line
-	2550 3900 2550 4575
-Wire Wire Line
-	2550 4575 3750 4575
-Wire Wire Line
-	3275 4675 3750 4675
-Wire Wire Line
-	2400 4350 2400 4775
-Wire Wire Line
-	2400 4775 3750 4775
-Wire Wire Line
-	3275 4875 3750 4875
+	3275 3775 3750 3775
 $Comp
 L Switch:SW_Push SW4
 U 1 1 5FBDC4D1
-P 925 5250
-F 0 "SW4" H 750 5450 50  0000 C CNN
-F 1 "HDROP" H 1025 5450 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_PUSH-12mm" H 925 5450 50  0001 C CNN
-F 3 "~" H 925 5450 50  0001 C CNN
-	1    925  5250
-	1    0    0    -1  
+P 7450 1675
+F 0 "SW4" H 7275 1875 50  0000 C CNN
+F 1 "HDROP" H 7550 1875 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 7450 1875 50  0001 C CNN
+F 3 "~" H 7450 1875 50  0001 C CNN
+	1    7450 1675
+	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	1125 5250 2550 5250
 $Comp
 L Switch:SW_Push SW3
 U 1 1 5FBEC059
-P 925 4800
-F 0 "SW3" H 750 5000 50  0000 C CNN
-F 1 "SDROP" H 1025 5000 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_PUSH-12mm" H 925 5000 50  0001 C CNN
-F 3 "~" H 925 5000 50  0001 C CNN
-	1    925  4800
-	1    0    0    -1  
+P 7425 1025
+F 0 "SW3" H 7250 1225 50  0000 C CNN
+F 1 "SDROP" H 7525 1225 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 7425 1225 50  0001 C CNN
+F 3 "~" H 7425 1225 50  0001 C CNN
+	1    7425 1025
+	-1   0    0    -1  
 $EndComp
 $Comp
 L Switch:SW_Push SW2
@@ -724,7 +671,7 @@ F 3 "~" H 925 4100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1125 3900 2550 3900
+	1125 3900 2475 3900
 Wire Wire Line
 	625  3900 725  3900
 Wire Wire Line
@@ -774,24 +721,7 @@ F 3 "~" H 7425 2300 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	1125 4800 2250 4800
-Wire Wire Line
-	725  4800 625  4800
-Connection ~ 625  4800
-Wire Wire Line
-	625  4800 625  5250
-Wire Wire Line
-	725  5250 625  5250
-Connection ~ 625  5250
-Wire Wire Line
-	625  5250 625  5750
-Wire Wire Line
 	725  4350 625  4350
-Connection ~ 625  4350
-Wire Wire Line
-	625  4350 625  4800
-Wire Wire Line
-	1125 4350 2400 4350
 Wire Wire Line
 	6250 4775 6250 4375
 Wire Wire Line
@@ -857,7 +787,7 @@ F 3 "" H 7800 3450 50  0001 C CNN
 $EndComp
 Connection ~ 7800 3450
 NoConn ~ 5150 4175
-Text Label 3275 5275 0    50   ~ 0
+Text Label 3275 3975 0    50   ~ 0
 ROWSDI
 Wire Wire Line
 	7550 4275 7200 4275
@@ -875,18 +805,71 @@ Text Label 7200 4075 0    50   ~ 0
 ~OE
 Wire Wire Line
 	7200 4075 7550 4075
-Text Label 3275 5075 0    50   ~ 0
+Text Label 3275 3875 0    50   ~ 0
 ~OE
-Text Label 3275 4875 0    50   ~ 0
+Text Label 3275 3775 0    50   ~ 0
 LE
-Text Label 3275 4675 0    50   ~ 0
+Text Label 3275 3675 0    50   ~ 0
 ROWCLK
-Wire Bus Line
-	5775 4875 5775 5175
-Wire Bus Line
-	5775 4475 5775 4875
 Text Label 1625 2125 0    50   ~ 0
 IrTX
 Text Label 1625 2225 0    50   ~ 0
 IrRX
+Wire Wire Line
+	5150 3375 6125 3375
+Wire Wire Line
+	6125 3375 6125 1025
+Wire Wire Line
+	6125 1025 7225 1025
+Wire Wire Line
+	7625 1025 7800 1025
+Wire Wire Line
+	7800 1025 7800 1675
+Connection ~ 7800 2100
+Wire Wire Line
+	5150 3475 6450 3475
+Wire Wire Line
+	6450 3475 6450 1675
+Wire Wire Line
+	6450 1675 7250 1675
+Wire Wire Line
+	7650 1675 7800 1675
+Connection ~ 7800 1675
+Wire Wire Line
+	7800 1675 7800 2100
+Wire Wire Line
+	2475 3900 2475 3375
+Wire Wire Line
+	2475 3375 3750 3375
+Wire Wire Line
+	3750 3475 2550 3475
+Wire Wire Line
+	2550 3475 2550 4350
+Wire Wire Line
+	1125 4350 2550 4350
+Connection ~ 625  4350
+NoConn ~ 3750 4575
+NoConn ~ 3750 4675
+NoConn ~ 3750 4775
+NoConn ~ 3750 4875
+NoConn ~ 3750 4975
+NoConn ~ 3750 5075
+NoConn ~ 3750 5175
+NoConn ~ 3750 5275
+Wire Wire Line
+	1750 5675 3325 5675
+Wire Wire Line
+	3325 5675 3325 6075
+Wire Wire Line
+	3325 6075 3750 6075
+Wire Wire Line
+	2250 6600 2600 6600
+Wire Wire Line
+	2600 6600 2600 6175
+Wire Wire Line
+	2600 6175 3750 6175
+Wire Bus Line
+	5775 4875 5775 5175
+Wire Bus Line
+	5775 4475 5775 4875
 $EndSCHEMATC
