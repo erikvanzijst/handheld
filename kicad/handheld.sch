@@ -164,37 +164,37 @@ NoConn ~ 3750 5775
 $Comp
 L dk_Rectangular-Connectors-Headers-Male-Pins:61300311121 J2
 U 1 1 5F933175
-P 3325 3075
-F 0 "J2" V 3200 3075 50  0000 R CNN
-F 1 "61300311121" H 3550 2875 50  0000 R CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 3525 3275 60  0001 L CNN
-F 3 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3525 3375 60  0001 L CNN
-F 4 "732-5316-ND" H 3525 3475 60  0001 L CNN "Digi-Key_PN"
-F 5 "61300311121" H 3525 3575 60  0001 L CNN "MPN"
-F 6 "Connectors, Interconnects" H 3525 3675 60  0001 L CNN "Category"
-F 7 "Rectangular Connectors - Headers, Male Pins" H 3525 3775 60  0001 L CNN "Family"
-F 8 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3525 3875 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/wurth-electronics-inc/61300311121/732-5316-ND/4846825" H 3525 3975 60  0001 L CNN "DK_Detail_Page"
-F 10 "CONN HEADER VERT 3POS 2.54MM" H 3525 4075 60  0001 L CNN "Description"
-F 11 "Wurth Electronics Inc." H 3525 4175 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 3525 4275 60  0001 L CNN "Status"
-	1    3325 3075
+P 2975 3975
+F 0 "J2" V 2850 3975 50  0000 R CNN
+F 1 "61300311121" H 3200 3775 50  0000 R CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 3175 4175 60  0001 L CNN
+F 3 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3175 4275 60  0001 L CNN
+F 4 "732-5316-ND" H 3175 4375 60  0001 L CNN "Digi-Key_PN"
+F 5 "61300311121" H 3175 4475 60  0001 L CNN "MPN"
+F 6 "Connectors, Interconnects" H 3175 4575 60  0001 L CNN "Category"
+F 7 "Rectangular Connectors - Headers, Male Pins" H 3175 4675 60  0001 L CNN "Family"
+F 8 "https://katalog.we-online.de/em/datasheet/6130xx11121.pdf" H 3175 4775 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/wurth-electronics-inc/61300311121/732-5316-ND/4846825" H 3175 4875 60  0001 L CNN "DK_Detail_Page"
+F 10 "CONN HEADER VERT 3POS 2.54MM" H 3175 4975 60  0001 L CNN "Description"
+F 11 "Wurth Electronics Inc." H 3175 5075 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 3175 5175 60  0001 L CNN "Status"
+	1    2975 3975
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	3750 3275 3475 3275
+	3750 4175 3125 4175
 $Comp
 L power:GND #PWR08
 U 1 1 5F9AF30E
-P 3475 3075
-F 0 "#PWR08" H 3475 2825 50  0001 C CNN
-F 1 "GND" V 3480 2947 50  0000 R CNN
-F 2 "" H 3475 3075 50  0001 C CNN
-F 3 "" H 3475 3075 50  0001 C CNN
-	1    3475 3075
+P 3125 3975
+F 0 "#PWR08" H 3125 3725 50  0001 C CNN
+F 1 "GND" V 3130 3847 50  0000 R CNN
+F 2 "" H 3125 3975 50  0001 C CNN
+F 3 "" H 3125 3975 50  0001 C CNN
+	1    3125 3975
 	-1   0    0    1   
 $EndComp
-Text Notes 3250 3300 1    50   ~ 0
+Text Notes 2900 4200 1    50   ~ 0
 UART
 Wire Wire Line
 	3125 1750 3475 1750
@@ -310,10 +310,10 @@ Text Label 5900 4875 0    50   ~ 0
 D[0..7]
 Connection ~ 5775 4875
 Wire Wire Line
-	3475 3175 3750 3175
-Text Label 3500 3275 0    50   ~ 0
+	3125 4075 3750 4075
+Text Label 3150 4175 0    50   ~ 0
 RX
-Text Label 3500 3175 0    50   ~ 0
+Text Label 3150 4075 0    50   ~ 0
 TX
 Wire Wire Line
 	7550 4775 6250 4775
@@ -345,12 +345,6 @@ F 3 "" H 1600 2825 50  0001 C CNN
 $EndComp
 Text GLabel 2075 2525 2    50   Input ~ 0
 VDD
-Wire Wire Line
-	2700 4175 3750 4175
-Wire Wire Line
-	2775 4075 3750 4075
-Wire Wire Line
-	2625 4375 3750 4375
 $Comp
 L Device:R R2
 U 1 1 610D52DA
@@ -384,17 +378,9 @@ Connection ~ 1600 2525
 Wire Wire Line
 	1600 2525 1675 2525
 Wire Wire Line
-	1400 2325 2625 2325
-Wire Wire Line
-	2625 2325 2625 4375
-Wire Wire Line
 	1400 2225 2700 2225
 Wire Wire Line
-	2700 2225 2700 4175
-Wire Wire Line
 	1400 2125 2775 2125
-Wire Wire Line
-	2775 2125 2775 4075
 Wire Wire Line
 	1975 2525 2075 2525
 $Comp
@@ -554,7 +540,6 @@ Connection ~ 1925 1500
 Wire Wire Line
 	1925 1500 2100 1500
 NoConn ~ 3750 4275
-NoConn ~ 3750 5875
 $Comp
 L Connector_Generic:Conn_01x08 J1
 U 1 1 5F91B7A4
@@ -868,6 +853,26 @@ Wire Wire Line
 	2600 6600 2600 6175
 Wire Wire Line
 	2600 6175 3750 6175
+Wire Wire Line
+	2700 2225 2700 3275
+Wire Wire Line
+	2700 3275 3750 3275
+Wire Wire Line
+	2775 2125 2775 3175
+Wire Wire Line
+	2775 3175 3750 3175
+Wire Wire Line
+	3750 5875 3375 5875
+Text Label 3375 5875 0    50   ~ 0
+IrSD
+Text Label 1625 2325 0    50   ~ 0
+IrSD
+Wire Wire Line
+	1400 2325 1825 2325
+NoConn ~ 3750 4375
+NoConn ~ 3750 5475
+NoConn ~ 3750 5575
+NoConn ~ 3750 5675
 Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line

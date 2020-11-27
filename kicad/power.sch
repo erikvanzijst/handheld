@@ -364,4 +364,6 @@ Wire Wire Line
 	3100 3450 3100 3250
 Wire Wire Line
 	3100 3250 2925 3250
+Text Label 5875 3450 0    50   ~ 0
+SW
 $EndSCHEMATC
