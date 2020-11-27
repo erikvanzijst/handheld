@@ -540,56 +540,12 @@ Connection ~ 1925 1500
 Wire Wire Line
 	1925 1500 2100 1500
 NoConn ~ 3750 4275
-$Comp
-L Connector_Generic:Conn_01x08 J1
-U 1 1 5F91B7A4
-P 3100 6925
-F 0 "J1" V 2972 7305 50  0000 L CNN
-F 1 "Conn_01x08" V 3063 7305 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Horizontal" H 3100 6925 50  0001 C CNN
-F 3 "~" H 3100 6925 50  0001 C CNN
-	1    3100 6925
-	0    1    1    0   
-$EndComp
-Text GLabel 3500 6600 2    50   Input ~ 0
-VDD
-Wire Wire Line
-	3400 6725 3400 6600
-Wire Wire Line
-	3400 6600 3500 6600
-$Comp
-L power:GND #PWR09
-U 1 1 5F922BBE
-P 3500 6400
-F 0 "#PWR09" H 3500 6150 50  0001 C CNN
-F 1 "GND" V 3505 6272 50  0000 R CNN
-F 2 "" H 3500 6400 50  0001 C CNN
-F 3 "" H 3500 6400 50  0001 C CNN
-	1    3500 6400
-	0    -1   -1   0   
-$EndComp
-Wire Wire Line
-	3500 6400 3300 6400
-Wire Wire Line
-	3300 6400 3300 6725
-Wire Wire Line
-	3000 6725 3000 5475
-Wire Wire Line
-	3100 6725 3100 5575
-Wire Wire Line
-	3200 6725 3200 6225
 Wire Wire Line
 	3625 3550 3625 5975
 Wire Wire Line
 	2950 2125 2950 3550
 Wire Wire Line
 	2950 3550 3625 3550
-Wire Wire Line
-	2700 4425 2700 6725
-Wire Wire Line
-	2800 4500 2800 6725
-Wire Wire Line
-	2900 5375 2900 6725
 Text Notes 2750 7075 0    50   ~ 0
 GPIO Expansion
 $Comp
@@ -833,13 +789,6 @@ Wire Wire Line
 Wire Wire Line
 	1125 4350 2550 4350
 Connection ~ 625  4350
-NoConn ~ 3750 4575
-NoConn ~ 3750 4675
-NoConn ~ 3750 4775
-NoConn ~ 3750 4875
-NoConn ~ 3750 4975
-NoConn ~ 3750 5075
-NoConn ~ 3750 5175
 NoConn ~ 3750 5275
 Wire Wire Line
 	1750 5675 3325 5675
@@ -873,6 +822,63 @@ NoConn ~ 3750 4375
 NoConn ~ 3750 5475
 NoConn ~ 3750 5575
 NoConn ~ 3750 5675
+Wire Wire Line
+	3300 6400 3300 6725
+Wire Wire Line
+	3500 6400 3300 6400
+$Comp
+L power:GND #PWR09
+U 1 1 5F922BBE
+P 3500 6400
+F 0 "#PWR09" H 3500 6150 50  0001 C CNN
+F 1 "GND" V 3505 6272 50  0000 R CNN
+F 2 "" H 3500 6400 50  0001 C CNN
+F 3 "" H 3500 6400 50  0001 C CNN
+	1    3500 6400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	3400 6600 3500 6600
+Wire Wire Line
+	3400 6725 3400 6600
+Text GLabel 3500 6600 2    50   Input ~ 0
+VDD
+$Comp
+L Connector_Generic:Conn_01x08 J1
+U 1 1 5F91B7A4
+P 3100 6925
+F 0 "J1" V 2972 7305 50  0000 L CNN
+F 1 "Conn_01x08" V 3063 7305 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Horizontal" H 3100 6925 50  0001 C CNN
+F 3 "~" H 3100 6925 50  0001 C CNN
+	1    3100 6925
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2700 4575 3750 4575
+Wire Wire Line
+	2700 4575 2700 6725
+Wire Wire Line
+	2800 4675 3750 4675
+Wire Wire Line
+	2800 4675 2800 6725
+Wire Wire Line
+	2900 4775 3750 4775
+Wire Wire Line
+	2900 4775 2900 6725
+Wire Wire Line
+	3000 4875 3750 4875
+Wire Wire Line
+	3000 4875 3000 6725
+Wire Wire Line
+	3100 4975 3750 4975
+Wire Wire Line
+	3100 4975 3100 6725
+Wire Wire Line
+	3200 5075 3750 5075
+Wire Wire Line
+	3200 5075 3200 6725
+NoConn ~ 3750 5175
 Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line
