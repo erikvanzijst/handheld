@@ -84,11 +84,7 @@ Wire Wire Line
 Wire Wire Line
 	4350 6475 4350 6675
 Wire Wire Line
-	4350 6675 4350 6800
-Wire Wire Line
-	4450 6800 4450 6675
-Connection ~ 4350 6675
-Connection ~ 4450 6675
+	4450 7525 4450 7475
 $Comp
 L Connector:AVR-PDI-6 J3
 U 1 1 5FDFDAE0
@@ -101,7 +97,7 @@ F 3 " ~" H 5250 5625 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	6125 6175 5150 6175
+	6125 6175 5525 6175
 Wire Wire Line
 	5150 6075 6125 6075
 $Comp
@@ -198,15 +194,8 @@ Text Notes 2900 4200 1    50   ~ 0
 UART
 Wire Wire Line
 	3125 1750 3475 1750
-Text GLabel 4400 6900 3    50   Input ~ 0
+Text GLabel 4400 7525 3    50   Input ~ 0
 VDD
-Wire Wire Line
-	4350 6800 4400 6800
-Wire Wire Line
-	4400 6800 4400 6900
-Connection ~ 4400 6800
-Wire Wire Line
-	4400 6800 4450 6800
 Text GLabel 6625 5775 1    50   UnSpc ~ 0
 VDD
 $Sheet
@@ -810,14 +799,8 @@ Wire Wire Line
 	2775 2125 2775 3175
 Wire Wire Line
 	2775 3175 3750 3175
-Wire Wire Line
-	3750 5875 3375 5875
-Text Label 3375 5875 0    50   ~ 0
-IrSD
 Text Label 1625 2325 0    50   ~ 0
 IrSD
-Wire Wire Line
-	1400 2325 1825 2325
 NoConn ~ 3750 4375
 NoConn ~ 3750 5475
 NoConn ~ 3750 5575
@@ -879,6 +862,102 @@ Wire Wire Line
 Wire Wire Line
 	3200 5075 3200 6725
 NoConn ~ 3750 5175
+Wire Wire Line
+	4350 6675 4350 7075
+Connection ~ 4350 6675
+Connection ~ 4450 6675
+$Comp
+L Device:C C12
+U 1 1 5FD69EC0
+P 4200 7075
+F 0 "C12" V 3948 7075 50  0000 C CNN
+F 1 "100nF" V 4039 7075 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4238 6925 50  0001 C CNN
+F 3 "~" H 4200 7075 50  0001 C CNN
+	1    4200 7075
+	0    1    1    0   
+$EndComp
+Connection ~ 4350 7075
+Wire Wire Line
+	4350 7075 4350 7475
+$Comp
+L Device:C C14
+U 1 1 5FD6AC2B
+P 4600 7075
+F 0 "C14" V 4348 7075 50  0000 C CNN
+F 1 "100nF" V 4439 7075 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4638 6925 50  0001 C CNN
+F 3 "~" H 4600 7075 50  0001 C CNN
+	1    4600 7075
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4450 7075
+Wire Wire Line
+	4450 7075 4450 6675
+$Comp
+L Device:C C13
+U 1 1 5FD6B34C
+P 4200 7475
+F 0 "C13" V 3948 7475 50  0000 C CNN
+F 1 "100nF" V 4039 7475 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4238 7325 50  0001 C CNN
+F 3 "~" H 4200 7475 50  0001 C CNN
+	1    4200 7475
+	0    1    1    0   
+$EndComp
+Connection ~ 4350 7475
+Wire Wire Line
+	4350 7475 4350 7525
+Wire Wire Line
+	4050 7475 4050 7075
+Connection ~ 4050 6675
+Connection ~ 4050 7075
+Wire Wire Line
+	4050 7075 4050 6675
+Wire Wire Line
+	4750 7075 4750 6675
+Connection ~ 4750 6675
+$Comp
+L Device:R R5
+U 1 1 5FD78AC8
+P 5525 6325
+F 0 "R5" V 5318 6325 50  0000 C CNN
+F 1 "10K" V 5409 6325 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5455 6325 50  0001 C CNN
+F 3 "~" H 5525 6325 50  0001 C CNN
+	1    5525 6325
+	1    0    0    1   
+$EndComp
+Connection ~ 5525 6175
+Wire Wire Line
+	5525 6175 5150 6175
+Text GLabel 5525 6475 3    50   Input ~ 0
+VDD
+Wire Wire Line
+	4350 7525 4450 7525
+$Comp
+L Device:C C15
+U 1 1 5FDA21B7
+P 4600 7475
+F 0 "C15" V 4348 7475 50  0000 C CNN
+F 1 "100nF" V 4439 7475 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4638 7325 50  0001 C CNN
+F 3 "~" H 4600 7475 50  0001 C CNN
+	1    4600 7475
+	0    -1   -1   0   
+$EndComp
+Connection ~ 4450 7475
+Wire Wire Line
+	4450 7475 4450 7075
+Wire Wire Line
+	4750 7075 4750 7475
+Connection ~ 4750 7075
+Wire Wire Line
+	2625 2325 2625 5875
+Wire Wire Line
+	2625 5875 3750 5875
+Wire Wire Line
+	1400 2325 2625 2325
 Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line

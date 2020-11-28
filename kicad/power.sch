@@ -366,4 +366,6 @@ Wire Wire Line
 	3100 3250 2925 3250
 Text Label 5875 3450 0    50   ~ 0
 SW
+NoConn ~ 2925 3050
+NoConn ~ 2925 3450
 $EndSCHEMATC
