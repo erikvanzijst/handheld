@@ -528,7 +528,6 @@ Wire Wire Line
 Connection ~ 1925 1500
 Wire Wire Line
 	1925 1500 2100 1500
-NoConn ~ 3750 4275
 Wire Wire Line
 	3625 3550 3625 5975
 Wire Wire Line
@@ -553,18 +552,18 @@ Wire Wire Line
 Wire Wire Line
 	3275 3875 3750 3875
 Wire Wire Line
-	3275 3675 3750 3675
+	3275 4275 3750 4275
 Wire Wire Line
 	3275 3775 3750 3775
 $Comp
 L Switch:SW_Push SW4
 U 1 1 5FBDC4D1
-P 7450 1675
-F 0 "SW4" H 7275 1875 50  0000 C CNN
-F 1 "HDROP" H 7550 1875 50  0000 C CNN
-F 2 "Button_Switch_THT:SW_PUSH-12mm" H 7450 1875 50  0001 C CNN
-F 3 "~" H 7450 1875 50  0001 C CNN
-	1    7450 1675
+P 925 3375
+F 0 "SW4" H 750 3575 50  0000 C CNN
+F 1 "HDROP" H 1025 3575 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 925 3575 50  0001 C CNN
+F 3 "~" H 925 3575 50  0001 C CNN
+	1    925  3375
 	-1   0    0    -1  
 $EndComp
 $Comp
@@ -661,33 +660,13 @@ Wire Wire Line
 Wire Wire Line
 	6350 4275 5150 4275
 Wire Wire Line
-	6450 4575 6450 3675
+	7225 2100 6775 2100
 Wire Wire Line
-	6450 3675 5150 3675
-Wire Wire Line
-	7225 2100 6600 2100
-Wire Wire Line
-	6600 2100 6600 3775
-Wire Wire Line
-	7225 2550 6725 2550
-Wire Wire Line
-	6725 2550 6725 3875
-Wire Wire Line
-	5150 3775 6600 3775
-Wire Wire Line
-	5150 3875 6725 3875
+	7225 2550 6875 2550
 Wire Wire Line
 	7225 3450 7075 3450
 Wire Wire Line
-	7075 3450 7075 3975
-Wire Wire Line
-	7075 3975 5150 3975
-Wire Wire Line
-	7225 3000 6875 3000
-Wire Wire Line
-	6875 3000 6875 4075
-Wire Wire Line
-	6875 4075 5150 4075
+	7225 3000 6975 3000
 Wire Wire Line
 	7625 3450 7800 3450
 Wire Wire Line
@@ -716,7 +695,6 @@ F 3 "" H 7800 3450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 7800 3450
-NoConn ~ 5150 4175
 Text Label 3275 3975 0    50   ~ 0
 ROWSDI
 Wire Wire Line
@@ -739,42 +717,19 @@ Text Label 3275 3875 0    50   ~ 0
 ~OE
 Text Label 3275 3775 0    50   ~ 0
 LE
-Text Label 3275 3675 0    50   ~ 0
+Text Label 3275 4275 0    50   ~ 0
 ROWCLK
 Text Label 1625 2125 0    50   ~ 0
 IrTX
 Text Label 1625 2225 0    50   ~ 0
 IrRX
 Wire Wire Line
-	5150 3375 6125 3375
-Wire Wire Line
-	6125 3375 6125 1025
-Wire Wire Line
-	6125 1025 7225 1025
+	6575 1025 7225 1025
 Wire Wire Line
 	7625 1025 7800 1025
-Wire Wire Line
-	7800 1025 7800 1675
 Connection ~ 7800 2100
 Wire Wire Line
-	5150 3475 6450 3475
-Wire Wire Line
-	6450 3475 6450 1675
-Wire Wire Line
-	6450 1675 7250 1675
-Wire Wire Line
-	7650 1675 7800 1675
-Connection ~ 7800 1675
-Wire Wire Line
-	7800 1675 7800 2100
-Wire Wire Line
-	2475 3900 2475 3375
-Wire Wire Line
-	2475 3375 3750 3375
-Wire Wire Line
-	3750 3475 2550 3475
-Wire Wire Line
-	2550 3475 2550 4350
+	1125 3375 3750 3375
 Wire Wire Line
 	1125 4350 2550 4350
 Connection ~ 625  4350
@@ -958,6 +913,93 @@ Wire Wire Line
 	2625 5875 3750 5875
 Wire Wire Line
 	1400 2325 2625 2325
+Wire Wire Line
+	6975 4175 5150 4175
+Wire Wire Line
+	6975 3000 6975 4175
+Wire Wire Line
+	7075 4075 5150 4075
+Wire Wire Line
+	7075 3450 7075 4075
+Wire Wire Line
+	6875 3975 5150 3975
+Wire Wire Line
+	6875 2550 6875 3975
+Wire Wire Line
+	6775 3875 5150 3875
+Wire Wire Line
+	6775 2100 6775 3875
+Wire Wire Line
+	6450 3675 5150 3675
+Wire Wire Line
+	6450 3675 6450 4575
+$Comp
+L Switch:SW_Push SW9
+U 1 1 5FC778DC
+P 6000 3050
+F 0 "SW9" H 6000 3335 50  0000 C CNN
+F 1 "START" H 6000 3244 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 6000 3250 50  0001 C CNN
+F 3 "~" H 6000 3250 50  0001 C CNN
+	1    6000 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR027
+U 1 1 5FC9EE66
+P 6200 3050
+F 0 "#PWR027" H 6200 2800 50  0001 C CNN
+F 1 "GND" H 6205 2877 50  0000 C CNN
+F 2 "" H 6200 3050 50  0001 C CNN
+F 3 "" H 6200 3050 50  0001 C CNN
+	1    6200 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5800 3050 5650 3050
+Wire Wire Line
+	5650 3050 5650 3775
+Wire Wire Line
+	5650 3775 5150 3775
+Wire Wire Line
+	2550 3675 3750 3675
+Wire Wire Line
+	2550 3675 2550 4350
+Wire Wire Line
+	2475 3475 3750 3475
+Wire Wire Line
+	2475 3475 2475 3900
+Wire Wire Line
+	7800 1025 7800 2100
+Wire Wire Line
+	725  3375 625  3375
+Wire Wire Line
+	625  3375 625  3900
+Connection ~ 625  3900
+Wire Wire Line
+	6575 1025 6575 3475
+Wire Wire Line
+	5150 3475 6575 3475
+$Comp
+L Switch:SW_Push SW10
+U 1 1 5FD1BDC4
+P 6000 2550
+F 0 "SW10" H 6000 2835 50  0000 C CNN
+F 1 "SELECT" H 6000 2744 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH_6mm" H 6000 2750 50  0001 C CNN
+F 3 "~" H 6000 2750 50  0001 C CNN
+	1    6000 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 2550 6200 3050
+Connection ~ 6200 3050
+Wire Wire Line
+	5800 2550 5550 2550
+Wire Wire Line
+	5550 2550 5550 3375
+Wire Wire Line
+	5550 3375 5150 3375
 Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line
