@@ -484,6 +484,33 @@ X ~ 2 -100 0 100 R 50 50 1 1 I
 ENDDRAW
 ENDDEF
 #
+# dk_Logic-Gates-and-Inverters_SN74LVC1G08DBVR
+#
+DEF dk_Logic-Gates-and-Inverters_SN74LVC1G08DBVR U 0 1 Y Y 1 F N
+F0 "U" -100 240 60 H V R CNN
+F1 "dk_Logic-Gates-and-Inverters_SN74LVC1G08DBVR" 20 -250 60 H V L CNN
+F2 "digikey-footprints:SOT-753" 200 200 60 H I L CNN
+F3 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1g08" 200 300 60 H I L CNN
+F4 "296-11601-1-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "SN74LVC1G08DBVR" 200 500 60 H I L CNN "MPN"
+F6 "Integrated Circuits (ICs)" 200 600 60 H I L CNN "Category"
+F7 "Logic - Gates and Inverters" 200 700 60 H I L CNN "Family"
+F8 "http://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=http%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fsn74lvc1g08" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/texas-instruments/SN74LVC1G08DBVR/296-11601-1-ND/385740" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "IC GATE AND 1CH 2-INP SOT23-5" 200 1000 60 H I L CNN "Description"
+F11 "Texas Instruments" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+A 0 0 200 -899 899 1 1 0 f 0 -200 0 200
+P 4 1 1 0 0 200 -200 200 -200 -200 0 -200 f
+X A 1 -300 100 100 R 50 50 1 1 I
+X B 2 -300 -100 100 R 50 50 1 1 I
+X GND 3 0 -300 100 U 50 50 1 1 W
+X Y 4 300 0 100 L 50 50 1 1 O
+X VCC 5 0 300 100 D 50 50 1 1 W
+ENDDRAW
+ENDDEF
+#
 # dk_Rectangular-Connectors-Headers-Male-Pins_61300311121
 #
 DEF dk_Rectangular-Connectors-Headers-Male-Pins_61300311121 J 0 40 Y Y 1 F N
@@ -551,6 +578,36 @@ X ~ 3 200 100 100 L 50 50 1 1 P
 X ~ 4 200 -100 100 L 50 50 1 1 P
 X ~ 5 -200 -200 100 R 50 50 1 1 P
 X ~ 6 200 -300 100 L 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# dk_Transistors-Bipolar-BJT-Single_PN2222A
+#
+DEF dk_Transistors-Bipolar-BJT-Single_PN2222A Q 0 0 Y Y 1 F N
+F0 "Q" -126 166 60 H V L CNN
+F1 "dk_Transistors-Bipolar-BJT-Single_PN2222A" 206 0 60 V V C CNN
+F2 "digikey-footprints:TO-92-3" 200 200 60 H I L CNN
+F3 "https://my.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=PN2221-2222A.PDF" 200 300 60 H I L CNN
+F4 "PN2222ACS-ND" 200 400 60 H I L CNN "Digi-Key_PN"
+F5 "PN2222A" 200 500 60 H I L CNN "MPN"
+F6 "Discrete Semiconductor Products" 200 600 60 H I L CNN "Category"
+F7 "Transistors - Bipolar (BJT) - Single" 200 700 60 H I L CNN "Family"
+F8 "https://my.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=PN2221-2222A.PDF" 200 800 60 H I L CNN "DK_Datasheet_Link"
+F9 "/product-detail/en/central-semiconductor-corp/PN2222A/PN2222ACS-ND/4806937" 200 900 60 H I L CNN "DK_Detail_Page"
+F10 "TRANS NPN 40V 0.8A TO-92" 200 1000 60 H I L CNN "Description"
+F11 "Central Semiconductor Corp" 200 1100 60 H I L CNN "Manufacturer"
+F12 "Active" 200 1200 60 H I L CNN "Status"
+DRAW
+C 0 0 128 0 1 0 f
+P 2 0 1 0 -150 0 -100 0 N
+P 2 0 1 0 -140 0 0 0 N
+P 2 0 1 0 0 -50 100 -100 N
+P 2 0 1 0 0 50 100 100 N
+P 2 0 1 0 0 100 0 -100 N
+P 4 0 1 0 60 -50 80 -90 40 -100 60 -50 F
+X E 1 100 -200 100 U 50 50 1 1 P
+X B 2 -200 0 100 R 50 50 1 1 I
+X C 3 100 200 100 D 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #

@@ -217,8 +217,6 @@ F 3 "" H 3300 2025 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4575 3450 4575 3025
-Wire Wire Line
-	4575 3025 7325 3025
 Connection ~ 4575 3450
 Wire Wire Line
 	4575 3450 4300 3450
@@ -241,14 +239,9 @@ Wire Wire Line
 	2275 3975 3525 3975
 Wire Wire Line
 	1875 3975 1825 3975
-Text HLabel 1825 2825 2    50   Output ~ 0
-BAT_LVL
 Wire Wire Line
 	1825 3975 1825 3350
 Connection ~ 3525 3975
-Wire Wire Line
-	1825 3350 1825 2825
-Connection ~ 1825 3350
 Text HLabel 7325 3025 2    50   UnSpc ~ 0
 U_PWR
 Text HLabel 7325 3450 2    50   Output ~ 0
@@ -271,34 +264,12 @@ Text HLabel 2125 2375 0    50   Input ~ 0
 USB_D-
 Text HLabel 2125 2475 0    50   Input ~ 0
 USB_D+
-$Comp
-L dk_Slide-Switches:JS202011SCQN S1
-U 1 1 5F865FA4
-P 2725 3150
-F 0 "S1" H 2700 2875 50  0000 C CNN
-F 1 "JS202011SCQN" H 2700 3550 50  0000 C CNN
-F 2 "local:JS202011AQN_THT_DPDT" H 2925 3350 50  0001 L CNN
-F 3 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3450 60  0001 L CNN
-F 4 "401-2002-1-ND" H 2925 3550 60  0001 L CNN "Digi-Key_PN"
-F 5 "JS202011SCQN" H 2925 3650 60  0001 L CNN "MPN"
-F 6 "Switches" H 2925 3750 60  0001 L CNN "Category"
-F 7 "Slide Switches" H 2925 3850 60  0001 L CNN "Family"
-F 8 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3950 60  0001 L CNN "DK_Datasheet_Link"
-F 9 "/product-detail/en/c-k/JS202011SCQN/401-2002-1-ND/1640098" H 2925 4050 60  0001 L CNN "DK_Detail_Page"
-F 10 "SWITCH SLIDE DPDT 300MA 6V" H 2925 4150 60  0001 L CNN "Description"
-F 11 "C&K" H 2925 4250 60  0001 L CNN "Manufacturer"
-F 12 "Active" H 2925 4350 60  0001 L CNN "Status"
-	1    2725 3150
-	1    0    0    1   
-$EndComp
 Wire Wire Line
 	2275 3350 2525 3350
 Wire Wire Line
 	3525 2200 3525 2575
 Wire Wire Line
 	3525 2575 2525 2575
-Wire Wire Line
-	2525 2575 2525 2950
 Wire Wire Line
 	4925 3975 5500 3975
 Wire Wire Line
@@ -307,21 +278,6 @@ Wire Wire Line
 	4225 3550 4300 3550
 Wire Wire Line
 	4300 3550 4300 3450
-$Comp
-L local:P-FET U?
-U 2 1 5F952E8F
-P 3925 4300
-AR Path="/6011206E/5F952E8F" Ref="U?"  Part="2" 
-AR Path="/5F785555/5F952E8F" Ref="U3"  Part="2" 
-F 0 "U3" H 3675 4500 50  0000 C CNN
-F 1 "P-FET" V 3925 4300 50  0000 C CNN
-F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 4125 4700 50  0001 C CNN
-F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 4700 50  0001 C CNN
-	2    3925 4300
-	1    0    0    -1  
-$EndComp
-NoConn ~ 4225 4350
-NoConn ~ 4225 4250
 Wire Wire Line
 	3625 4350 3625 4300
 Wire Wire Line
@@ -343,10 +299,7 @@ F 3 "http://www.onsemi.com/pub_link/Collateral/MRA4003T3-D.PDF" H 3900 2850 50  
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	2925 2850 3525 2850
-Connection ~ 3525 2850
-Wire Wire Line
-	3525 2850 3525 3550
+	3525 2850 3525 3050
 Wire Wire Line
 	3625 3450 3400 3450
 $Comp
@@ -360,12 +313,157 @@ F 3 "http://www.onsemi.com/pub_link/Collateral/MRA4003T3-D.PDF" H 3250 3450 50  
 	1    3250 3450
 	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	3100 3450 3100 3250
-Wire Wire Line
-	3100 3250 2925 3250
 Text Label 5875 3450 0    50   ~ 0
 SW
-NoConn ~ 2925 3050
-NoConn ~ 2925 3450
+Text HLabel 7125 1950 2    50   Output ~ 0
+BAT_LVL
+Wire Wire Line
+	4575 3025 7325 3025
+NoConn ~ 4225 4250
+NoConn ~ 4225 4350
+$Comp
+L local:P-FET U?
+U 2 1 5F952E8F
+P 3925 4300
+AR Path="/6011206E/5F952E8F" Ref="U?"  Part="2" 
+AR Path="/5F785555/5F952E8F" Ref="U3"  Part="2" 
+F 0 "U3" H 3675 4500 50  0000 C CNN
+F 1 "P-FET" V 3925 4300 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm" H 4125 4700 50  0001 C CNN
+F 3 "https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf" H 4125 4700 50  0001 C CNN
+	2    3925 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R7
+U 1 1 5FD60282
+P 5950 2200
+F 0 "R7" H 6020 2246 50  0000 L CNN
+F 1 "100R" H 6020 2155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5880 2200 50  0001 C CNN
+F 3 "~" H 5950 2200 50  0001 C CNN
+	1    5950 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R9
+U 1 1 5FD60513
+P 7100 2200
+F 0 "R9" H 7170 2246 50  0000 L CNN
+F 1 "100R" H 7170 2155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 7030 2200 50  0001 C CNN
+F 3 "~" H 7100 2200 50  0001 C CNN
+	1    7100 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L dk_Transistors-Bipolar-BJT-Single:PN2222A Q1
+U 1 1 5FD62F08
+P 5350 2100
+F 0 "Q1" V 5591 2100 60  0000 C CNN
+F 1 "PN2222A" V 5697 2100 60  0000 C CNN
+F 2 "digikey-footprints:TO-92-3" H 5550 2300 60  0001 L CNN
+F 3 "https://my.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=PN2221-2222A.PDF" H 5550 2400 60  0001 L CNN
+F 4 "PN2222ACS-ND" H 5550 2500 60  0001 L CNN "Digi-Key_PN"
+F 5 "PN2222A" H 5550 2600 60  0001 L CNN "MPN"
+F 6 "Discrete Semiconductor Products" H 5550 2700 60  0001 L CNN "Category"
+F 7 "Transistors - Bipolar (BJT) - Single" H 5550 2800 60  0001 L CNN "Family"
+F 8 "https://my.centralsemi.com/get_document.php?cmp=1&mergetype=pd&mergepath=pd&pdf_id=PN2221-2222A.PDF" H 5550 2900 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/central-semiconductor-corp/PN2222A/PN2222ACS-ND/4806937" H 5550 3000 60  0001 L CNN "DK_Detail_Page"
+F 10 "TRANS NPN 40V 0.8A TO-92" H 5550 3100 60  0001 L CNN "Description"
+F 11 "Central Semiconductor Corp" H 5550 3200 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 5550 3300 60  0001 L CNN "Status"
+	1    5350 2100
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4575 3025 4575 2200
+Wire Wire Line
+	4575 2200 5150 2200
+Connection ~ 4575 3025
+Wire Wire Line
+	5550 2200 5800 2200
+Wire Wire Line
+	6950 2200 6825 2200
+$Comp
+L power:GND #PWR028
+U 1 1 5FD6BB5C
+P 7250 2200
+F 0 "#PWR028" H 7250 1950 50  0001 C CNN
+F 1 "GND" H 7255 2027 50  0000 C CNN
+F 2 "" H 7250 2200 50  0001 C CNN
+F 3 "" H 7250 2200 50  0001 C CNN
+	1    7250 2200
+	0    -1   -1   0   
+$EndComp
+Text HLabel 4775 1750 0    50   Output ~ 0
+BAT_CHK
+Wire Wire Line
+	4775 1750 5050 1750
+Wire Wire Line
+	5350 1750 5350 1900
+Connection ~ 6825 2200
+Wire Wire Line
+	6825 2200 6675 2200
+$Comp
+L Device:R R8
+U 1 1 5FD71537
+P 6525 2200
+F 0 "R8" H 6595 2246 50  0000 L CNN
+F 1 "100R" H 6595 2155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 6455 2200 50  0001 C CNN
+F 3 "~" H 6525 2200 50  0001 C CNN
+	1    6525 2200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6375 2200 6100 2200
+$Comp
+L Device:R R6
+U 1 1 5FD7FD32
+P 5200 1750
+F 0 "R6" H 5270 1796 50  0000 L CNN
+F 1 "5K" H 5270 1705 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5130 1750 50  0001 C CNN
+F 3 "~" H 5200 1750 50  0001 C CNN
+	1    5200 1750
+	0    -1   -1   0   
+$EndComp
+Text Notes 5525 1875 0    50   ~ 0
+Battery level circuit activates when BAT_CHK goes high\nand at 6V draws 20mA through the voltage divider.\nBAT_LVL peaks at 2V for full battery.
+Wire Wire Line
+	6825 1950 7125 1950
+Wire Wire Line
+	6825 1950 6825 2200
+Wire Wire Line
+	2525 2575 2525 2950
+$Comp
+L dk_Slide-Switches:JS202011SCQN S1
+U 1 1 5F865FA4
+P 2725 3150
+F 0 "S1" H 2700 2875 50  0000 C CNN
+F 1 "JS202011SCQN" H 2700 3550 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_CuK_JS202011AQN_DPDT_Angled" H 2925 3350 50  0001 L CNN
+F 3 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3450 60  0001 L CNN
+F 4 "401-2002-1-ND" H 2925 3550 60  0001 L CNN "Digi-Key_PN"
+F 5 "JS202011SCQN" H 2925 3650 60  0001 L CNN "MPN"
+F 6 "Switches" H 2925 3750 60  0001 L CNN "Category"
+F 7 "Slide Switches" H 2925 3850 60  0001 L CNN "Family"
+F 8 "https://www.ckswitches.com/media/1422/js.pdf" H 2925 3950 60  0001 L CNN "DK_Datasheet_Link"
+F 9 "/product-detail/en/c-k/JS202011SCQN/401-2002-1-ND/1640098" H 2925 4050 60  0001 L CNN "DK_Detail_Page"
+F 10 "SWITCH SLIDE DPDT 300MA 6V" H 2925 4150 60  0001 L CNN "Description"
+F 11 "C&K" H 2925 4250 60  0001 L CNN "Manufacturer"
+F 12 "Active" H 2925 4350 60  0001 L CNN "Status"
+	1    2725 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 3450 2925 3450
+Wire Wire Line
+	2925 3050 3525 3050
+Connection ~ 3525 3050
+Wire Wire Line
+	3525 3050 3525 3550
+NoConn ~ 2925 2850
+NoConn ~ 2925 3250
 $EndSCHEMATC
