@@ -2107,12 +2107,12 @@ Wire Wire Line
 	2950 3300 2850 3300
 Text Notes 3475 2175 0    50   ~ 0
 Level shifters
+Text HLabel 4750 8825 0    50   Input ~ 0
+~OE
 Wire Bus Line
 	4850 5900 12525 5900
 Wire Bus Line
 	5050 6050 12525 6050
 Wire Bus Line
 	4750 8725 10000 8725
-Text HLabel 4750 8825 0    50   Input ~ 0
-~OE
 $EndSCHEMATC

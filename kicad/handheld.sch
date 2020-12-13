@@ -132,11 +132,10 @@ F3 "U_PWR" O L 3475 1900 50
 F4 "VDD" O L 3475 1750 50 
 F5 "USB_D-" I R 4575 2025 50 
 F6 "USB_D+" I R 4575 2125 50 
+F7 "BAT_CHK" O L 3475 2000 50 
 $EndSheet
 Wire Wire Line
-	3475 2125 2950 2125
-Wire Wire Line
-	3625 5975 3750 5975
+	3475 2125 3325 2125
 Text GLabel 2850 1750 0    50   UnSpc ~ 0
 VDD
 Wire Wire Line
@@ -529,11 +528,11 @@ Connection ~ 1925 1500
 Wire Wire Line
 	1925 1500 2100 1500
 Wire Wire Line
-	3625 3550 3625 5975
+	3700 3550 3700 5175
 Wire Wire Line
-	2950 2125 2950 3550
+	3325 2125 3325 3550
 Wire Wire Line
-	2950 3550 3625 3550
+	3325 3550 3700 3550
 Text Notes 2750 7075 0    50   ~ 0
 GPIO Expansion
 $Comp
@@ -733,7 +732,6 @@ Wire Wire Line
 Wire Wire Line
 	1125 4350 2550 4350
 Connection ~ 625  4350
-NoConn ~ 3750 5275
 Wire Wire Line
 	1750 5675 3325 5675
 Wire Wire Line
@@ -816,7 +814,6 @@ Wire Wire Line
 	3200 5075 3750 5075
 Wire Wire Line
 	3200 5075 3200 6725
-NoConn ~ 3750 5175
 Wire Wire Line
 	4350 6675 4350 7075
 Connection ~ 4350 6675
@@ -1000,6 +997,19 @@ Wire Wire Line
 	5550 2550 5550 3375
 Wire Wire Line
 	5550 3375 5150 3375
+Wire Wire Line
+	3700 5175 3750 5175
+NoConn ~ 3750 5975
+Wire Wire Line
+	3475 2000 3250 2000
+Wire Wire Line
+	3250 2000 3250 3625
+Wire Wire Line
+	3250 3625 3625 3625
+Wire Wire Line
+	3625 3625 3625 5275
+Wire Wire Line
+	3625 5275 3750 5275
 Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line
