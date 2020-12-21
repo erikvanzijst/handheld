@@ -1056,4 +1056,114 @@ Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line
 	5775 4475 5775 4875
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5FE0E6C0
+P 8625 2000
+F 0 "H1" H 8725 2046 50  0000 L CNN
+F 1 "MountingHole" H 8725 1955 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 2000 50  0001 C CNN
+F 3 "~" H 8625 2000 50  0001 C CNN
+	1    8625 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 5FE0E95C
+P 8625 2225
+F 0 "H2" H 8725 2271 50  0000 L CNN
+F 1 "MountingHole" H 8725 2180 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 2225 50  0001 C CNN
+F 3 "~" H 8625 2225 50  0001 C CNN
+	1    8625 2225
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 5FE0F471
+P 8625 2450
+F 0 "H3" H 8725 2496 50  0000 L CNN
+F 1 "MountingHole" H 8725 2405 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 2450 50  0001 C CNN
+F 3 "~" H 8625 2450 50  0001 C CNN
+	1    8625 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 5FE0F840
+P 8625 2675
+F 0 "H4" H 8725 2721 50  0000 L CNN
+F 1 "MountingHole" H 8725 2630 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 2675 50  0001 C CNN
+F 3 "~" H 8625 2675 50  0001 C CNN
+	1    8625 2675
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H5
+U 1 1 5FE0FBDC
+P 8625 2900
+F 0 "H5" H 8725 2946 50  0000 L CNN
+F 1 "MountingHole" H 8725 2855 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 2900 50  0001 C CNN
+F 3 "~" H 8625 2900 50  0001 C CNN
+	1    8625 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H6
+U 1 1 5FE0FE57
+P 8625 3125
+F 0 "H6" H 8725 3171 50  0000 L CNN
+F 1 "MountingHole" H 8725 3080 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 8625 3125 50  0001 C CNN
+F 3 "~" H 8625 3125 50  0001 C CNN
+	1    8625 3125
+	1    0    0    -1  
+$EndComp
+$Comp
+L Graphic:SYM_Arrow_Small #SYM1
+U 1 1 5FE18196
+P 8200 2000
+F 0 "#SYM1" H 8200 2060 50  0001 C CNN
+F 1 "SYM_Arrow_Small" H 8210 1950 50  0001 C CNN
+F 2 "arrow:arraw_6mm" H 8200 2000 50  0001 C CNN
+F 3 "~" H 8200 2000 50  0001 C CNN
+	1    8200 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Graphic:SYM_Arrow_Small #SYM2
+U 1 1 5FE18F35
+P 8200 2225
+F 0 "#SYM2" H 8200 2285 50  0001 C CNN
+F 1 "SYM_Arrow_Small" H 8210 2175 50  0001 C CNN
+F 2 "arrow:arraw_6mm" H 8200 2225 50  0001 C CNN
+F 3 "~" H 8200 2225 50  0001 C CNN
+	1    8200 2225
+	1    0    0    -1  
+$EndComp
+$Comp
+L Graphic:SYM_Arrow_Small #SYM3
+U 1 1 5FE1929E
+P 8200 2450
+F 0 "#SYM3" H 8200 2510 50  0001 C CNN
+F 1 "SYM_Arrow_Small" H 8210 2400 50  0001 C CNN
+F 2 "arrow:arraw_6mm" H 8200 2450 50  0001 C CNN
+F 3 "~" H 8200 2450 50  0001 C CNN
+	1    8200 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Graphic:SYM_Arrow_Small #SYM4
+U 1 1 5FE194F7
+P 8200 2675
+F 0 "#SYM4" H 8200 2735 50  0001 C CNN
+F 1 "SYM_Arrow_Small" H 8210 2625 50  0001 C CNN
+F 2 "arrow:arraw_6mm" H 8200 2675 50  0001 C CNN
+F 3 "~" H 8200 2675 50  0001 C CNN
+	1    8200 2675
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

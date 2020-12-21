@@ -14,13 +14,13 @@ Comment3 ""
 Comment4 "Author: Erik van Zijst"
 $EndDescr
 $Comp
-L local:SN54LV574 U?
+L local:SN74LV573 U?
 U 1 1 6015CE3D
 P 9650 8175
 AR Path="/6015CE3D" Ref="U?"  Part="1" 
 AR Path="/6011206E/6015CE3D" Ref="U44"  Part="1" 
 F 0 "U44" V 9850 7375 50  0000 R CNN
-F 1 "SN54LV574" V 9950 7650 50  0000 R CNN
+F 1 "SN74LV573" V 9950 7650 50  0000 R CNN
 F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 9700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 9650 8175 50  0001 C CNN
 	1    9650 8175
@@ -399,13 +399,13 @@ Wire Wire Line
 	9250 8175 9250 8225
 Connection ~ 9250 8175
 $Comp
-L local:SN54LV574 U?
+L local:SN74LV573 U?
 U 1 1 6015CF01
 P 7650 8175
 AR Path="/6015CF01" Ref="U?"  Part="1" 
 AR Path="/6011206E/6015CF01" Ref="U29"  Part="1" 
 F 0 "U29" V 7850 7375 50  0000 R CNN
-F 1 "SN54LV574" V 7950 7650 50  0000 R CNN
+F 1 "SN74LV573" V 7950 7650 50  0000 R CNN
 F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 7700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 7650 8175 50  0001 C CNN
 	1    7650 8175
@@ -500,13 +500,13 @@ Connection ~ 7250 8175
 Wire Wire Line
 	8900 7550 9100 7550
 $Comp
-L local:SN54LV574 U?
+L local:SN74LV573 U?
 U 1 1 6015CF32
 P 5650 8175
 AR Path="/6015CF32" Ref="U?"  Part="1" 
 AR Path="/6011206E/6015CF32" Ref="U12"  Part="1" 
 F 0 "U12" V 5850 7375 50  0000 R CNN
-F 1 "SN54LV574" V 5950 7650 50  0000 R CNN
+F 1 "SN74LV573" V 5950 7650 50  0000 R CNN
 F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 5700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 5650 8175 50  0001 C CNN
 	1    5650 8175
@@ -1821,20 +1821,6 @@ ROWCLK
 Text HLabel 2850 3200 0    50   Input ~ 0
 ~OE
 Wire Wire Line
-	6350 8475 6350 8825
-Wire Wire Line
-	6350 8825 8350 8825
-Wire Wire Line
-	8350 8825 8350 8475
-Wire Wire Line
-	8350 8825 10350 8825
-Wire Wire Line
-	10350 8825 10350 8475
-Connection ~ 8350 8825
-Wire Wire Line
-	4750 8825 6350 8825
-Connection ~ 6350 8825
-Wire Wire Line
 	6250 8475 6250 8925
 Wire Wire Line
 	6250 8925 4750 8925
@@ -2107,12 +2093,16 @@ Wire Wire Line
 	2950 3300 2850 3300
 Text Notes 3475 2175 0    50   ~ 0
 Level shifters
-Text HLabel 4750 8825 0    50   Input ~ 0
-~OE
 Wire Bus Line
 	4850 5900 12525 5900
 Wire Bus Line
 	5050 6050 12525 6050
 Wire Bus Line
 	4750 8725 10000 8725
+Text GLabel 6350 8475 3    50   UnSpc ~ 0
+VDD
+Text GLabel 8350 8475 3    50   UnSpc ~ 0
+VDD
+Text GLabel 10350 8475 3    50   UnSpc ~ 0
+VDD
 $EndSCHEMATC

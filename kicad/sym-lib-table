@@ -151,4 +151,5 @@
   (lib (name dk_Automotive-Relays)(type Legacy)(uri ${KIPRJMOD}/libs/digikey-kicad-library-master/digikey-symbols/dk_Automotive-Relays.lib)(options "")(descr ""))
   (lib (name dk_Alarms-Buzzers-and-Sirens)(type Legacy)(uri ${KIPRJMOD}/libs/digikey-kicad-library-master/digikey-symbols/dk_Alarms-Buzzers-and-Sirens.lib)(options "")(descr ""))
   (lib (name dk_Addressable-Specialty)(type Legacy)(uri ${KIPRJMOD}/libs/digikey-kicad-library-master/digikey-symbols/dk_Addressable-Specialty.lib)(options "")(descr ""))
+  (lib (name handheld-rescue)(type Legacy)(uri ${KIPRJMOD}/handheld-rescue.lib)(options "")(descr ""))
 )
