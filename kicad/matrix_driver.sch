@@ -21,7 +21,7 @@ AR Path="/6015CE3D" Ref="U?"  Part="1"
 AR Path="/6011206E/6015CE3D" Ref="U44"  Part="1" 
 F 0 "U44" V 9850 7375 50  0000 R CNN
 F 1 "SN74LV573" V 9950 7650 50  0000 R CNN
-F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 9700 7375 50  0001 C CNN
+F 2 "local:SSOP-20_W5.3mm" H 9700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 9650 8175 50  0001 C CNN
 	1    9650 8175
 	0    -1   -1   0   
@@ -406,7 +406,7 @@ AR Path="/6015CF01" Ref="U?"  Part="1"
 AR Path="/6011206E/6015CF01" Ref="U29"  Part="1" 
 F 0 "U29" V 7850 7375 50  0000 R CNN
 F 1 "SN74LV573" V 7950 7650 50  0000 R CNN
-F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 7700 7375 50  0001 C CNN
+F 2 "local:SSOP-20_W5.3mm" H 7700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 7650 8175 50  0001 C CNN
 	1    7650 8175
 	0    -1   -1   0   
@@ -507,7 +507,7 @@ AR Path="/6015CF32" Ref="U?"  Part="1"
 AR Path="/6011206E/6015CF32" Ref="U12"  Part="1" 
 F 0 "U12" V 5850 7375 50  0000 R CNN
 F 1 "SN74LV573" V 5950 7650 50  0000 R CNN
-F 2 "Package_SO:SSOP-20_5.3x7.2mm_P0.65mm" H 5700 7375 50  0001 C CNN
+F 2 "local:SSOP-20_W5.3mm" H 5700 7375 50  0001 C CNN
 F 3 "https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf" H 5650 8175 50  0001 C CNN
 	1    5650 8175
 	0    -1   -1   0   
@@ -2093,16 +2093,16 @@ Wire Wire Line
 	2950 3300 2850 3300
 Text Notes 3475 2175 0    50   ~ 0
 Level shifters
-Wire Bus Line
-	4850 5900 12525 5900
-Wire Bus Line
-	5050 6050 12525 6050
-Wire Bus Line
-	4750 8725 10000 8725
 Text GLabel 6350 8475 3    50   UnSpc ~ 0
 VDD
 Text GLabel 8350 8475 3    50   UnSpc ~ 0
 VDD
 Text GLabel 10350 8475 3    50   UnSpc ~ 0
 VDD
+Wire Bus Line
+	4850 5900 12525 5900
+Wire Bus Line
+	5050 6050 12525 6050
+Wire Bus Line
+	4750 8725 10000 8725
 $EndSCHEMATC

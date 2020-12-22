@@ -1052,10 +1052,6 @@ F 3 "" H 1425 5350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1425 5350 1575 5350
-Wire Bus Line
-	5775 4875 5775 5175
-Wire Bus Line
-	5775 4475 5775 4875
 $Comp
 L Mechanical:MountingHole H1
 U 1 1 5FE0E6C0
@@ -1166,4 +1162,8 @@ F 3 "~" H 8200 2675 50  0001 C CNN
 	1    8200 2675
 	1    0    0    -1  
 $EndComp
+Wire Bus Line
+	5775 4875 5775 5175
+Wire Bus Line
+	5775 4475 5775 4875
 $EndSCHEMATC
