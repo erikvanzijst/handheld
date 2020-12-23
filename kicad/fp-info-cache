@@ -1,4 +1,4 @@
-19140553499347646
+19143770738912646
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -84252,6 +84252,13 @@ SOIC SO
 16
 16
 local
+SSOP-20_W5.3mm
+http://ww1.microchip.com/downloads/en/DeviceDoc/41606B.pdf
+
+0
+20
+20
+local
 SSOP-24_3.9x8.7mm_P0.635mm_widepads
 SSOP24: plastic shrink small outline package; 24 leads; body width 3.9 mm; lead pitch 0.635; (see NXP SSOP-TSSOP-VSO-REFLOW.pdf and sot556-1_po.pdf)
 SSOP 0.635
@@ -84274,6 +84281,13 @@ warp_240mm_mod
 0
 warp
 warp_B_240mm_mod
+
+
+0
+0
+0
+warp
+warp_small_B_240mm_mod
 
 
 0

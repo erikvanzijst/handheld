@@ -44,7 +44,7 @@ P 6225 3450
 F 0 "L1" V 6044 3450 50  0000 C CNN
 F 1 "10uH" V 6135 3450 50  0000 C CNN
 F 2 "local:CDRH5D18NP" H 6225 3450 50  0001 C CNN
-F 3 "http://products.sumida.com/products/pdf/CDRH5D18,5D18BHP.pdf" H 6225 3450 50  0001 C CNN
+F 3 "http://products.sumida.com/products/pdf/CDRH5D28.pdf" H 6225 3450 50  0001 C CNN
 	1    6225 3450
 	0    1    1    0   
 $EndComp
