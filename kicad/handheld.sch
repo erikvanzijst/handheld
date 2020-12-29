@@ -1166,4 +1166,8 @@ Wire Bus Line
 	5775 4875 5775 5175
 Wire Bus Line
 	5775 4475 5775 4875
+Text Label 5725 6075 0    50   ~ 0
+PDI_DATA
+Text Label 5725 6175 0    50   ~ 0
+RST_CLK
 $EndSCHEMATC
