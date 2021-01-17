@@ -170,11 +170,202 @@ drivers:
     clocks:
       domain_group: null
 pads:
+  IRSD:
+    name: PA3
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PA3
+    mode: Digital output
+    user_label: IRSD
+    configuration:
+      pad_initial_level: High
   BATT:
     name: PA7
     definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PA7
     mode: Digital output
     user_label: BATT
+    configuration: null
+  BATTCHK:
+    name: PB0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PB0
+    mode: Digital output
+    user_label: BATTCHK
+    configuration: null
+  BATTLVL:
+    name: PB1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PB1
+    mode: Analog
+    user_label: BATTLVL
+    configuration: null
+  ROWCLK:
+    name: PC1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC1
+    mode: Digital output
+    user_label: ROWCLK
+    configuration: null
+  ROWSDI:
+    name: PC4
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC4
+    mode: Digital output
+    user_label: ROWSDI
+    configuration: null
+  OEB:
+    name: PC5
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC5
+    mode: Digital output
+    user_label: OEB
+    configuration: null
+  LE:
+    name: PC6
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC6
+    mode: Digital output
+    user_label: LE
+    configuration: null
+  SW_UP:
+    name: PC7
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC7
+    mode: Digital input
+    user_label: SW_UP
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_LEFT:
+    name: PD0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PD0
+    mode: Digital input
+    user_label: SW_LEFT
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_RIGHT:
+    name: PD1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PD1
+    mode: Digital input
+    user_label: SW_RIGHT
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_DOWN:
+    name: PD4
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PD4
+    mode: Digital input
+    user_label: SW_DOWN
+    configuration:
+      pad_output_pull_config: Pull-up
+  SELECT:
+    name: PD5
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PD5
+    mode: Digital input
+    user_label: SELECT
+    configuration:
+      pad_output_pull_config: Pull-up
+  SEGCLK0:
+    name: PE0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE0
+    mode: Digital output
+    user_label: SEGCLK0
+    configuration: null
+  SEGCLK1:
+    name: PE1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE1
+    mode: Digital output
+    user_label: SEGCLK1
+    configuration: null
+  SW_A:
+    name: PE2
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE2
+    mode: Digital input
+    user_label: SW_A
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_X:
+    name: PE3
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE3
+    mode: Digital input
+    user_label: SW_X
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_B:
+    name: PE4
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE4
+    mode: Digital input
+    user_label: SW_B
+    configuration:
+      pad_output_pull_config: Pull-up
+  SW_Y:
+    name: PE5
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE5
+    mode: Digital input
+    user_label: SW_Y
+    configuration:
+      pad_output_pull_config: Pull-up
+  START:
+    name: PE6
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE6
+    mode: Digital input
+    user_label: START
+    configuration:
+      pad_output_pull_config: Pull-up
+  SEGCLK2:
+    name: PE7
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PE7
+    mode: Digital output
+    user_label: SEGCLK2
+    configuration: null
+  D0:
+    name: PF0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF0
+    mode: Digital output
+    user_label: D0
+    configuration: null
+  D1:
+    name: PF1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF1
+    mode: Digital output
+    user_label: D1
+    configuration: null
+  D2:
+    name: PF2
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF2
+    mode: Digital output
+    user_label: D2
+    configuration: null
+  D3:
+    name: PF3
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF3
+    mode: Digital output
+    user_label: D3
+    configuration: null
+  D4:
+    name: PF4
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF4
+    mode: Digital output
+    user_label: D4
+    configuration: null
+  D5:
+    name: PF5
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF5
+    mode: Digital output
+    user_label: D5
+    configuration: null
+  D6:
+    name: PF6
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF6
+    mode: Digital output
+    user_label: D6
+    configuration: null
+  D7:
+    name: PF7
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PF7
+    mode: Digital output
+    user_label: D7
+    configuration: null
+  BUZZER:
+    name: PA0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PA0
+    mode: Digital output
+    user_label: BUZZER
+    configuration: null
+  LDR:
+    name: PA1
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PA1
+    mode: Analog
+    user_label: LDR
     configuration: null
 toolchain_options:
 - definition:
