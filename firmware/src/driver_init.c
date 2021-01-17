@@ -378,7 +378,7 @@ void system_init()
 	/* PORT setting on PF0 */
 
 	// Set pin direction to output
-	D0_set_dir(PORT_DIR_OUT);
+	D0_set_dir(PORT_DIR_OFF);
 
 	D0_set_level(
 	    // <y> Initial level
@@ -390,7 +390,7 @@ void system_init()
 	/* PORT setting on PF1 */
 
 	// Set pin direction to output
-	D1_set_dir(PORT_DIR_OUT);
+	D1_set_dir(PORT_DIR_OFF);
 
 	D1_set_level(
 	    // <y> Initial level
@@ -402,7 +402,7 @@ void system_init()
 	/* PORT setting on PF2 */
 
 	// Set pin direction to output
-	D2_set_dir(PORT_DIR_OUT);
+	D2_set_dir(PORT_DIR_OFF);
 
 	D2_set_level(
 	    // <y> Initial level
@@ -414,7 +414,7 @@ void system_init()
 	/* PORT setting on PF3 */
 
 	// Set pin direction to output
-	D3_set_dir(PORT_DIR_OUT);
+	D3_set_dir(PORT_DIR_OFF);
 
 	D3_set_level(
 	    // <y> Initial level
@@ -426,7 +426,7 @@ void system_init()
 	/* PORT setting on PF4 */
 
 	// Set pin direction to output
-	D4_set_dir(PORT_DIR_OUT);
+	D4_set_dir(PORT_DIR_OFF);
 
 	D4_set_level(
 	    // <y> Initial level
@@ -438,7 +438,7 @@ void system_init()
 	/* PORT setting on PF5 */
 
 	// Set pin direction to output
-	D5_set_dir(PORT_DIR_OUT);
+	D5_set_dir(PORT_DIR_OFF);
 
 	D5_set_level(
 	    // <y> Initial level
@@ -450,7 +450,7 @@ void system_init()
 	/* PORT setting on PF6 */
 
 	// Set pin direction to output
-	D6_set_dir(PORT_DIR_OUT);
+	D6_set_dir(PORT_DIR_OFF);
 
 	D6_set_level(
 	    // <y> Initial level
@@ -462,7 +462,7 @@ void system_init()
 	/* PORT setting on PF7 */
 
 	// Set pin direction to output
-	D7_set_dir(PORT_DIR_OUT);
+	D7_set_dir(PORT_DIR_OFF);
 
 	D7_set_level(
 	    // <y> Initial level
