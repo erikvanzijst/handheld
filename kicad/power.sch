@@ -204,17 +204,6 @@ Wire Wire Line
 Connection ~ 5075 3450
 Wire Wire Line
 	5075 3450 4925 3450
-$Comp
-L power:GND #PWR014
-U 1 1 5F8DC955
-P 3300 2025
-F 0 "#PWR014" H 3300 1775 50  0001 C CNN
-F 1 "GND" H 3305 1852 50  0000 C CNN
-F 2 "" H 3300 2025 50  0001 C CNN
-F 3 "" H 3300 2025 50  0001 C CNN
-	1    3300 2025
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4575 3450 4575 3025
 Connection ~ 4575 3450
@@ -466,4 +455,5 @@ Wire Wire Line
 	3525 3050 3525 3550
 NoConn ~ 2925 2850
 NoConn ~ 2925 3250
+NoConn ~ 3300 2025
 $EndSCHEMATC

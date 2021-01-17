@@ -1,4 +1,4 @@
-19143770738912646
+19145383270430646
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -84272,6 +84272,13 @@ TFBS4711-IrDA
 0
 6
 6
+local
+USB_A_Female_UE27AC54100
+
+
+0
+6
+5
 warp
 warp_240mm_mod
 
