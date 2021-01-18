@@ -1,0 +1,172 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L 74xx:74LS273 U1
+U 1 1 6004B654
+P 6000 3725
+F 0 "U1" H 6000 4706 50  0000 C CNN
+F 1 "74LS273" H 6000 4615 50  0000 C CNN
+F 2 "Package_SO:SO-20_5.3x12.6mm_P1.27mm" H 6000 3725 50  0001 C CNN
+F 3 "http://www.ti.com/lit/gpn/sn74LS273" H 6000 3725 50  0001 C CNN
+	1    6000 3725
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x10 J2
+U 1 1 6004CCF9
+P 4575 3925
+F 0 "J2" H 4655 3917 50  0000 L CNN
+F 1 "Conn_01x10" H 4655 3826 50  0000 L CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x10_P1.00mm_Vertical" H 4575 3925 50  0001 C CNN
+F 3 "~" H 4575 3925 50  0001 C CNN
+	1    4575 3925
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5500 4225 4775 4225
+Wire Wire Line
+	4775 4125 5500 4125
+$Comp
+L Connector_Generic:Conn_01x10 J1
+U 1 1 6005204B
+P 7425 3825
+F 0 "J1" H 7343 3100 50  0000 C CNN
+F 1 "Conn_01x10" H 7343 3191 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_1x10_P1.00mm_Vertical" H 7425 3825 50  0001 C CNN
+F 3 "~" H 7425 3825 50  0001 C CNN
+	1    7425 3825
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 4025 4775 4025
+Wire Wire Line
+	4775 3925 5500 3925
+Wire Wire Line
+	5500 3825 4775 3825
+Wire Wire Line
+	4775 3725 5500 3725
+Wire Wire Line
+	5500 3625 4775 3625
+Wire Wire Line
+	4775 3525 5500 3525
+Wire Wire Line
+	7225 4225 6500 4225
+Wire Wire Line
+	6500 4125 7225 4125
+Wire Wire Line
+	7225 4025 6500 4025
+Wire Wire Line
+	6500 3925 7225 3925
+Wire Wire Line
+	7225 3825 6500 3825
+Wire Wire Line
+	6500 3725 7225 3725
+Wire Wire Line
+	7225 3625 6500 3625
+Wire Wire Line
+	6500 3525 7225 3525
+$Comp
+L Device:C C1
+U 1 1 60059723
+P 5600 4525
+F 0 "C1" V 5348 4525 50  0000 C CNN
+F 1 "C" V 5439 4525 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5638 4375 50  0001 C CNN
+F 3 "~" H 5600 4525 50  0001 C CNN
+	1    5600 4525
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5450 4525 5175 4525
+Wire Wire Line
+	5750 4525 6000 4525
+Wire Wire Line
+	6000 4525 6600 4525
+Wire Wire Line
+	6950 4525 6950 4325
+Connection ~ 6000 4525
+Wire Wire Line
+	6000 2925 5425 2925
+Wire Wire Line
+	4875 3425 4775 3425
+Wire Wire Line
+	6500 3325 6650 3325
+Wire Wire Line
+	6500 3225 6950 3225
+$Comp
+L power:GND #PWR0101
+U 1 1 6005EB1F
+P 6000 2925
+F 0 "#PWR0101" H 6000 2675 50  0001 C CNN
+F 1 "GND" H 6005 2752 50  0000 C CNN
+F 2 "" H 6000 2925 50  0001 C CNN
+F 3 "" H 6000 2925 50  0001 C CNN
+	1    6000 2925
+	-1   0    0    1   
+$EndComp
+Connection ~ 6000 2925
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 6005FA57
+P 6600 4525
+F 0 "#FLG0101" H 6600 4600 50  0001 C CNN
+F 1 "PWR_FLAG" H 6600 4698 50  0000 C CNN
+F 2 "" H 6600 4525 50  0001 C CNN
+F 3 "~" H 6600 4525 50  0001 C CNN
+	1    6600 4525
+	-1   0    0    1   
+$EndComp
+Connection ~ 6600 4525
+Wire Wire Line
+	6600 4525 6950 4525
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 6006031E
+P 5425 2925
+F 0 "#FLG0102" H 5425 3000 50  0001 C CNN
+F 1 "PWR_FLAG" H 5425 3098 50  0000 C CNN
+F 2 "" H 5425 2925 50  0001 C CNN
+F 3 "~" H 5425 2925 50  0001 C CNN
+	1    5425 2925
+	-1   0    0    1   
+$EndComp
+Connection ~ 5425 2925
+Wire Wire Line
+	5425 2925 5175 2925
+Wire Wire Line
+	7225 4325 6950 4325
+Connection ~ 6950 4325
+Wire Wire Line
+	6950 3225 6950 4325
+Wire Wire Line
+	7225 3425 7225 2925
+Wire Wire Line
+	7225 2925 6000 2925
+Wire Wire Line
+	6650 3325 6650 2650
+Wire Wire Line
+	6650 2650 4875 2650
+Wire Wire Line
+	4875 2650 4875 3425
+Wire Wire Line
+	5175 2925 5175 4525
+Wire Wire Line
+	4775 4325 4775 4850
+Wire Wire Line
+	4775 4850 6000 4850
+Wire Wire Line
+	6000 4850 6000 4525
+$EndSCHEMATC
