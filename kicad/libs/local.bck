@@ -25,7 +25,7 @@ D P-CHANNEL ENHANCEMENT MODE MOSFET
 F https://www.diodes.com/assets/Datasheets/DMP3085LSD.pdf
 $ENDCMP
 #
-$CMP SN54LV574
+$CMP SN74LV573
 D OCTAL EDGE-TRIGGERED D-TYPE FLIP-FLOPS WITH 3-STATE OUTPUTS
 F https://www.ti.com/lit/ds/symlink/sn74lv574a.pdf
 $ENDCMP

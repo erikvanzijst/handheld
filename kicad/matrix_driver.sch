@@ -323,7 +323,7 @@ F 1 "GND" V 10505 7997 50  0000 R CNN
 F 2 "" H 10500 8125 50  0001 C CNN
 F 3 "" H 10500 8125 50  0001 C CNN
 	1    10500 8125
-	1    0    0    -1  
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
 	9000 7500 9000 7775
@@ -2093,16 +2093,25 @@ Wire Wire Line
 	2950 3300 2850 3300
 Text Notes 3475 2175 0    50   ~ 0
 Level shifters
-Text GLabel 6350 8475 3    50   UnSpc ~ 0
-VDD
-Text GLabel 8350 8475 3    50   UnSpc ~ 0
-VDD
-Text GLabel 10350 8475 3    50   UnSpc ~ 0
-VDD
+Wire Wire Line
+	10500 8125 10500 8475
+Wire Wire Line
+	10500 8475 10350 8475
+Connection ~ 10500 8125
+Wire Wire Line
+	6500 8125 6500 8475
+Wire Wire Line
+	6350 8475 6500 8475
+Connection ~ 6500 8125
+Wire Wire Line
+	8500 8125 8500 8475
+Wire Wire Line
+	8350 8475 8500 8475
 Wire Bus Line
 	4850 5900 12525 5900
 Wire Bus Line
 	5050 6050 12525 6050
 Wire Bus Line
 	4750 8725 10000 8725
+Connection ~ 8500 8125
 $EndSCHEMATC
