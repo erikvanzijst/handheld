@@ -22,18 +22,31 @@ int main(void)
 	_delay_ms(1);
 	LE_set_level(true);
 
+
+	// D0_set_dir(PORT_DIR_OFF);
+	// D1_set_dir(PORT_DIR_OFF);
+	// D2_set_dir(PORT_DIR_OFF);
+	// D3_set_dir(PORT_DIR_OFF);
+	// D4_set_dir(PORT_DIR_OFF);
+	// D5_set_dir(PORT_DIR_OFF);
+	// D6_set_dir(PORT_DIR_OFF);
+	// D7_set_dir(PORT_DIR_OFF);
+
+	D0_set_level(true);
+	D1_set_level(true);
+	D2_set_level(true);
+	D3_set_level(true);
+	D4_set_level(true);
+	D5_set_level(true);
+	D6_set_level(true);
+	D7_set_level(true);
+
+	SEGCLK0_set_level(true);
+	SEGCLK1_set_level(true);
+	SEGCLK2_set_level(true);
 	SEGCLK0_set_level(false);
 	SEGCLK1_set_level(false);
 	SEGCLK2_set_level(false);
-
-	D0_set_dir(PORT_DIR_OFF);
-	D1_set_dir(PORT_DIR_OFF);
-	D2_set_dir(PORT_DIR_OFF);
-	D3_set_dir(PORT_DIR_OFF);
-	D4_set_dir(PORT_DIR_OFF);
-	D5_set_dir(PORT_DIR_OFF);
-	D6_set_dir(PORT_DIR_OFF);
-	D7_set_dir(PORT_DIR_OFF);
 
 	while (1) {
 		BATT_set_level(true);

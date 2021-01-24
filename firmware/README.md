@@ -11,6 +11,11 @@ $ brew install avr-gcc
 $ brew install dfu-programmer
 ```
 
+For Linux:
+
+```
+```
+
 ## Programming
 
 Compile the project:
