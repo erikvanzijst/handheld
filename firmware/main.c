@@ -21,6 +21,7 @@ int main(void)
 	LE_set_level(false);
 	_delay_ms(1);
 	LE_set_level(true);
+	PORTF.OUT = 0;
 
 	uint8_t row = 0;
 	while (1) {
@@ -28,21 +29,24 @@ int main(void)
 		ROWCLK_set_level(false);
 		ROWCLK_set_level(true);
 
-		D0_set_level(true);
-		D1_set_level(true);
-		D2_set_level(true);
-		D3_set_level(true);
-		D4_set_level(true);
-		D5_set_level(true);
-		D6_set_level(true);
-		D7_set_level(true);
-
-		SEGCLK0_set_level(true);
-		SEGCLK1_set_level(true);
-		SEGCLK2_set_level(true);
-		SEGCLK0_set_level(false);
-		SEGCLK1_set_level(false);
-		SEGCLK2_set_level(false);
+		for (uint8_t col = 0; col < 8; col++) {
+			PORTF.OUT = 1 << col;
+			SEGCLK0_set_level(true);
+			SEGCLK1_set_level(true);
+			SEGCLK2_set_level(true);
+			SEGCLK0_set_level(false);
+			SEGCLK1_set_level(false);
+			SEGCLK2_set_level(false);
+			_delay_ms(100);
+		}
+		// D0_set_level(true);
+		// D1_set_level(true);
+		// D2_set_level(true);
+		// D3_set_level(true);
+		// D4_set_level(true);
+		// D5_set_level(true);
+		// D6_set_level(true);
+		// D7_set_level(true);
 
 		LE_set_level(false);
 		LE_set_level(true);
