@@ -9,4 +9,4 @@ RUN apt-get install -y \
     gcc-arm-none-eabi \
     git \
     openocd
-RUN apt-get install -y binutils gcc-avr avr-libc uisp avrdude flex byacc bison
+RUN apt-get install -y gcc-avr avr-libc uisp avrdude flex byacc bison

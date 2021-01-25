@@ -35,3 +35,12 @@
 
 #include <driver_init.h>
 #include <compiler.h>
+#include "screen.h"
+
+#define ROWS 16
+#define COLS 24
+
+ISR(TCC0_OVF_vect)
+{
+   redraw();
+}

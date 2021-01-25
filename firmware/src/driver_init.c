@@ -36,6 +36,12 @@
 #include "driver_init.h"
 #include <system.h>
 
+void TIMER_0_initialization(void)
+{
+
+	TIMER_0_init();
+}
+
 /* configure pins and initialize registers */
 void SLEEP_initialization(void)
 {
@@ -378,7 +384,7 @@ void system_init()
 	/* PORT setting on PF0 */
 
 	// Set pin direction to output
-	D0_set_dir(PORT_DIR_OFF);
+	D0_set_dir(PORT_DIR_OUT);
 
 	D0_set_level(
 	    // <y> Initial level
@@ -390,7 +396,7 @@ void system_init()
 	/* PORT setting on PF1 */
 
 	// Set pin direction to output
-	D1_set_dir(PORT_DIR_OFF);
+	D1_set_dir(PORT_DIR_OUT);
 
 	D1_set_level(
 	    // <y> Initial level
@@ -402,7 +408,7 @@ void system_init()
 	/* PORT setting on PF2 */
 
 	// Set pin direction to output
-	D2_set_dir(PORT_DIR_OFF);
+	D2_set_dir(PORT_DIR_OUT);
 
 	D2_set_level(
 	    // <y> Initial level
@@ -414,7 +420,7 @@ void system_init()
 	/* PORT setting on PF3 */
 
 	// Set pin direction to output
-	D3_set_dir(PORT_DIR_OFF);
+	D3_set_dir(PORT_DIR_OUT);
 
 	D3_set_level(
 	    // <y> Initial level
@@ -426,7 +432,7 @@ void system_init()
 	/* PORT setting on PF4 */
 
 	// Set pin direction to output
-	D4_set_dir(PORT_DIR_OFF);
+	D4_set_dir(PORT_DIR_OUT);
 
 	D4_set_level(
 	    // <y> Initial level
@@ -438,7 +444,7 @@ void system_init()
 	/* PORT setting on PF5 */
 
 	// Set pin direction to output
-	D5_set_dir(PORT_DIR_OFF);
+	D5_set_dir(PORT_DIR_OUT);
 
 	D5_set_level(
 	    // <y> Initial level
@@ -450,7 +456,7 @@ void system_init()
 	/* PORT setting on PF6 */
 
 	// Set pin direction to output
-	D6_set_dir(PORT_DIR_OFF);
+	D6_set_dir(PORT_DIR_OUT);
 
 	D6_set_level(
 	    // <y> Initial level
@@ -462,7 +468,7 @@ void system_init()
 	/* PORT setting on PF7 */
 
 	// Set pin direction to output
-	D7_set_dir(PORT_DIR_OFF);
+	D7_set_dir(PORT_DIR_OUT);
 
 	D7_set_level(
 	    // <y> Initial level
@@ -470,6 +476,11 @@ void system_init()
 	    // <false"> Low
 	    // <true"> High
 	    false);
+
+	PORTCFG.VPCTRLA = PORTCFG_VP1MAP_PORTB_gc | PORTCFG_VP0MAP_PORTA_gc;	// assign the virtual ports A==>VP0, B==>VP1
+	PORTCFG.VPCTRLB = PORTCFG_VP3MAP_PORTF_gc | PORTCFG_VP2MAP_PORTE_gc;	// assign the virtual ports E==>VP2, F==>VP3
+
+	TIMER_0_initialization();
 
 	OSC_init();
 
