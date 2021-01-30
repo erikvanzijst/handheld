@@ -20,6 +20,49 @@ details: null
 application: null
 middlewares: {}
 drivers:
+  TIMER_0:
+    user_label: TIMER_0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::TCC0::driver_config_definition::TC0.Normal.Mode::Drivers:TC:Init
+    functionality: Timer
+    api: Drivers:TC:Init
+    configuration:
+      tc0_ccA: 124
+      tc0_ccB: 0
+      tc0_ccC: 0
+      tc0_ccD: 0
+      tc0_ctrlb_ccAen: true
+      tc0_ctrlb_ccBen: false
+      tc0_ctrlb_ccCen: false
+      tc0_ctrlb_ccDen: false
+      tc0_ctrlc_cmpA: false
+      tc0_ctrlc_cmpB: false
+      tc0_ctrlc_cmpC: false
+      tc0_ctrlc_cmpD: false
+      tc0_ctrld_evdly: false
+      tc0_intctrlb_ccAintlvl: Medium Level
+      tc0_intctrlb_ccBintlvl: Interrupt Disabled
+      tc0_intctrlb_ccCintlvl: Interrupt Disabled
+      tc0_intctrlb_ccDintlvl: Interrupt Disabled
+      tc_cnt: 0
+      tc_ctrla_clksel: System Clock / 64
+      tc_ctrlb_wgmode: Normal Mode
+      tc_ctrld_evact: No Event Action
+      tc_ctrld_evsel: No Event Source
+      tc_ctrle_bytem: false
+      tc_intctrla_errintlvl: Interrupt Disabled
+      tc_intctrla_ovfintlvl: Interrupt Disabled
+      tc_per: 65535
+    optional_signals: []
+    variant: null
+    clocks:
+      domain_group:
+        nodes:
+        - name: TC
+          input: CLK CPU/PER
+          external: false
+          external_frequency: 0
+        configuration:
+          tc_clock_source: CLK CPU/PER
   OSC:
     user_label: OSC
     definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::OSC::driver_config_definition::OSC::Drivers:OSC:Init
@@ -30,7 +73,7 @@ drivers:
       $input_id: 32MHz Internal Oscillator
       RESERVED_InputFreq: 32000000
       RESERVED_InputFreq_id: 32MHz Internal Oscillator
-      _$freq_output_External Crystal Oscillator 0.4-16MHz: '400000'
+      _$freq_output_External Crystal Oscillator 0.4-16MHz: 400000
       _$freq_output_PLL: 4000000
       dfll2m_calib_a: 0
       dfll2m_calib_b: 0
@@ -128,12 +171,12 @@ drivers:
     functionality: System
     api: Drivers:PMIC:Init
     configuration:
-      cpu_sreg_i: false
+      cpu_sreg_i: true
       inc_isr_harness: false
       pmic_ctrl_hilvlen: false
       pmic_ctrl_ivsel: false
       pmic_ctrl_lolvlen: false
-      pmic_ctrl_medlvlen: false
+      pmic_ctrl_medlvlen: true
       pmic_ctrl_rren: false
     optional_signals: []
     variant: null
@@ -369,19 +412,19 @@ pads:
     configuration: null
 toolchain_options:
 - definition:
-    identifier: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::environment_definition::All:Microchip.Studio.xc8:7.0.0
-  configuration:
-    compiler_config:
-      xc8_compiler_miscellaneous_OtherFlags: -std=gnu99
-    linker_config:
-      xc8_linker_miscellaneous_LinkerFlags: ''
-- definition:
     identifier: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::environment_definition::All:Microchip.Studio.gcc:7.0.0
   configuration:
     compiler_config:
       avrgcc_compiler_miscellaneous_OtherFlags: -std=gnu99
     linker_config:
       avrgcc_linker_miscellaneous_LinkerFlags: ''
+- definition:
+    identifier: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::environment_definition::All:Microchip.Studio.xc8:7.0.0
+  configuration:
+    compiler_config:
+      xc8_compiler_miscellaneous_OtherFlags: -std=gnu99
+    linker_config:
+      xc8_linker_miscellaneous_LinkerFlags: ''
 - definition:
     identifier: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::environment_definition::All:Atmel.Studio:7.0.0
   configuration:

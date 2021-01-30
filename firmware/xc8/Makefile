@@ -35,6 +35,7 @@ main.o \
 src/pmic.o \
 src/sleep.o \
 src/osc.o \
+src/tc.o \
 driver_isr.o \
 atmel_start.o \
 src/clk.o \
@@ -46,6 +47,7 @@ OBJS_AS_ARGS +=  \
 "src/pmic.o" \
 "src/sleep.o" \
 "src/osc.o" \
+"src/tc.o" \
 "driver_isr.o" \
 "atmel_start.o" \
 "src/clk.o" \
@@ -56,6 +58,7 @@ OBJS_AS_ARGS +=  \
 DEPS := $(OBJS:%.o=%.d)
 
 DEPS_AS_ARGS +=  \
+"src/tc.d" \
 "src/osc.d" \
 "main.d" \
 "src/pmic.d" \

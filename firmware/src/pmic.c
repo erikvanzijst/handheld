@@ -45,11 +45,13 @@
 int8_t PMIC_init()
 {
 
-	// PMIC.CTRL = 0 << PMIC_RREN_bp /* Round-Robin Priority Enable: disabled */
-	//		 | 0 << PMIC_IVSEL_bp /* Interrupt Vector Select: disabled */
-	//		 | 0 << PMIC_HILVLEN_bp /* High Level Enable: disabled */
-	//		 | 0 << PMIC_MEDLVLEN_bp /* Medium Level Enable: disabled */
-	//		 | 0 << PMIC_LOLVLEN_bp; /* Low Level Enable: disabled */
+	ENABLE_INTERRUPTS();
+
+	PMIC.CTRL = 0 << PMIC_RREN_bp       /* Round-Robin Priority Enable: disabled */
+	            | 0 << PMIC_IVSEL_bp    /* Interrupt Vector Select: disabled */
+	            | 0 << PMIC_HILVLEN_bp  /* High Level Enable: disabled */
+	            | 1 << PMIC_MEDLVLEN_bp /* Medium Level Enable: enabled */
+	            | 0 << PMIC_LOLVLEN_bp; /* Low Level Enable: disabled */
 
 	return 0;
 }

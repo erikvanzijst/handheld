@@ -77,6 +77,7 @@ $(OBJDIR)/main.o \
 $(OBJDIR)/pmic.o \
 $(OBJDIR)/sleep.o \
 $(OBJDIR)/osc.o \
+$(OBJDIR)/tc.o \
 $(OBJDIR)/driver_isr.o \
 $(OBJDIR)/atmel_start.o \
 $(OBJDIR)/clk.o \

@@ -42,5 +42,12 @@
 
 ISR(TCC0_OVF_vect)
 {
+   PORTB_toggle_pin_level(3);  // for logic analyzer debugging
    redraw();
+}
+
+ISR(TCC0_CCA_vect)
+{
+	/* Insert your CCA Compare Interrupt handling code here */
+   // LED0_toggle_level();
 }

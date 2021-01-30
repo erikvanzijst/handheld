@@ -477,8 +477,11 @@ void system_init()
 	    // <true"> High
 	    false);
 
-	PORTCFG.VPCTRLA = PORTCFG_VP1MAP_PORTB_gc | PORTCFG_VP0MAP_PORTA_gc;	// assign the virtual ports A==>VP0, B==>VP1
-	PORTCFG.VPCTRLB = PORTCFG_VP3MAP_PORTF_gc | PORTCFG_VP2MAP_PORTE_gc;	// assign the virtual ports E==>VP2, F==>VP3
+	PORTB_set_pin_dir(2, PORT_DIR_OUT);
+	PORTB_set_pin_dir(3, PORT_DIR_OUT);
+
+	PORTCFG.VPCTRLA = PORTCFG_VP0MAP_PORTC_gc | PORTCFG_VP1MAP_PORTD_gc;	// assign the virtual ports C==>VP0, D==>VP1
+	PORTCFG.VPCTRLB = PORTCFG_VP2MAP_PORTE_gc | PORTCFG_VP3MAP_PORTF_gc;	// assign the virtual ports E==>VP2, F==>VP3
 
 	TIMER_0_initialization();
 

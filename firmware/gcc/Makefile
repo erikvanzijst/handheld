@@ -75,7 +75,7 @@ DEPS_AS_ARGS +=  \
 "driver_isr.d" \
 "src/clk.d" \
 "atmel_start.d" \
-"src/screen.o"
+"src/screen.d"
 
 MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 OUTPUT_FILE_NAME :=handheld

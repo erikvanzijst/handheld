@@ -66,7 +66,7 @@ int8_t OSC_init()
 			 | 0 << OSC_XOSCEN_bp /* External Oscillator Enable: disabled */
 			 | 0 << OSC_RC32KEN_bp /* Internal 32kHz RC Oscillator Enable: disabled */
 			 | 1 << OSC_RC32MEN_bp /* Internal 32MHz RC Oscillator Enable: enabled */
-			 | 1 << OSC_RC2MEN_bp; /* Internal 2MHz RC Oscillator Enable: enabled */
+			 | 0 << OSC_RC2MEN_bp; /* Internal 2MHz RC Oscillator Enable: enabled */
 
 	// Wait for the Oscillators to be stable
 

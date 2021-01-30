@@ -1,3 +1,6 @@
 *.d
 *.o
 gcc/handheld.*
+.vscode
+.DS_Store
+._*
