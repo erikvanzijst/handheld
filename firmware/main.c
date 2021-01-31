@@ -1,5 +1,6 @@
 #include <atmel_start.h>
 #include <util/delay.h>
+#include <stdio.h>
 #include "screen.h"
 
 int main(void)
@@ -14,6 +15,7 @@ int main(void)
 	float x = 8;
 	float y = 8;
 
+	printf("Starting bouncy ball...\r\n");
 	while (1) {
 		clear_screen();
 		
@@ -26,6 +28,7 @@ int main(void)
 		x += dx;
 		y += dy;
 
+		printf("ball at (%2d, %2d)\r\n", (uint8_t)x, (uint8_t)y);
 		set_pixel((uint8_t)x, (uint8_t)y, true);
 		_delay_ms(50);
 

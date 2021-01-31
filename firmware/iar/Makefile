@@ -64,11 +64,11 @@ CPU ?= xm256c3
 
 DEVICE ?= __ATxmega256C3__
 
-INCLUDE_PATHS += -I"config" -I"include" -I"utils" -I"utils/assembler" -I"." -I"include" 
+INCLUDE_PATHS += -I"config" -I"examples/include" -I"include" -I"utils" -I"utils/assembler" -I"." -I"include" 
 EEPROM_SIZE = 8192
 OBJDIR = $(CONFIG)/obj
 EXEDIR = $(CONFIG)/exe
-SRC_DIRS +=  src
+SRC_DIRS +=  src examples/src
 
 # We use .o suffix rather than .r90 for all object files.
 
@@ -78,9 +78,11 @@ $(OBJDIR)/pmic.o \
 $(OBJDIR)/sleep.o \
 $(OBJDIR)/osc.o \
 $(OBJDIR)/tc.o \
+$(OBJDIR)/usart_basic_example.o \
 $(OBJDIR)/driver_isr.o \
 $(OBJDIR)/atmel_start.o \
 $(OBJDIR)/clk.o \
+$(OBJDIR)/usart_basic.o \
 $(OBJDIR)/driver_init.o \
 $(OBJDIR)/protected_io.o
 

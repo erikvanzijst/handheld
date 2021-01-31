@@ -27,7 +27,8 @@ endif
 # List the subdirectories for creating object files
 SUB_DIRS +=  \
  \
-src
+src \
+examples/src
 
 # List the object files
 OBJS +=  \
@@ -36,9 +37,11 @@ src/pmic.o \
 src/sleep.o \
 src/osc.o \
 src/tc.o \
+examples/src/usart_basic_example.o \
 driver_isr.o \
 atmel_start.o \
 src/clk.o \
+src/usart_basic.o \
 src/driver_init.o \
 src/protected_io.o
 
@@ -48,9 +51,11 @@ OBJS_AS_ARGS +=  \
 "src/sleep.o" \
 "src/osc.o" \
 "src/tc.o" \
+"examples/src/usart_basic_example.o" \
 "driver_isr.o" \
 "atmel_start.o" \
 "src/clk.o" \
+"src/usart_basic.o" \
 "src/driver_init.o" \
 "src/protected_io.o"
 
@@ -61,10 +66,12 @@ DEPS_AS_ARGS +=  \
 "src/tc.d" \
 "src/osc.d" \
 "main.d" \
+"examples/src/usart_basic_example.d" \
 "src/pmic.d" \
 "src/sleep.d" \
 "src/protected_io.d" \
 "src/driver_init.d" \
+"src/usart_basic.d" \
 "driver_isr.d" \
 "src/clk.d" \
 "atmel_start.d"
@@ -117,7 +124,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)xc8-cc$(QUOTE) -x c -DF_CPU=32000000 -DDEBUG -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mcpu=atxmega256c3 \
     -D__xmega256C3__ \
--I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
+-I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<
@@ -128,7 +135,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)xc8-cc$(QUOTE) -x assembler-with-cpp -DF_CPU=32000000 -DDEBUG -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mcpu=atxmega256c3 \
     -D__xmega256C3__ \
--I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
+-I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<
@@ -139,7 +146,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)xc8-cc$(QUOTE) -x assembler-with-cpp -DF_CPU=32000000 -DDEBUG -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mcpu=atxmega256c3 \
     -D__xmega256C3__ \
--I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
+-I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<

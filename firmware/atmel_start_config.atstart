@@ -212,6 +212,43 @@ drivers:
     variant: null
     clocks:
       domain_group: null
+  USART_0:
+    user_label: USART_0
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::USARTC0::driver_config_definition::Async.Polled.Mode::Drivers:USART:Basic
+    functionality: USART
+    api: Drivers:USART:Basic
+    configuration:
+      baud_rate: 115200
+      printf_support: true
+      usart_ctrlb_clk2x: false
+      usart_ctrlb_mpcm: false
+      usart_ctrlb_rxen: true
+      usart_ctrlb_txen: true
+      usart_ctrlc_chsize: 'Character size: 8 bit'
+      usart_ctrlc_cmode: Async Polled Mode
+      usart_ctrlc_pmode: No Parity
+      usart_ctrlc_sbmode: 1 stop bit
+      usart_ctrlc_ucpha: Sample DATA on Falling edge of XCK
+      usart_ctrlc_udord: Send MSB of DATA First
+    optional_signals: []
+    variant:
+      specification: CMODE=0
+      required_signals:
+      - name: USARTC0/RXD
+        pad: PC2
+        label: RXD
+      - name: USARTC0/TXD
+        pad: PC3
+        label: TXD
+    clocks:
+      domain_group:
+        nodes:
+        - name: USART
+          input: CLK CPU/PER
+          external: false
+          external_frequency: 0
+        configuration:
+          usart_clock_source: CLK CPU/PER
 pads:
   IRSD:
     name: PA3
@@ -243,6 +280,18 @@ pads:
     definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC1
     mode: Digital output
     user_label: ROWCLK
+    configuration: null
+  PC2:
+    name: PC2
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC2
+    mode: Digital input
+    user_label: PC2
+    configuration: null
+  PC3:
+    name: PC3
+    definition: Atmel:XMEGA_B_C_Drivers:1.0.0::ATxmega256C3-AU::pad::PC3
+    mode: Digital output
+    user_label: PC3
     configuration: null
   ROWSDI:
     name: PC4
