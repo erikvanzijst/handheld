@@ -42,7 +42,6 @@
 
 ISR(TCC0_OVF_vect)
 {
-   PORTB_toggle_pin_level(3);  // for logic analyzer debugging
    redraw();
 }
 

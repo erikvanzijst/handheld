@@ -1,5 +1,6 @@
 #include <atmel_start.h>
 #include <util/delay.h>
+#include "screen.h"
 
 int main(void)
 {
@@ -7,72 +8,30 @@ int main(void)
 	atmel_start_init();
 
 	OEB_set_level(false);
-	ROWSDI_set_level(false);
-	ROWCLK_set_level(false);
-	ROWSDI_set_level(true);
 
-	for (uint8_t i = 0; i < 16; i++) {
-		_delay_ms(1);
-		ROWCLK_set_level(false);
-		_delay_ms(1);
-		ROWCLK_set_level(true);
-		_delay_ms(1);
-	}
-	LE_set_level(false);
-	_delay_ms(1);
-	LE_set_level(true);
-	PORTF.OUT = 0;
-	// D0_set_level(false);
-	// D1_set_level(false);
-	// D2_set_level(false);
-	// D3_set_level(false);
-	// D4_set_level(true);
-	// D5_set_level(true);
-	// D6_set_level(true);
-	// D7_set_level(true);
+	float dx = 0.9;
+	float dy = 0.5;
+	float x = 8;
+	float y = 8;
 
-	// D0_set_level(true);
-	// D1_set_level(true);
-
-	SEGCLK0_set_level(true);
-	SEGCLK1_set_level(true);
-	SEGCLK2_set_level(true);
-	SEGCLK0_set_level(false);
-	SEGCLK1_set_level(false);
-	SEGCLK2_set_level(false);
-
-	uint8_t row = 0;
 	while (1) {
-		// ROWSDI_set_level(row != 0);
-		// ROWCLK_set_level(false);
-		// ROWCLK_set_level(true);
+		clear_screen();
+		
+		if (((x+dx) < 0 || (x+dx) >= COLS)) {
+			dx *= -1;
+		}
+		if (((y+dy) < 0 || (y+dy) >= ROWS)) {
+			dy *= -1;
+		}
+		x += dx;
+		y += dy;
 
-		// for (uint8_t col = 0; col < 24; col++) {
-		// 	PORTF.OUT = (col / 8 == 2) ? (1 << (col % 8)) : 0;
-		// 	SEGCLK0_set_level(true);
-		// 	SEGCLK0_set_level(false);
+		set_pixel((uint8_t)x, (uint8_t)y, true);
+		_delay_ms(50);
 
-		// 	PORTF.OUT = (col / 8 == 1) ? (1 << (col % 8)) : 0;
-		// 	SEGCLK1_set_level(true);
-		// 	SEGCLK1_set_level(false);
-
-		// 	PORTF.OUT = (col / 8 == 0) ? (1 << (col % 8)) : 0;
-		// 	SEGCLK2_set_level(true);
-		// 	SEGCLK2_set_level(false);
-
-		// 	_delay_ms(20);
-		// }
-
-		// LE_set_level(false);
-		// LE_set_level(true);
-
-		PORTB_toggle_pin_level(2);  // for logic analyzer debugging
-
-		BATT_set_level(true);
-		_delay_ms(200);
-		BATT_set_level(false);
-		_delay_ms(200);
-
-		// row = (row + 1) % 16;
+		// BATT_set_level(true);
+		// _delay_ms(200);
+		// BATT_set_level(false);
+		// _delay_ms(200);
 	}
 }
