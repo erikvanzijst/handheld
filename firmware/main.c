@@ -25,6 +25,8 @@ int main(void)
 	printf("Starting bouncy ball...\r\n");
 	while (1) {
 		clear_screen();
+
+		scroll("Hello world  ", "", 0);
 		
 		if (((x+dx) < 0 || (x+dx) >= COLS)) {
 			dx *= -1;

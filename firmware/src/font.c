@@ -1,8 +1,10 @@
 #include <avr/pgmspace.h>
 #include <compiler.h>
 #include <ctype.h>
+#include <util/delay.h>
 #include <string.h>
 #include <stdio.h>
+#include "screen.h"
 
 // partial minimalist 5x5 font from https://www.dafont.com/5x5.font
 const uint8_t font[43][5] PROGMEM = {
@@ -63,4 +65,47 @@ int to_glyphs(uint8_t *glyphs, const char *str) {
     memcpy_P(glyphs + i*5, &(font[j]), 5);
   }
   return 0;
+}
+
+void scroll(const char *line1, const char *line2, long timeout) {
+//   const unsigned long start = millis();
+  typedef struct {
+    unsigned int pos;
+    uint8_t row;
+    uint8_t *glyphs;
+    int16_t len;
+  } Line_t;
+  Line_t lines[2];
+  uint8_t glyphs1[strlen(line1) * 5];
+  uint8_t glyphs2[strlen(line2) * 5];
+
+  if (to_glyphs((uint8_t *)glyphs1, line1) || to_glyphs((uint8_t *)glyphs2, line2)) {
+    return;
+  }
+  lines[0].pos = 0;
+  lines[0].row = strlen(line2) == 0 ? 5 : 2;
+  lines[0].glyphs = glyphs1;
+  lines[0].len = strlen(line1);
+  lines[1].pos = 0;
+  lines[1].row = strlen(line1) == 0 ? 5 : 10;
+  lines[1].glyphs = glyphs2;
+  lines[1].len = strlen(line2);
+
+    while (true) {
+        for (uint8_t i = 0; i < 2; i++) {
+            for (int16_t r = 4; lines[i].len && r >= 0; r--) {
+                uint8_t row = lines[i].row + r;
+                screen[row][0] <<= 1;
+                screen[row][0] |= (screen[row][1] >> 7);
+                screen[row][1] <<= 1;
+                screen[row][1] |= (screen[row][2] >> 7);
+                screen[row][2] <<= 1;
+
+                screen[row][2] |= (
+                    (*(lines[i].glyphs + ((lines[i].pos / 6) * 5) + r) & (0x20 >> (lines[i].pos % 6))) ? 1 : 0);
+            }
+            lines[i].pos = (lines[i].pos + 1) % (lines[i].len * 6);
+        }
+        _delay_ms(75);
+    }
 }
