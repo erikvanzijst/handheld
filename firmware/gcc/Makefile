@@ -49,7 +49,8 @@ src/clk.o \
 src/usart_basic.o \
 src/driver_init.o \
 src/protected_io.o \
-src/screen.o
+src/screen.o \
+src/font.o
 
 OBJS_AS_ARGS +=  \
 "main.o" \
@@ -64,7 +65,8 @@ OBJS_AS_ARGS +=  \
 "src/usart_basic.o" \
 "src/driver_init.o" \
 "src/protected_io.o" \
-"src/screen.o"
+"src/screen.o" \
+"src/font.o"
 
 # List the dependency files
 DEPS := $(OBJS:%.o=%.d)
@@ -82,7 +84,8 @@ DEPS_AS_ARGS +=  \
 "driver_isr.d" \
 "src/clk.d" \
 "atmel_start.d" \
-"src/screen.d"
+"src/screen.d" \
+"src/font.d"
 
 MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 OUTPUT_FILE_NAME :=handheld
