@@ -40,6 +40,8 @@
 int8_t TIMER_0_init()
 {
 
+	TCC0.CTRLA = TC_CLKSEL_DIV64_gc; /* System Clock / 64 */
+
 	TCC0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
 	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
 	             | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
@@ -77,7 +79,21 @@ int8_t TIMER_0_init()
 
 	TCC0.PER = 250; /* Period: 2kHz */
 
-	TCC0.CTRLA = TC_CLKSEL_DIV64_gc; /* System Clock / 64 */
+
+	// Timer used for RTC
+	TCD0.CTRLA = TC_CLKSEL_DIV64_gc; /* System Clock / 64 */
+	TCD0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
+	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
+	             | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
+	             | 1 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
+	             | TC_WGMODE_NORMAL_gc; /* Normal Mode */
+	TCD0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
+			 		| TC_OVFINTLVL_OFF_gc; /* Interrupt Enabled */
+	TCD0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
+	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
+	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
+	                | TC_CCAINTLVL_MED_gc /* Medium Level */;
+	TCD0.CCA = 50000;					/* Compare or Capture A: 50000 */
 
 	return 0;
 }

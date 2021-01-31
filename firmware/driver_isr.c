@@ -35,7 +35,9 @@
 
 #include <driver_init.h>
 #include <compiler.h>
+#include <time.h>
 #include "screen.h"
+#include "wallclock.h"
 
 #define ROWS 16
 #define COLS 24
@@ -47,6 +49,16 @@ ISR(TCC0_OVF_vect)
 
 ISR(TCC0_CCA_vect)
 {
-	/* Insert your CCA Compare Interrupt handling code here */
-   // LED0_toggle_level();
+}
+
+uint64_t foo;
+
+ISR(TCD0_CCA_vect)
+{
+   timer_tick();
+   // uint16_t now = TCD0.CNT;
+   // printf("CNT: 0x%0.4x, time: %x\r\n", TCD0.CCA, time(NULL));
+
+   TCD0.CCABUF = TCD0.CCA + (uint16_t)50000;
+   TCD0.CTRLFSET |= TC_CMD_UPDATE_gc;
 }

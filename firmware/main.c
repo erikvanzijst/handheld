@@ -4,6 +4,7 @@
 #include <avr/pgmspace.h>
 #include "screen.h"
 #include "font.h"
+#include "wallclock.h"
 
 int main(void)
 {
@@ -38,7 +39,6 @@ int main(void)
 		y += dy;
 
 		printf("ball at (%2d, %2d)\r\n", (uint8_t)x, (uint8_t)y);
-		printf("0: %0.2x %0.2x %0.2x %0.2x %0.2x\r\n", buf[0], buf[1], buf[2], buf[3], buf[4]);
 		set_pixel((uint8_t)x, (uint8_t)y, true);
 		_delay_ms(50);
 
