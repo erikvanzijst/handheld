@@ -6,6 +6,7 @@
 #include "button.h"
 #include "font.h"
 #include "screen.h"
+#include "tetris.h"
 #include "wallclock.h"
 
 float dx = 0.9;
@@ -53,11 +54,13 @@ int main(void)
 	// }
 
 	while(true) {
-		clear_screen();
-		printf("Scroll some text...\r\n");
-		scroll("Hello world      ", "", 7000);
+		tetris();
+
+		// clear_screen();
+		// printf("Scroll some text...\r\n");
+		// scroll("Hello world      ", "", 7000);
 
 		printf("Starting bouncy ball...\r\n");
-		bouncy_ball(7000);
+		bouncy_ball(4000);
 	}
 }
