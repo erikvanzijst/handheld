@@ -35,6 +35,7 @@
  *@{
  */
 #include <rtc.h>
+#include <time.h>
 
 /**
  * \brief Initialize rtc interface
@@ -43,25 +44,34 @@
 int8_t RTC_0_init()
 {
 
-	RTC.PER = 1024; /* Period Register: 1024 */
+   while (RTC.STATUS > 0) { /* Wait for register to synchronize */
+   }
 
-	// RTC.COMP = 0; /* Compare Register: 0 */
+   RTC.PER = 1024; /* Period Register: 1024 */
 
-	// RTC.CNT = 0; /* 0 */
+   // RTC.COMP = 0; /* Compare Register: 0 */
 
-	RTC.CTRL = RTC_PRESCALER_DIV1_gc;
+   // RTC.CNT = 0; /* 0 */
 
-	RTC.INTCTRL = RTC_COMPINTLVL_OFF_gc /* Interrupt Disabled */
-			      | RTC_OVFINTLVL_MED_gc; /* Interrupt enabled */
+   while (RTC.STATUS > 0) { /* Wait for register to synchronize */
+   }
+
+   RTC.CTRL = RTC_PRESCALER_DIV1_gc; /* RTC Clock */
+
+   RTC.INTCTRL = RTC_COMPINTLVL_OFF_gc   /* Interrupt Disabled */
+                  | RTC_OVFINTLVL_MED_gc; /* Medium Level */
+
+   while (RTC.STATUS > 0) { /* Wait for registers to synchronize before returning from the API */
+   }
 
    // libavr does not actually seem to do anything with this :-/
-	struct tm rtc_time;
-	rtc_time.tm_mday = 31;
-	rtc_time.tm_mon = 0;
-	rtc_time.tm_year = 2021;
-	rtc_time.tm_wday = 0;
-	rtc_time.tm_isdst = 0;
-	set_system_time(mktime(&rtc_time));
+   struct tm rtc_time;
+   rtc_time.tm_mday = 31;
+   rtc_time.tm_mon = 0;
+   rtc_time.tm_year = 2021;
+   rtc_time.tm_wday = 0;
+   rtc_time.tm_isdst = 0;
+   set_system_time(mktime(&rtc_time));
 
-	return 0;
+   return 0;
 }

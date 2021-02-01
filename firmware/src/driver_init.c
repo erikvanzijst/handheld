@@ -221,6 +221,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_UP_set_inverted(true);
+
 	/* PORT setting on PD0 */
 
 	// Set pin direction to input
@@ -238,6 +240,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDORPULL"> Wired-OR with pull-down
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
+
+	SW_LEFT_set_inverted(true);
 
 	/* PORT setting on PD1 */
 
@@ -257,6 +261,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_RIGHT_set_inverted(true);
+
 	/* PORT setting on PD4 */
 
 	// Set pin direction to input
@@ -275,10 +281,17 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_DOWN_set_inverted(true);
+
 	/* PORT setting on PD5 */
 
-	// Set pin direction to input
-	SELECT_set_dir(PORT_DIR_IN);
+	SELECT_set_dir(
+	    // <y> Pin direction
+	    // <id> pad_dir
+	    // <PORT_DIR_OFF"> Off
+	    // <PORT_DIR_IN"> In
+	    // <PORT_DIR_OUT"> Out
+	    PORT_DIR_IN);
 
 	SELECT_set_output_pull_mode(
 	    // <y> Output and Pull Configuration
@@ -292,6 +305,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDORPULL"> Wired-OR with pull-down
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
+
+	SELECT_set_inverted(true);
 
 	/* PORT setting on PE0 */
 
@@ -335,6 +350,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_A_set_inverted(true);
+
 	/* PORT setting on PE3 */
 
 	// Set pin direction to input
@@ -352,6 +369,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDORPULL"> Wired-OR with pull-down
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
+	
+	SW_X_set_inverted(true);
 
 	/* PORT setting on PE4 */
 
@@ -371,6 +390,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_B_set_inverted(true);
+
 	/* PORT setting on PE5 */
 
 	// Set pin direction to input
@@ -389,6 +410,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
 
+	SW_Y_set_inverted(true);
+
 	/* PORT setting on PE6 */
 
 	// Set pin direction to input
@@ -406,6 +429,8 @@ void system_init()
 	    // <PORT_CONFIGURATION_WIREDORPULL"> Wired-OR with pull-down
 	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
 	    PORT_CONFIGURATION_PULLUP);
+
+	START_set_inverted(true);
 
 	/* PORT setting on PE7 */
 

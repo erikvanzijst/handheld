@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 #include <util/delay.h>
+#include "button.h"
 #include "font.h"
 #include "screen.h"
 #include "wallclock.h"
@@ -45,6 +46,11 @@ int main(void)
 	atmel_start_init();
 
 	OEB_set_level(false);
+
+	// button_t start = {START_get_level, false, false, 0, 0};
+	// if (was_pressed(&start)) {
+	// 	BATT_toggle_level();
+	// }
 
 	while(true) {
 		clear_screen();
