@@ -51,8 +51,8 @@ int8_t CLK_init()
 
 	// ccp_write_io((void*)&(CLK.LOCK),0 << CLK_LOCK_bp /* Clock System Lock: disabled */);
 
-	// CLK.RTCCTRL = CLK_RTCSRC_ULP_gc /* Ultra Low Power Internal Oscillator */
-	//		 | 0 << CLK_RTCEN_bp; /* RTC Clock Source Enable: disabled */
+	CLK.RTCCTRL = CLK_RTCSRC_ULP_gc /* 1024Hz Ultra Low Power Oscillator */
+	              | 1 << CLK_RTCEN_bp;  /* RTC Clock Source Enable: enabled */
 
 	// CLK.USBCTRL = 0 << CLK_USBPSDIV_gp /* Prescaler Division Factor: 0 */
 	//		 | CLK_USBSRC_PLL_gc /* PLL */

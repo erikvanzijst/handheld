@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "screen.h"
+#include "wallclock.h"
 
 // partial minimalist 5x5 font from https://www.dafont.com/5x5.font
 const uint8_t font[43][5] PROGMEM = {
@@ -68,7 +69,7 @@ int to_glyphs(uint8_t *glyphs, const char *str) {
 }
 
 void scroll(const char *line1, const char *line2, long timeout) {
-//   const unsigned long start = millis();
+  const uint64_t start = millis();
   typedef struct {
     unsigned int pos;
     uint8_t row;
@@ -91,7 +92,7 @@ void scroll(const char *line1, const char *line2, long timeout) {
   lines[1].glyphs = glyphs2;
   lines[1].len = strlen(line2);
 
-    while (true) {
+    while (timeout == -1 || (millis() - start) < timeout) {
         for (uint8_t i = 0; i < 2; i++) {
             for (int16_t r = 4; lines[i].len && r >= 0; r--) {
                 uint8_t row = lines[i].row + r;

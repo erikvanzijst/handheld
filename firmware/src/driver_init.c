@@ -42,6 +42,11 @@ void TIMER_0_initialization(void)
 	TIMER_0_init();
 }
 
+void RTC_0_initialization(void)
+{
+	RTC_0_init();
+}
+
 /* configure pins and initialize registers */
 void SLEEP_initialization(void)
 {
@@ -521,6 +526,8 @@ void system_init()
 	OSC_init();
 
 	CLK_init();
+
+	RTC_0_initialization();
 
 	PMIC_init();
 

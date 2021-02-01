@@ -62,3 +62,9 @@ ISR(TCD0_CCA_vect)
    TCD0.CCABUF = TCD0.CCA + (uint16_t)50000;
    TCD0.CTRLFSET |= TC_CMD_UPDATE_gc;
 }
+
+ISR(RTC_OVF_vect, ISR_NAKED)
+{
+   system_tick();
+   reti();
+}

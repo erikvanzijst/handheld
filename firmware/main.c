@@ -1,33 +1,21 @@
 #include <atmel_start.h>
-#include <util/delay.h>
-#include <stdio.h>
 #include <avr/pgmspace.h>
-#include "screen.h"
+#include <stdio.h>
+#include <time.h>
+#include <util/delay.h>
 #include "font.h"
+#include "screen.h"
 #include "wallclock.h"
 
-int main(void)
-{
-	/* Initializes MCU, drivers and middleware */
-	atmel_start_init();
+float dx = 0.9;
+float dy = 0.5;
+float x = 8;
+float y = 8;
 
-	OEB_set_level(false);
-
-	float dx = 0.9;
-	float dy = 0.5;
-	float x = 8;
-	float y = 8;
-
-	uint8_t buf[5];
-
-	to_glyphs(buf, "a");
-	// memcpy_P(buf, &(font[0]), 5);
-
-	printf("Starting bouncy ball...\r\n");
-	while (1) {
+void bouncy_ball(uint64_t timeout) {
+	const uint64_t start = millis();
+	while (millis() - start < timeout) {
 		clear_screen();
-
-		scroll("Hello world  ", "", 0);
 		
 		if (((x+dx) < 0 || (x+dx) >= COLS)) {
 			dx *= -1;
@@ -39,6 +27,8 @@ int main(void)
 		y += dy;
 
 		printf("ball at (%2d, %2d)\r\n", (uint8_t)x, (uint8_t)y);
+		// printf("Milliseconds: %9lu, time: %x\r\n", millis(), time(NULL));
+
 		set_pixel((uint8_t)x, (uint8_t)y, true);
 		_delay_ms(50);
 
@@ -46,5 +36,22 @@ int main(void)
 		// _delay_ms(200);
 		// BATT_set_level(false);
 		// _delay_ms(200);
+	}
+}
+
+int main(void)
+{
+	/* Initializes MCU, drivers and middleware */
+	atmel_start_init();
+
+	OEB_set_level(false);
+
+	while(true) {
+		clear_screen();
+		printf("Scroll some text...\r\n");
+		scroll("Hello world      ", "", 7000);
+
+		printf("Starting bouncy ball...\r\n");
+		bouncy_ball(7000);
 	}
 }

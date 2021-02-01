@@ -84,6 +84,7 @@ $(OBJDIR)/atmel_start.o \
 $(OBJDIR)/clk.o \
 $(OBJDIR)/usart_basic.o \
 $(OBJDIR)/driver_init.o \
+$(OBJDIR)/rtc.o \
 $(OBJDIR)/protected_io.o
 
 # Used for assembler & linker options

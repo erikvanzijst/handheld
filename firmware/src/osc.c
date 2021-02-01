@@ -64,7 +64,7 @@ int8_t OSC_init()
 
 	OSC.CTRL = 0 << OSC_PLLEN_bp /* PLL Enable: disabled */
 			 | 0 << OSC_XOSCEN_bp /* External Oscillator Enable: disabled */
-			 | 0 << OSC_RC32KEN_bp /* Internal 32kHz RC Oscillator Enable: disabled */
+			 | 1 << OSC_RC32KEN_bp /* Internal 32kHz RC Oscillator Enable: enabled */
 			 | 1 << OSC_RC32MEN_bp /* Internal 32MHz RC Oscillator Enable: enabled */
 			 | 0 << OSC_RC2MEN_bp; /* Internal 2MHz RC Oscillator Enable: enabled */
 
@@ -75,6 +75,9 @@ int8_t OSC_init()
 	// }
 	while (!(OSC.STATUS & OSC_RC32MRDY_bm)) {
 		/* Wait for 32MHz Internal Oscillator to be stable */
+	}
+	while (!(OSC.STATUS & OSC_RC32KRDY_bm)) {
+		/* Wait for 32kHz Internal Oscillator to be stable */
 	}
 
 	// OSC.DFLLCTRL = OSC_RC32MCREF_RC32K_gc /* Internal 32.768 kHz RC Oscillator */

@@ -48,6 +48,7 @@ atmel_start.o \
 src/clk.o \
 src/usart_basic.o \
 src/driver_init.o \
+src/rtc.o \
 src/protected_io.o \
 src/screen.o \
 src/font.o \
@@ -65,6 +66,7 @@ OBJS_AS_ARGS +=  \
 "src/clk.o" \
 "src/usart_basic.o" \
 "src/driver_init.o" \
+"src/rtc.o" \
 "src/protected_io.o" \
 "src/screen.o" \
 "src/font.o" \
@@ -78,6 +80,7 @@ DEPS_AS_ARGS +=  \
 "src/osc.d" \
 "main.d" \
 "examples/src/usart_basic_example.d" \
+"src/rtc.d" \
 "src/pmic.d" \
 "src/sleep.d" \
 "src/protected_io.d" \
