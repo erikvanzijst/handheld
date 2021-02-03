@@ -4,6 +4,7 @@
 #include <util/delay.h>
 #include <string.h>
 #include <stdio.h>
+#include "button.h"
 #include "screen.h"
 #include "wallclock.h"
 
@@ -75,8 +76,9 @@ void scroll(const char *line1, const char *line2, long timeout) {
     uint8_t row;
     uint8_t *glyphs;
     int16_t len;
-  } Line_t;
-  Line_t lines[2];
+  } line_t;
+
+  line_t lines[2];
   uint8_t glyphs1[strlen(line1) * 5];
   uint8_t glyphs2[strlen(line2) * 5];
 
@@ -92,21 +94,23 @@ void scroll(const char *line1, const char *line2, long timeout) {
   lines[1].glyphs = glyphs2;
   lines[1].len = strlen(line2);
 
-    while (timeout == -1 || (millis() - start) < timeout) {
-        for (uint8_t i = 0; i < 2; i++) {
-            for (int16_t r = 4; lines[i].len && r >= 0; r--) {
-                uint8_t row = lines[i].row + r;
-                screen[row][0] <<= 1;
-                screen[row][0] |= (screen[row][1] >> 7);
-                screen[row][1] <<= 1;
-                screen[row][1] |= (screen[row][2] >> 7);
-                screen[row][2] <<= 1;
+  while ((timeout == -1 || (millis() - start) < timeout) && !any_key())
+  {
+    for (uint8_t i = 0; i < 2; i++)
+    {
+      for (int16_t r = 4; lines[i].len && r >= 0; r--)
+      {
+        uint8_t row = lines[i].row + r;
+        screen[row][0] <<= 1;
+        screen[row][0] |= (screen[row][1] >> 7);
+        screen[row][1] <<= 1;
+        screen[row][1] |= (screen[row][2] >> 7);
+        screen[row][2] <<= 1;
 
-                screen[row][2] |= (
-                    (*(lines[i].glyphs + ((lines[i].pos / 6) * 5) + r) & (0x20 >> (lines[i].pos % 6))) ? 1 : 0);
-            }
-            lines[i].pos = (lines[i].pos + 1) % (lines[i].len * 6);
-        }
-        _delay_ms(75);
+        screen[row][2] |= ((*(lines[i].glyphs + ((lines[i].pos / 6) * 5) + r) & (0x20 >> (lines[i].pos % 6))) ? 1 : 0);
+      }
+      lines[i].pos = (lines[i].pos + 1) % (lines[i].len * 6);
     }
+    _delay_ms(75);
+  }
 }

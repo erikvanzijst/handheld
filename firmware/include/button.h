@@ -13,10 +13,28 @@ typedef struct {
     uint64_t last_debounce;
 } button_t;
 
+button_t btn_start;
+button_t btn_select;
+
+button_t btn_left;
+button_t btn_right;
+button_t btn_up;
+button_t btn_down;
+
+button_t btn_x;
+button_t btn_a;
+button_t btn_y;
+button_t btn_b;
+
 /*
  * Returns true if the button went from not pressed to pressed.
  */
 bool was_pressed(button_t *button);
+
+/*
+ * Returns true if any button was pressed. False otherwise. Does not block.
+ */
+bool any_key();
 
 bool long_pressed(button_t *button);
 

@@ -102,11 +102,32 @@ uint16_t getspeed(uint16_t lines) {
     return (uint16_t) max((-5.6 * lines + 550) + 50, 50);
 }
 
-void tetris() {
+
+void pause() {
+    if (was_pressed(&btn_start) || was_pressed(&btn_up) || was_pressed(&btn_y)) {
+        uint8_t saved[ROWS][3];
+
+        printf("Paused...\r\n");
+        memcpy(saved, screen, sizeof(screen));
+        clear_screen();
+
+        scroll(
+            "Paused              ",
+            "          Paused    ",
+            -1);
+
+        memcpy(screen, saved, sizeof(screen));
+        printf("Resuming...\r\n");
+    }
+}
+
+void tetris()
+{
     printf("Clear screen\r\n");
     clear_screen();
     printf("Scrolling banner...\r\n");
-    scroll("TETRIS       ", "", 5000);
+    scroll("TETRIS      ", "", -1);
+    srand((unsigned int)millis()); // use human button press delay as random seed
 
     uint16_t lines = 0;
     uint16_t score = 0;
@@ -118,8 +139,10 @@ void tetris() {
 
     // paint background:
     printf("Drawing background...\r\n");
-    for (uint8_t row = 0; row < ROWS; row++) {
+    for (uint8_t row = 0; row < ROWS; row++)
+    {
         screen[row][0] = 2;
+        screen[row][1] = 0;
         screen[row][2] = 64;
     }
 
