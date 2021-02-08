@@ -13,18 +13,18 @@ typedef struct {
     uint64_t last_debounce;
 } button_t;
 
-button_t btn_start;
-button_t btn_select;
+extern button_t btn_start;
+extern button_t btn_select;
 
-button_t btn_left;
-button_t btn_right;
-button_t btn_up;
-button_t btn_down;
+extern button_t btn_left;
+extern button_t btn_right;
+extern button_t btn_up;
+extern button_t btn_down;
 
-button_t btn_x;
-button_t btn_a;
-button_t btn_y;
-button_t btn_b;
+extern button_t btn_x;
+extern button_t btn_a;
+extern button_t btn_y;
+extern button_t btn_b;
 
 /*
  * Returns true if the button went from not pressed to pressed.
