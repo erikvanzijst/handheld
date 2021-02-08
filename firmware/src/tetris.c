@@ -6,6 +6,7 @@
 #include <util/delay.h>
 #include "button.h"
 #include "font.h"
+#include "hiscore.h"
 #include "screen.h"
 #include "tetris.h"
 #include "wallclock.h"
@@ -219,7 +220,7 @@ void pause() {
 void gameover(uint16_t score) {
   char top[]    = "YOU :             ";
   char bottom[] = "BEST:             ";
-  const unsigned int hiscore = 0;
+  const uint32_t hiscore = get_and_set_hiscore(score);
 
   _delay_ms(1000);
   clear_screen();
@@ -244,7 +245,7 @@ void tetris()
   srand((unsigned int)millis()); // use human button press delay as random seed
 
   uint16_t lines = 0;
-  uint16_t score = 0;
+  uint32_t score = 0;
   uint16_t speed = get_speed(lines);
   uint64_t now = millis();
   uint16_t board[ROWS];
