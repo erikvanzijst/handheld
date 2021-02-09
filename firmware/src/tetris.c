@@ -181,6 +181,19 @@ uint8_t merge(fallingbrick_t *brick, unsigned int *board) {
   return removed;
 }
 
+void drawnext(uint8_t id) {
+  // clear preview area:
+  for (uint8_t row = 0; row < 5; row++) {
+    screen[row][2] &= 0xc0;
+  }
+  // paint the next tetromino:
+  for (uint8_t i = 0; i < 4; i++) {
+    set_pixel(brickdefs[id].shape[0].vertex[i].x + 20,
+              brickdefs[id].shape[0].vertex[i].y + 2,
+              true);
+  }
+}
+
 void print_brick(fallingbrick_t *brick) {
   shape_t shape;
   materialize(&shape, brick);
@@ -260,6 +273,7 @@ void tetris()
     screen[row][1] = 0;
     screen[row][2] = 64;
   }
+  drawnext(next);
 
   fallingbrick_t brick = {
     .id = (uint8_t)(rand() % 7),
@@ -324,6 +338,7 @@ void tetris()
         brick.location.x = 4;
         brick.location.y = 0;
         next = (uint8_t)(rand() % 7);
+        drawnext(next);
 
         if (!move(&copy, &brick, 0, &down, board)) {
           printf("Game over! Score: %d, highest: %d\r\n", score, 0);
