@@ -7,8 +7,10 @@
 #include "button.h"
 #include "font.h"
 #include "hiscore.h"
+#include "next.h"
 #include "screen.h"
 #include "tetris.h"
+#include "tetrominos.h"
 #include "wallclock.h"
 
 #define max(a,b) \
@@ -22,77 +24,6 @@
      _a < _b ? _a : _b; })
 
 #define WIDTH 10    // width of tetris board
-
-typedef struct {
-    int x, y;
-} vertex_t;
-
-typedef struct {
-    vertex_t vertex[4];
-} shape_t;
-
-typedef struct {
-    shape_t shape[4];
-} brickdef_t;
-
-brickdef_t brickdefs[7] = {
-  { // I
-    .shape = {
-      { .vertex = {{-1, 0}, {0, 0}, {1, 0}, {2, 0}} },
-      { .vertex = {{0, 1}, {0, 0}, {0, -1}, {0, -2}} },
-      { .vertex = {{-1, 0}, {0, 0}, {1, 0}, {2, 0}} },
-      { .vertex = {{0, 1}, {0, 0}, {0, -1}, {0, -2}} }
-    }
-  },
-  { // O
-    .shape = {
-      { .vertex = {{0, 0}, {0, 1}, {1, 0}, {1, 1}} },
-      { .vertex = {{0, 0}, {0, 1}, {1, 0}, {1, 1}} },
-      { .vertex = {{0, 0}, {0, 1}, {1, 0}, {1, 1}} },
-      { .vertex = {{0, 0}, {0, 1}, {1, 0}, {1, 1}} }
-    }
-  },
-  { // J
-    .shape = {
-      { .vertex = {{0, 0}, {1, 0}, {2, 0}, {2, 1}} },
-      { .vertex = {{1, 1}, {1, 0}, {1, -1}, {0, 1}} },
-      { .vertex = {{0, -1}, {0, 0}, {1, 0}, {2, 0}} },
-      { .vertex = {{1, -1}, {1, 0}, {1, 1}, {2, -1}} }
-    }
-  },
-  { // L
-    .shape = {
-      { .vertex = {{0, 1}, {0, 0}, {1, 0}, {2, 0}} },
-      { .vertex = {{0, -1}, {1, -1}, {1, 0}, {1, 1}} },
-      { .vertex = {{0, 0}, {1, 0}, {2, 0}, {2, -1}} },
-      { .vertex = {{1, -1}, {1, 0}, {1, 1}, {2, 1}} }
-    }
-  },
-  { // S
-    .shape = {
-      { .vertex = {{0, 1}, {1, 1}, {1, 0}, {2, 0}} },
-      { .vertex = {{1, -1}, {1, 0}, {2, 0}, {2, 1}} },
-      { .vertex = {{0, 1}, {1, 1}, {1, 0}, {2, 0}} },
-      { .vertex = {{1, -1}, {1, 0}, {2, 0}, {2, 1}} }
-    }
-  },
-  { // Z
-    .shape = {
-      { .vertex = {{0, 0}, {1, 0}, {1, 1}, {2, 1}} },
-      { .vertex = {{1, -1}, {1, 0}, {0, 0}, {0, 1}} },
-      { .vertex = {{0, 0}, {1, 0}, {1, 1}, {2, 1}} },
-      { .vertex = {{1, -1}, {1, 0}, {0, 0}, {0, 1}} }
-    }
-  },
-  { // T
-    .shape = {
-      { .vertex = {{0, 0}, {1, 0}, {2, 0}, {1, 1}} },
-      { .vertex = {{1, -1}, {1, 0}, {1, 1}, {0, 0}} },
-      { .vertex = {{0, 0}, {1, 0}, {2, 0}, {1, -1}} },
-      { .vertex = {{1, -1}, {1, 0}, {1, 1}, {2, 0}} }
-    }
-  }
-};
 
 vertex_t down = {0, 1};
 vertex_t left = {-1, 0};
@@ -181,23 +112,10 @@ uint8_t merge(fallingbrick_t *brick, unsigned int *board) {
   return removed;
 }
 
-void drawnext(uint8_t id) {
-  // clear preview area:
-  for (uint8_t row = 0; row < 5; row++) {
-    screen[row][2] &= 0xc0;
-  }
-  // paint the next tetromino:
-  for (uint8_t i = 0; i < 4; i++) {
-    set_pixel(brickdefs[id].shape[0].vertex[i].x + 20,
-              brickdefs[id].shape[0].vertex[i].y + 2,
-              true);
-  }
-}
-
 void print_brick(fallingbrick_t *brick) {
   shape_t shape;
   materialize(&shape, brick);
-  printf("Shape: [%d] ", brick->rotation);
+  printf("Tetromino %d: [rotation: %d] ", brick->id, brick->rotation);
   for (uint8_t i = 0; i < 4; i++) {
     printf("(%d, %d) ", shape.vertex[i].x, shape.vertex[i].y);
   }
@@ -230,10 +148,10 @@ void pause() {
   }
 }
 
-void gameover(uint16_t score) {
+void gameover(uint16_t score, uint32_t hiscore) {
   char top[]    = "YOU :             ";
   char bottom[] = "BEST:             ";
-  const uint32_t hiscore = get_and_set_hiscore(score);
+  
 
   _delay_ms(1000);
   clear_screen();
@@ -263,7 +181,9 @@ void tetris()
   uint64_t now = millis();
   uint16_t board[ROWS];
   memset(board, 0, sizeof(uint16_t) * ROWS);
-  uint8_t next = (uint8_t)(rand() % 7);
+
+  // initialize the upcoming queue:
+  initialize_upcoming();
 
   // paint background:
   printf("Drawing background...\r\n");
@@ -273,15 +193,15 @@ void tetris()
     screen[row][1] = 0;
     screen[row][2] = 64;
   }
-  drawnext(next);
 
   fallingbrick_t brick = {
-    .id = (uint8_t)(rand() % 7),
+    .id = take_upcoming(),
     .rotation = 0,
     .location = {.x = 4, .y = 0}
   };
   fallingbrick_t copy;
 
+  draw_upcoming();
   printf("Game started...\r\n");
 
   while (true) {
@@ -333,16 +253,16 @@ void tetris()
         lines += removed;
         score += linevalue[min(removed, 4)] + 1;
 
-        brick.id = next;
+        brick.id = take_upcoming();
         brick.rotation = 0;
         brick.location.x = 4;
         brick.location.y = 0;
-        next = (uint8_t)(rand() % 7);
-        drawnext(next);
+        draw_upcoming();
 
         if (!move(&copy, &brick, 0, &down, board)) {
-          printf("Game over! Score: %d, highest: %d\r\n", score, 0);
-          gameover(score);
+          const uint32_t hiscore = get_and_set_hiscore(score);
+          printf("Game over! Score: %d, highest: %d\r\n", score, hiscore);
+          gameover(score, hiscore);
           return;
         }
       }

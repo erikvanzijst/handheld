@@ -55,7 +55,9 @@ src/font.o \
 src/wallclock.o \
 src/button.o \
 src/tetris.o \
-src/hiscore.o
+src/hiscore.o \
+src/next.o \
+src/tetrominos.o
 
 OBJS_AS_ARGS +=  \
 "main.o" \
@@ -76,7 +78,9 @@ OBJS_AS_ARGS +=  \
 "src/wallclock.o" \
 "src/button.o" \
 "src/tetris.o" \
-"src/hiscore.o"
+"src/hiscore.o" \
+"src/next.o" \
+"src/tetrominos.o"
 
 # List the dependency files
 DEPS := $(OBJS:%.o=%.d)
@@ -100,7 +104,9 @@ DEPS_AS_ARGS +=  \
 "src/wallclock.d" \
 "src/button.d" \
 "src/tetris.d" \
-"src/hiscore.d"
+"src/hiscore.d" \
+"src/next.d" \
+"src/tetrominos.d"
 
 MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 OUTPUT_FILE_NAME :=handheld
