@@ -204,6 +204,7 @@ void tetris()
   draw_upcoming();
   printf("Game started...\r\n");
 
+  uint64_t last_press = 0;
   while (true) {
     pause();
 
@@ -212,24 +213,28 @@ void tetris()
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
+      last_press = millis();
     }
     if (was_pressed(&btn_right)) {
       if(move(&copy, &brick, 0, &right, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
+      last_press = millis();
     }
     if (was_pressed(&btn_b)) {
       if(move(&copy, &brick, 1, &identity, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
+      last_press = millis();
     }
     if (was_pressed(&btn_x)) {
       if(move(&copy, &brick, -1, &identity, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
+      last_press = millis();
     }
     if (was_pressed(&btn_a)) {
       now -= speed;
@@ -240,14 +245,19 @@ void tetris()
     }
 
     if ((millis() - now) > speed) {
-      now = millis();
 
       if (move(&copy, &brick, 0, &down, board)) {
+        now = millis();
         printf("Brick moved down. ");
         print_brick(&brick);
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
-
-      } else {
+      }
+      else if (last_press > now) {
+        // we hit the ground, but as long as we keep pressing buttons, we delay merging:
+        now += last_press - now;
+      }
+      else {
+        now = millis();
         printf("Could not move down; merging.\r\n");
         const uint8_t removed = merge(&brick, board);
         lines += removed;
