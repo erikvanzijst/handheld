@@ -153,10 +153,10 @@ void pause() {
 void gameover(uint16_t score, uint32_t hiscore) {
   char top[]    = "YOU :             ";
   char bottom[] = "BEST:             ";
-  
 
   _delay_ms(1000);
   clear_screen();
+  play_melody(&gameover_melody, 1);
 
   itoa(hiscore, (char *)(bottom + 5), 10);
   strcpy((char *)(bottom + strlen(bottom)), "  ");
@@ -204,7 +204,7 @@ void tetris()
   fallingbrick_t copy;
 
   draw_upcoming();
-  play_melody(&tetris_melody, 1);
+  play_melody(&tetris_melody, -1);
   printf("Game started...\r\n");
 
   uint64_t last_press = 0;

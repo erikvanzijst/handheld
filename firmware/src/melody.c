@@ -38,7 +38,6 @@ int16_t tetris_notes[200] = {
 melody_t tetris_melody = {
     .notes = tetris_notes,
     .len = 100,             // sizeof(tetris_notes) / 2
-    .current_note = 0,
     .tempo = 144
 };
 
@@ -124,7 +123,6 @@ uint16_t supermario_notes[618] = {
 melody_t supermario_melody = {
     .notes = supermario_notes,
     .len = 618,
-    .current_note = 0,
     .tempo = 200
 };
 
@@ -137,6 +135,5 @@ int16_t gameover_notes[24] = {
 melody_t gameover_melody = {
     .notes = gameover_notes,
     .len = 12,
-    .current_note = 0,
     .tempo = 144
 };

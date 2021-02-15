@@ -108,11 +108,6 @@ typedef struct {
      */
     uint16_t len;
 
-    /*
-     * The next note to be played `(0 <= current_note < len)`.
-     */
-    uint16_t current_note;
-
     uint16_t tempo;
 } melody_t;
 
@@ -123,7 +118,7 @@ typedef struct {
  * repeat       the number of times the melody should be repeated. To play
  *              the melody just once, use 1. Use 0 to repeat indefinitely.
  */
-void play_melody(melody_t *melody, int repeat);
+void play_melody(melody_t *melody, uint16_t repeat);
 
 void tone(uint16_t frequency, int32_t duration);
 
