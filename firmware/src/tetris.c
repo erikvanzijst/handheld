@@ -91,6 +91,18 @@ void drawboard(uint16_t *board, fallingbrick_t *brick) {
   }
 }
 
+void draw_hold(uint8_t brick_id) {
+  // clear hold area:
+  for (uint8_t row = 0; row < 5; row++) {
+    screen[row][0] &= 0x3;
+  }
+  for (uint8_t i = 0; i < 4; i++) {
+    set_pixel(brickdefs[brick_id].shape[0].vertex[i].x + 2,
+              brickdefs[brick_id].shape[0].vertex[i].y + 1,
+              true);
+  }
+}
+
 uint8_t merge(fallingbrick_t *brick, unsigned int *board) {
   uint8_t removed = 0;
   shape_t shape;
@@ -133,7 +145,7 @@ uint16_t get_speed(uint16_t lines) {
 }
 
 void pause() {
-  if (was_pressed(&btn_start) || was_pressed(&btn_up) || was_pressed(&btn_y)) {
+  if (was_pressed(&btn_start) || was_pressed(&btn_y)) {
     uint8_t saved[ROWS][3];
 
     printf("Paused...\r\n");
@@ -202,8 +214,12 @@ void tetris()
     .location = {.x = 4, .y = 0}
   };
   fallingbrick_t copy;
+  uint8_t hold = take_upcoming();
+  bool hold_allowed = true;
 
   draw_upcoming();
+  draw_hold(hold);
+
   play_melody(&tetris_melody, -1);
   printf("Game started...\r\n");
 
@@ -212,33 +228,47 @@ void tetris()
     pause();
 
     if (was_pressed(&btn_left)) {
-      if(move(&copy, &brick, 0, &left, board)) {
+      if (move(&copy, &brick, 0, &left, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
       last_press = millis();
     }
     if (was_pressed(&btn_right)) {
-      if(move(&copy, &brick, 0, &right, board)) {
+      if (move(&copy, &brick, 0, &right, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
       last_press = millis();
     }
     if (was_pressed(&btn_b)) {
-      if(move(&copy, &brick, 1, &identity, board)) {
+      if (move(&copy, &brick, 1, &identity, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
       last_press = millis();
     }
     if (was_pressed(&btn_x)) {
-      if(move(&copy, &brick, -1, &identity, board)) {
+      if (move(&copy, &brick, -1, &identity, board)) {
         memcpy(&brick, &copy, sizeof(fallingbrick_t));
         drawboard(board, &brick);
       }
       last_press = millis();
     }
+
+    if (was_pressed(&btn_up)) {   // hold pressed
+        memcpy(&copy, &brick, sizeof(fallingbrick_t));
+        copy.id = hold;
+        if (hold_allowed && fits(&copy, board)) {
+          // Swap the current and hold bricks
+          hold = brick.id;
+          memcpy(&brick, &copy, sizeof(fallingbrick_t));
+          drawboard(board, &brick);
+          draw_hold(hold);
+          hold_allowed = false;
+        }
+    }
+
     if (was_pressed(&btn_select)) {
       mute(!is_muted());
     }
@@ -274,6 +304,7 @@ void tetris()
         brick.location.x = 4;
         brick.location.y = 0;
         draw_upcoming();
+        hold_allowed = true;
 
         if (!move(&copy, &brick, 0, &down, board)) {
           stop_melody();
