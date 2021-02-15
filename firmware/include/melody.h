@@ -1,3 +1,6 @@
+/*
+ * Sound code derived from https://github.com/robsoncouto/arduino-songs by Robson Couto.
+ */
 #ifndef MELODY_INCLUDED
 #define MELODY_INCLUDED
 

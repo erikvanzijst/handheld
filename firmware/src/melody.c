@@ -1,3 +1,6 @@
+/*
+ * Sound code derived from https://github.com/robsoncouto/arduino-songs by Robson Couto.
+ */
 #include <stdint.h>
 #include "sound.h"
 
