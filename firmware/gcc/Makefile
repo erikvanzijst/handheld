@@ -57,7 +57,9 @@ src/button.o \
 src/tetris.o \
 src/hiscore.o \
 src/next.o \
-src/tetrominos.o
+src/tetrominos.o \
+src/sound.o \
+src/melody.o
 
 OBJS_AS_ARGS +=  \
 "main.o" \
@@ -80,7 +82,9 @@ OBJS_AS_ARGS +=  \
 "src/tetris.o" \
 "src/hiscore.o" \
 "src/next.o" \
-"src/tetrominos.o"
+"src/tetrominos.o" \
+"src/sound.o" \
+"src/melody.o"
 
 # List the dependency files
 DEPS := $(OBJS:%.o=%.d)
@@ -106,7 +110,9 @@ DEPS_AS_ARGS +=  \
 "src/tetris.d" \
 "src/hiscore.d" \
 "src/next.d" \
-"src/tetrominos.d"
+"src/tetrominos.d" \
+"src/sound.d" \
+"src/melody.d"
 
 MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 OUTPUT_FILE_NAME :=handheld
@@ -122,9 +128,6 @@ vpath %.S ../
 all: $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 
 # Linker target
-
-
-
 
 $(OUTPUT_FILE_PATH): $(OBJS)
 	@echo Building target: $@

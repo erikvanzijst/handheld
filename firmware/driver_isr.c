@@ -37,21 +37,17 @@
 #include <compiler.h>
 #include <time.h>
 #include "screen.h"
+#include "sound.h"
 #include "wallclock.h"
 
 #define ROWS 16
 #define COLS 24
 
+// Screen scanline interrupt vector
 ISR(TCC0_OVF_vect)
 {
    redraw();
 }
-
-ISR(TCC0_CCA_vect)
-{
-}
-
-uint64_t foo;
 
 ISR(TCD0_CCA_vect)
 {
@@ -67,4 +63,9 @@ ISR(RTC_OVF_vect, ISR_NAKED)
 {
    system_tick();
    reti();
+}
+
+ISR(TCE0_OVF_vect)
+{
+   tone_isr();
 }

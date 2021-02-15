@@ -7,8 +7,10 @@
 #include "button.h"
 #include "font.h"
 #include "hiscore.h"
+#include "melody.h"
 #include "next.h"
 #include "screen.h"
+#include "sound.h"
 #include "tetris.h"
 #include "tetrominos.h"
 #include "wallclock.h"
@@ -202,6 +204,7 @@ void tetris()
   fallingbrick_t copy;
 
   draw_upcoming();
+  play_melody(&tetris_melody, 1);
   printf("Game started...\r\n");
 
   uint64_t last_press = 0;
@@ -270,6 +273,7 @@ void tetris()
         draw_upcoming();
 
         if (!move(&copy, &brick, 0, &down, board)) {
+          stop_melody();
           const uint32_t hiscore = get_and_set_hiscore(score);
           printf("Game over! Score: %d, highest: %d\r\n", score, hiscore);
           gameover(score, hiscore);

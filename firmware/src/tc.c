@@ -45,7 +45,7 @@ int8_t TIMER_0_init()
 	TCC0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
 	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
 	             | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
-	             | 1 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
+	             | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
 	             | TC_WGMODE_NORMAL_gc; /* Normal Mode */
 
 	// TCC0.CTRLC = 0 << TC0_CMPD_bp /* Compare D Output Value: disabled */
@@ -62,7 +62,7 @@ int8_t TIMER_0_init()
 	TCC0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
 	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
-	                | TC_CCAINTLVL_MED_gc /* Medium Level */;
+	                | TC_CCAINTLVL_OFF_gc /* Medium Level */;
 
 	TCC0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
 			 | TC_OVFINTLVL_MED_gc; /* Interrupt Enabled */
@@ -94,6 +94,21 @@ int8_t TIMER_0_init()
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCAINTLVL_MED_gc /* Medium Level */;
 	TCD0.CCA = 50000;					/* Compare or Capture A: 50000 */
+
+
+	// Timer for sound driver
+	TCE0.CTRLA = TC_CLKSEL_OFF_gc; 		/* Initially off */
+	TCE0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
+	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
+	             | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
+	             | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
+	             | TC_WGMODE_NORMAL_gc; /* Normal Mode */
+	TCE0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
+			 		| TC_OVFINTLVL_LO_gc; /* Interrupt Enabled */
+	TCE0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
+	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
+	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
+	                | TC_CCAINTLVL_OFF_gc /* Medium Level */;
 
 	return 0;
 }
