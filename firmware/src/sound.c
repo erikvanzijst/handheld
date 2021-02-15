@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "sound.h"
 
+bool sound_enabled = true;
+
 typedef struct {
     uint8_t prescalar;          // timer prescalar
     uint16_t period;            // timer period
@@ -84,9 +86,17 @@ void stop_melody() {
     TCE0.CTRLA = TC_CLKSEL_OFF_gc;
 }
 
+bool is_muted() {
+    return !sound_enabled;
+}
+
+void mute(bool muted) {
+    sound_enabled = !muted;
+}
+
 void tone_isr() {
     if (curr_tone.toggle_remaining != 0) {
-        if (curr_tone.toggle_remaining < curr_tone.toggle_count * 0.9) {
+        if (sound_enabled && curr_tone.toggle_remaining < curr_tone.toggle_count * 0.9) {
             // be quiet for the last 10% of note duration
             BUZZER_toggle_level();
         }

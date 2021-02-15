@@ -1,6 +1,7 @@
 #ifndef SOUND_INCLUDED
 #define SOUND_INCLUDED
 
+#include <compiler.h>
 #include <stdint.h>
 
 #define NOTE_B0  31
@@ -120,12 +121,13 @@ typedef struct {
  */
 void play_melody(melody_t *melody, uint16_t repeat);
 
-void tone(uint16_t frequency, int32_t duration);
-
 /*
  * Stops the current tone or melody.
  */
 void stop_melody();
+
+bool is_muted();
+void mute(bool muted);
 
 void tone_isr();
 

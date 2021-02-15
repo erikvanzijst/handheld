@@ -239,6 +239,9 @@ void tetris()
       }
       last_press = millis();
     }
+    if (was_pressed(&btn_select)) {
+      mute(!is_muted());
+    }
     if (was_pressed(&btn_a)) {
       now -= speed;
     } else if (long_pressed(&btn_a)) {
