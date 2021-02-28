@@ -86,6 +86,39 @@ void USART_0_initialization(void)
 	USART_0_init();
 }
 
+/* Configure pins and initialize registers */
+void USART_1_initialization(void)
+{
+
+	// Set pin direction to input
+	PD2_set_dir(PORT_DIR_IN);
+
+	PD2_set_output_pull_mode(
+	    // <y> Output and Pull Configuration
+	    // <id> pad_output_pull_config
+	    // <PORT_CONFIGURATION_TOTEM"> Totem-pole
+	    // <PORT_CONFIGURATION_BUSKEEPER"> Totem-pole with bus-keeper
+	    // <PORT_CONFIGURATION_PULLDOWN"> Pull-down
+	    // <PORT_CONFIGURATION_PULLUP"> Pull-up
+	    // <PORT_CONFIGURATION_WIREDOR"> Wired-OR
+	    // <PORT_CONFIGURATION_WIREDAND"> Wired-AND
+	    // <PORT_CONFIGURATION_WIREDORPULL"> Wired-OR with pull-down
+	    // <PORT_CONFIGURATION_WIREDANDPULL"> Wired-AND with pull-up
+	    PORT_CONFIGURATION_TOTEM);
+
+	// Set pin direction to output
+	PD3_set_dir(PORT_DIR_OUT);
+
+	PD3_set_level(
+	    // <y> Initial level
+	    // <id> pad_initial_level
+	    // <false"> Low
+	    // <true"> High
+	    false);
+
+	USART_1_init();
+}
+
 /**
  * \brief System initialization
  */
@@ -557,6 +590,8 @@ void system_init()
 	PMIC_init();
 
 	SLEEP_initialization();
+
+	USART_1_initialization();
 
 	USART_0_initialization();
 }

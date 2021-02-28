@@ -64,3 +64,34 @@ uint8_t USART_0_test_usart_basic(void)
 
 	return 1;
 }
+
+uint8_t USART_1_test_usart_basic(void)
+{
+	uint8_t i;
+
+	// If USART Basic driver is in IRQ-mode, enable global interrupts.
+	ENABLE_INTERRUPTS();
+
+	// Test driver functions, assumes that the USART RX and
+	// TX pins have been loopbacked, or that USART hardware
+	// is configured in loopback mode
+
+	// Test printf() support
+	printf("hello");
+
+	// Check that "hello" was received on loopback RX.
+	// Initialize rx buffer so strncmp() check will work
+	memset(rx, 0, sizeof(rx));
+	for (i = 0; i < strlen("hello"); i++) {
+		rx[i] = USART_1_read(); // Blocks until character is available
+	}
+
+	// Compare received and expected data
+	if (strncmp("hello", (char *)rx, strlen("hello")) != 0)
+		return 0; // Error: Mismatch
+
+	// If we get here, everything was OK
+	printf("ok");
+
+	return 1;
+}
