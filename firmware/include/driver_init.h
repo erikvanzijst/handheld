@@ -54,6 +54,7 @@
 #include <sleep.h>
 
 #include <usart_basic.h>
+#include <irda.h>
 
 #ifdef __cplusplus
 extern "C" {

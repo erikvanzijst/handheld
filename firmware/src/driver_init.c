@@ -116,7 +116,7 @@ void USART_1_initialization(void)
 	    // <true"> High
 	    false);
 
-	USART_1_init();
+	irda_init();
 }
 
 /**
