@@ -36,6 +36,7 @@
 #include <driver_init.h>
 #include <compiler.h>
 #include <time.h>
+#include "alarm.h"
 #include "screen.h"
 #include "sound.h"
 #include "wallclock.h"
@@ -44,28 +45,32 @@
 #define COLS 24
 
 // Screen scanline interrupt vector
-ISR(TCC0_OVF_vect)
-{
+ISR(TCC0_OVF_vect) {
    redraw();
 }
 
-ISR(TCD0_CCA_vect)
-{
+ISR(TCD0_CCA_vect) {
    timer_tick();
    // uint16_t now = TCD0.CNT;
    // printf("CNT: 0x%0.4x, time: %x\r\n", TCD0.CCA, time(NULL));
 
-   TCD0.CCABUF = TCD0.CCA + (uint16_t)50000;
+   TCD0.CCABUF = TCD0.CCA + (uint16_t)TC_INTERVAL;
    TCD0.CTRLFSET |= TC_CMD_UPDATE_gc;
 }
 
-ISR(RTC_OVF_vect, ISR_NAKED)
-{
+ISR(RTC_OVF_vect, ISR_NAKED) {
    system_tick();
    reti();
 }
 
-ISR(TCE0_OVF_vect)
-{
+ISR(TCE0_OVF_vect) {
    tone_isr();
+}
+
+ISR(TCF0_OVF_vect) {
+    alarm_ovf_isr();
+}
+
+ISR(TCF0_CCA_vect) {
+    alarm_cca_isr();
 }

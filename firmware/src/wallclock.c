@@ -1,6 +1,5 @@
 #include <compiler.h>
 #include <stdint.h>
-#include <stdio.h>
 #include <time.h>
 #include "wallclock.h"
 
@@ -21,7 +20,7 @@ uint64_t millis() {
 
     do {
         dc = deci_seconds;
-        ms = dc * 100 + (((TCD0.CNT + (uint32_t)50000) - TCD0.CCA) % 0xffff) / (F_CPU / 64 / 1000);
+        ms = dc * 100 + (((TCD0.CNT + (uint32_t)TC_INTERVAL) - TCD0.CCA) % 0xffff) / (F_CPU / 64 / 1000);
     } while (dc != deci_seconds);
 
     return ms;

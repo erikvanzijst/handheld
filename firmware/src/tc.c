@@ -32,6 +32,7 @@
  *@{
  */
 #include <tc.h>
+#include "wallclock.h"
 
 /**
  * \brief Initialize tc interface
@@ -80,7 +81,7 @@ int8_t TIMER_0_init()
 	TCC0.PER = 250; /* Period: 2kHz */
 
 
-	// Timer used for RTC
+	// Timer used for RTC and millis()
 	TCD0.CTRLA = TC_CLKSEL_DIV64_gc; /* System Clock / 64 */
 	TCD0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
 	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
@@ -93,7 +94,7 @@ int8_t TIMER_0_init()
 	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCAINTLVL_MED_gc /* Medium Level */;
-	TCD0.CCA = 50000;					/* Compare or Capture A: 50000 */
+	TCD0.CCA = TC_INTERVAL;					/* Compare or Capture A: 50000; trigger every 100ms */
 
 
 	// Timer for sound driver
@@ -110,5 +111,19 @@ int8_t TIMER_0_init()
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCAINTLVL_OFF_gc /* Medium Level */;
 
-	return 0;
+    // Timer used for alarm()
+    TCF0.CTRLA = TC_CLKSEL_OFF_gc;      // Start in disabled mode
+    TCF0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
+                 | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
+                 | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
+                 | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: disabled */
+                 | TC_WGMODE_NORMAL_gc; /* Normal Mode */
+    TCF0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_OVFINTLVL_OFF_gc; /* Interrupt Disabled */
+    TCF0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
+                    | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_CCAINTLVL_MED_gc /* Medium Level */;
+
+    return 0;
 }
