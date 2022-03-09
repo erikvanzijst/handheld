@@ -1,15 +1,140 @@
 #include <compiler.h>
 #include <atomic.h>
 #include <stdio.h>
+#include <string.h>
+#include "alarm.h"
+#include "atmel_start_pins.h"
 #include "irda.h"
+#include "util.h"
 
-#define MAX_DATA_FRAMES 84  // IRDA_MAX_PAYLOAD * 8 / 6
+enum STATE {
+    RX,
+    TX
+};
 
-static uint8_t tx_buf[MAX_DATA_FRAMES]; // payload to be sent (uart frames; 6 data bits per octet)
-static uint8_t tx_len;                  // number of octets in the payload
-static uint8_t tx_next;                 // octet to be transmitted next
+static void (*irda_read_callback)(uint8_t *buf, int len) = NULL;
 
-static bool connected = true;
+volatile enum STATE state = RX;
+void toTx();
+void toRx();
+void read_timeout();
+void enableUDRE();
+
+static volatile uint8_t rx_buf[IRDA_MAXBUF];
+static volatile uint8_t tx_buf[IRDA_MAXBUF];
+static volatile int rx_pos, tx_pos;
+static volatile int tx_len;
+
+bool irda_write_available() {
+    return !tx_len;
+}
+
+int irda_write(uint8_t *buf, int len) {
+    while (tx_len);
+    memcpy(tx_buf, buf, min(len, IRDA_MAXBUF));
+
+    DISABLE_INTERRUPTS();
+    tx_pos = 0;
+    tx_len = min(len, IRDA_MAXBUF);
+    ENABLE_INTERRUPTS();
+    return 0;
+}
+
+ISR(USARTD0_RXC_vect) {
+    const uint8_t status = USARTD0.STATUS;
+    const bool eof = status & USART_RXB8_bm;
+    const uint8_t data = USARTD0.DATA;
+
+//    printf("RXC_vect STATUS=%d data=%d state=%d\r\n", status, data, state);
+    if (status & USART_RXCIF_bm) {
+        if (eof) {            // end-of-packet frame
+            USARTD0.CTRLB &= ~USART_RXEN_bm;            // disable RX
+            if (rx_pos && irda_read_callback != NULL) {
+                (*irda_read_callback)(rx_buf, rx_pos);  // deliver packet to application
+            }
+
+            // We have a half-duplex channel. Give our peer 1ms to transition out of TX
+            // mode and enable its receiver and interrupts before we send our first frame.
+            set_alarm(1000, toTx);
+
+        } else {
+            if (rx_pos >= IRDA_MAXBUF) {
+                printf("ERR: IrDA receive overflow\r\n");
+            } else {
+                rx_buf[rx_pos++] = data;
+            }
+            set_alarm(1000, read_timeout);
+        }
+    } else {
+        printf("ERR: USARTD0_RXC_vect with USART_RXCIF_bm unset!\r\n");
+    }
+}
+
+void enableUDRE() {
+    USARTD0.CTRLA |= USART_DREINTLVL_MED_gc;    // enable the UDRE interrupt now
+}
+
+void toTx() {
+    clr_alarm();
+    USARTD0.CTRLB &= ~USART_RXEN_bm;            // disable RX
+
+    state = TX;                                 // switch to TX mode
+//    printf("INFO: RX -> TX\r\n");
+
+    USARTD0.CTRLA &= ~USART_TXCINTLVL_gm;       // disable TXC interrupt
+
+    enableUDRE();                           // start sending pending frames
+//    if (tx_len) {
+//    } else {
+//        // we have no data to send yet; wait 10ms for a packet to arrive
+//        printf("INFO: no data to send yet\r\n");
+//        set_alarm(10000, enableUDRE);
+//    }
+}
+
+ISR(USARTD0_DRE_vect) {
+//    printf("DRE_vect tx_pos=%d tx_len=%d\r\n", tx_pos, tx_len);
+    if (tx_pos < tx_len) {
+        USARTD0.CTRLB &= ~USART_TXB8_bm;         // regular frame, not EOF
+        USARTD0.DATA = tx_buf[tx_pos++];
+
+    } else {
+        USARTD0.STATUS = USART_RXCIF_bm | USART_TXCIF_bm;   // clear status bits
+        USARTD0.CTRLB |= USART_TXB8_bm;        // send EOF frame
+        USARTD0.DATA = 0;
+
+        USARTD0.CTRLA &= ~(USART_DREINTLVL_gm);     // disable UDRE interrupt
+        USARTD0.CTRLA |= USART_TXCINTLVL_MED_gc;    // enable TXC interrupt
+//        printf("INFO: sent %d byte packet; status=%d\r\n", tx_pos, status);
+    }
+}
+
+ISR(USARTD0_TXC_vect) {
+//    const uint8_t status = USARTD0.STATUS;
+//    printf("TXC_vect tx_pos=%d tx_len=%d status=%d\r\n", tx_pos, tx_len, status & USART_TXCIF_bm);
+    toRx();
+}
+
+void toRx() {
+    USARTD0.CTRLA &= ~(USART_DREINTLVL_gm);     // disable UDRE interrupt
+    USARTD0.CTRLA &= ~USART_TXCINTLVL_gm;       // disable further TXC interrupts
+    USARTD0.CTRLB |= USART_RXEN_bm;             // enable RX
+
+    state = RX;
+//    printf("INFO: TX -> RX\r\n");
+    tx_len = 0;                                 // accept new outbound frame from application
+    rx_pos = 0;                                 // rewind receive buffer
+    set_alarm(100000, read_timeout);
+}
+
+void read_timeout() {
+    printf("ERR: IrDA read timeout on: [");
+    for (int i = 0; i < rx_pos; i++) {
+        putchar(rx_buf[i]);
+    }
+    printf("]\r\n");
+    toTx();
+}
 
 /**
  * \brief Initialize IrDA USART interface
@@ -113,22 +238,19 @@ int8_t irda_init() {
 	                | USART_DREINTLVL_MED_gc; /* Medium Level */
 
 	USARTD0.CTRLC = USART_PMODE_DISABLED_gc /* No Parity */
-			 | 0 << USART_SBMODE_bp /* Stop Bit Mode: 1 stop bit */
-			 | USART_CHSIZE_8BIT_gc /* Character size: 8 bit */
+			 | 1 << USART_SBMODE_bp /* Stop Bit Mode: 2 stop bits */
+			 | USART_CHSIZE_9BIT_gc /* Character size: 9 bit */
 			 | 0 << USART_CHSIZE2_bp /* SPI Master Mode, Data Order: disabled */
 			 | 1 << USART_CHSIZE1_bp /* SPI Master Mode, Clock Phase: enabled */
 			 | USART_CMODE_IRDA_gc; /* IrDA Mode */
 
 	USARTD0.CTRLB = 0 << USART_CLK2X_bp   /* Double transmission speed: disabled */
 	                | 0 << USART_MPCM_bp  /* Multi-processor Communication Mode: disabled */
-	                | 1 << USART_RXEN_bp  /* Receiver Enable: enabled */
-	                | 1 << USART_TXEN_bp; /* Transmitter Enable: enabled */
+	                | 0 << USART_RXEN_bp  /* Receiver Enable: disabled */
+	                | 1 << USART_TXEN_bp; /* Transmitter Enable: disabled */
 
-	uint8_t x;
+    IRSD_set_level(true);           // disable IrDA transceiver
 
-    // reset tx/rx packet buffers:
-    tx_len = 0;
-    tx_next = tx_len;
 	return 0;
 }
 
@@ -139,9 +261,11 @@ int8_t irda_init() {
  *
  * \return Nothing
  */
-void irda_enable() {
-	USARTD0.CTRLB |= USART_RXEN_bm | USART_TXEN_bm;
+void irda_enable(void (*receive_callback)(uint8_t *buf, int len)) {
+    irda_read_callback = receive_callback;
+//	USARTD0.CTRLB |= USART_RXEN_bm | USART_TXEN_bm;
 	IRSD_set_level(false);	// enable IrDA
+    toRx();
 }
 
 /**
@@ -176,81 +300,4 @@ void irda_enable_tx() {
 void irda_disable() {
 	USARTD0.CTRLB &= ~(USART_RXEN_bm | USART_TXEN_bm);
 	IRSD_set_level(true);	// disable IrDA
-}
-
-/* Interrupt service routine for RX complete */
-ISR(USARTD0_RXC_vect) {
-	uint8_t data;
-	uint8_t tmphead;
-
-	/* Read the received data */
-	data = USARTD0.DATA;
-	/* Calculate buffer index */
-	tmphead = (USART_1_rx_head + 1) & USART_1_RX_BUFFER_MASK;
-
-	if (tmphead == USART_1_rx_tail) {
-		/* ERROR! Receive buffer overflow */
-	} else {
-		/* Store new index */
-		USART_1_rx_head = tmphead;
-
-		/* Store received data in buffer */
-		USART_1_rxbuf[tmphead] = data;
-		USART_1_rx_elements++;
-	}
-}
-
-/* Interrupt service routine for Data Register Empty */
-ISR(USARTD0_DRE_vect) {
-	uint8_t tmptail;
-
-	/* Check if all data is transmitted */
-	if (USART_1_tx_elements != 0) {
-		/* Calculate buffer index */
-		tmptail = (USART_1_tx_tail + 1) & USART_1_TX_BUFFER_MASK;
-		/* Store new index */
-		USART_1_tx_tail = tmptail;
-		/* Start transmission */
-		USARTD0.DATA = USART_1_txbuf[tmptail];
-		USART_1_tx_elements--;
-	}
-
-	if (USART_1_tx_elements == 0) {
-		/* Disable UDRE interrupt */
-		USARTD0.CTRLA &= ~(USART_DREINTLVL_gm);
-	}
-}
-
-int8_t send_irda(uint8_t *data, uint8_t len) {
-    if (tx_next < tx_len) {
-        return ETXBUSY;
-    } else if (len > IRDA_MAX_PAYLOAD) {
-        return ETXSIZE;
-    }
-
-    uint8_t j = 0;
-    uint8_t rshift = 2;
-    uint8_t lshift;
-    for (uint8_t i = 0; i < len; i++) {
-        lshift = 6 - rshift;
-
-        tx_buf[j++] = data[i] >> rshift;
-        tx_buf[j] = data[i] << lshift;
-        
-        if (lshift == 0) {
-            // we completely filled up the second frame
-            j++;
-            rshift = 2;
-        } else {
-            // the send frame was only partially filled
-            rshift += 2;
-        }
-    }
-    tx_next = 0;
-    tx_len = j + 1;
-
-	/* Enable UDRE interrupt */
-	USARTD0.CTRLA |= USART_DREINTLVL_MED_gc;
-
-    return 0;
 }

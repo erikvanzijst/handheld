@@ -16,7 +16,7 @@ void alarm_ovf_isr() {
     ticks += (uint64_t)0x10000;
 
     if (alarm_cb != NULL) {
-        printf("OVF ticks=%lu, \r\n", (unsigned long)ticks);
+//        printf("OVF ticks=%lu, \r\n", (unsigned long)ticks);
         int64_t delta = (int64_t)(alarm_at_tick - ticks);
         if (delta >= 0 && delta < 0x10000) {
             // upcoming alarm falls within current interval
@@ -34,9 +34,8 @@ void alarm_cca_isr() {
 //    uint16_t cnt = TCF0.CNT;
 //    ticks += cnt;
 //    printf("ticks = %lu, CNT: %u\r\n", (unsigned long)ticks, cnt);
-    if (alarm_cb != NULL) alarm_cb();
     TCF0.CTRLA = TC_CLKSEL_OFF_gc;                  // turn off the alarm timer
-    alarm_cb = NULL;
+    if (alarm_cb != NULL) alarm_cb();
 }
 
 void set_alarm(uint64_t micros_from_now, void (*alarm_callback)(void)) {
@@ -63,4 +62,14 @@ void set_alarm(uint64_t micros_from_now, void (*alarm_callback)(void)) {
     ticks = 0;
     ENABLE_INTERRUPTS();
     TCF0.CTRLA = TC_CLKSEL_DIV64_gc;                // turn on the alarm timer
+}
+
+bool clr_alarm()  {
+    DISABLE_INTERRUPTS();
+    const bool canceled = TCF0.CTRLA != TC_CLKSEL_OFF_gc;
+    TCF0.CTRLA = TC_CLKSEL_OFF_gc;                  // turn off the alarm timer
+    TCF0.CTRLFSET = TC_CMD_RESET_gc;
+    alarm_cb = NULL;
+    ENABLE_INTERRUPTS();
+    return canceled;
 }

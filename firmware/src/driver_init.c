@@ -34,6 +34,7 @@
  */
 
 #include "driver_init.h"
+#include "irda.h"
 #include <system.h>
 
 void TIMER_0_initialization(void)

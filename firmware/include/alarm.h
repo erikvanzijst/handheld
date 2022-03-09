@@ -13,4 +13,11 @@ void alarm_cca_isr();
  */
 void set_alarm(uint64_t micros_from_now, void (*alarm_callback)(void));
 
+/*
+ * Cancels any active alarm.
+ *
+ * Returns true if an alarm was active, false otherwise.
+ */
+bool clr_alarm();
+
 #endif //FIRMWARE_ALARM_H

@@ -4,3 +4,4 @@ gcc/handheld.*
 .vscode
 .DS_Store
 ._*
+.idea/
