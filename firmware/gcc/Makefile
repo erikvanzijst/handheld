@@ -38,6 +38,8 @@ examples/src
 # List the object files
 OBJS +=  \
 main.o \
+src/1player.o \
+src/2player.o \
 src/alarm.o \
 src/pmic.o \
 src/sleep.o \
@@ -65,6 +67,8 @@ src/irda.o
 
 OBJS_AS_ARGS +=  \
 "main.o" \
+"src/1player.o" \
+"src/2player.o" \
 "src/alarm.o" \
 "src/pmic.o" \
 "src/sleep.o" \
@@ -94,6 +98,8 @@ OBJS_AS_ARGS +=  \
 DEPS := $(OBJS:%.o=%.d)
 
 DEPS_AS_ARGS +=  \
+"src/1player.d" \
+"src/2player.d" \
 "src/alarm.d" \
 "src/tc.d" \
 "src/osc.d" \
