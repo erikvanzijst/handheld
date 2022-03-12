@@ -22,6 +22,21 @@ void irda_receive(uint8_t *buf, uint16_t len) {
     memcpy(their_board, buf, min(sizeof(their_board), len));
 }
 
+uint64_t last_stats = 0;
+void print_irda_stats() {
+    uint64_t now = millis();
+    if (now - last_stats > 2000) {
+        link_stats_t stats;
+        irda_stats(&stats);
+        printf("IrDA:\r\n");
+        printf("  bytes out:  %9lu\r\n", stats.bytes_out);
+        printf("  bytes in:   %9lu\r\n", stats.bytes_in);
+        printf("  timeouts:   %9lu\r\n", stats.timeouts);
+        printf("  CRC errors: %9lu\r\n", stats.crc_errors);
+        last_stats = now;
+    }
+}
+
 void draw_us(uint16_t *board, fallingbrick_t *brick) {
     shape_t shape;
     materialize(&shape, brick);
@@ -64,12 +79,7 @@ void draw_us(uint16_t *board, fallingbrick_t *brick) {
  * exits.
  */
 void multi_player() {
-
-    printf("Clear screen\r\n");
     clear_screen();
-    printf("Scrolling banner...\r\n");
-//    scroll("TETRIS      ", "", -1);
-    srand((unsigned int)millis()); // use human button press delay as random seed
 
     uint16_t lines = 0;
     uint32_t score = 0;
@@ -165,5 +175,6 @@ void multi_player() {
             }
         }
         draw_us(board, &brick);
+        print_irda_stats();
     }
 }

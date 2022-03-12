@@ -4,9 +4,20 @@
 
 #define IRDA_MAXBUF 512
 
+typedef struct {
+    uint32_t timeouts;
+    uint32_t crc_errors;
+    uint32_t bytes_out;
+    uint32_t bytes_in;
+} link_stats_t;
 
 int8_t irda_init();
 void irda_enable(void (*receive_callback)(uint8_t *buf, uint16_t len));
+
+/*
+ * Returns the link status.
+ */
+link_stats_t * irda_stats();
 
 bool irda_write_available();
 

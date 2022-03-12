@@ -67,8 +67,6 @@ void drawboard(uint16_t *board, fallingbrick_t *brick) {
  * exits.
  */
 void single_player() {
-
-    printf("Clear screen\r\n");
     clear_screen();
 
     uint16_t lines = 0;

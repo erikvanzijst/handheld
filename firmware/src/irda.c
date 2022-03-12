@@ -7,6 +7,13 @@
 #include "irda.h"
 #include "util.h"
 
+volatile link_stats_t link_stats = {
+        .bytes_in = 0,
+        .bytes_out = 0,
+        .crc_errors = 0,
+        .timeouts = 0
+};
+
 static void (*irda_read_callback)(uint8_t *buf, uint16_t len) = NULL;
 
 void toTx();
@@ -19,6 +26,16 @@ static volatile uint8_t tx_buf[IRDA_MAXBUF];
 static volatile int rx_pos;
 static volatile int tx_pos;
 static volatile uint16_t tx_len;
+
+link_stats_t * irda_stats(link_stats_t *stats) {
+    DISABLE_INTERRUPTS();
+    stats->bytes_out = link_stats.bytes_out;
+    stats->bytes_in = link_stats.bytes_in;
+    stats->timeouts = link_stats.timeouts;
+    stats->crc_errors = link_stats.crc_errors;
+    ENABLE_INTERRUPTS();
+    return stats;
+}
 
 bool irda_write_available() {
     return !tx_len;
@@ -55,16 +72,11 @@ ISR(USARTD0_RXC_vect) {
                 while (n--) CRC.DATAIN = *pi++;
                 CRC.STATUS |= CRC_BUSY_bm;                  // stop the CRC computation
 
-//                printf("%0.2x %0.2x == %0.2x %0.2x\r\n", (unsigned char)CRC.CHECKSUM0, (unsigned char)CRC.CHECKSUM1, rx_buf[rx_pos - 2], rx_buf[rx_pos - 1]);
-
                 if (CRC.CHECKSUM0 == *pi++ && CRC.CHECKSUM1 == *pi) {
                     (*irda_read_callback)(rx_buf, eop);  // deliver packet to application
+                    link_stats.bytes_in += eop;
                 } else {
-                    printf("ERR: corrupt packet: [");
-                    for (uint16_t i = 0; i < eop; i++) {
-                        putchar(rx_buf[i]);
-                    }
-                    printf("] CRC %0.2x%0.2x != %0.2x%0.2x\r\n", (unsigned char)CRC.CHECKSUM0, (unsigned char)CRC.CHECKSUM1, rx_buf[eop], rx_buf[eop+1]);
+                    link_stats.crc_errors++;
                 }
             }
 
@@ -105,7 +117,6 @@ void toTx() {
 }
 
 ISR(USARTD0_DRE_vect) {
-//    printf("DRE_vect tx_pos=%d tx_len=%d\r\n", tx_pos, tx_len);
     if (tx_len && tx_pos < tx_len + 2) {
         USARTD0.CTRLB &= ~USART_TXB8_bm;        // regular frame, not EOF
 
@@ -127,12 +138,11 @@ ISR(USARTD0_DRE_vect) {
 
         USARTD0.CTRLA &= ~USART_DREINTLVL_gm;       // disable UDRE interrupt
         USARTD0.CTRLA |= USART_TXCINTLVL_MED_gc;    // enable TXC interrupt
+        link_stats.bytes_out += tx_len;
     }
 }
 
 ISR(USARTD0_TXC_vect) {
-//    const uint8_t status = USARTD0.STATUS;
-//    printf("TXC_vect tx_pos=%d tx_len=%d status=%d\r\n", tx_pos, tx_len, status & USART_TXCIF_bm);
     toRx();
 }
 
@@ -152,11 +162,7 @@ void toRx() {
 }
 
 void read_timeout() {
-    printf("ERR: IrDA read timeout on: [");
-    for (int i = 0; i < rx_pos; i++) {
-        putchar(rx_buf[i]);
-    }
-    printf("]\r\n");
+    link_stats.timeouts++;
     toTx();
 }
 
