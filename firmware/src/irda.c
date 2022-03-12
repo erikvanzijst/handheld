@@ -24,14 +24,15 @@ bool irda_write_available() {
     return !tx_len;
 }
 
-int irda_write(uint8_t *buf, int len) {
+int irda_write(uint8_t *buf, uint16_t len) {
 
     while (tx_len);
-    memcpy(tx_buf, buf, min(len, IRDA_MAXBUF));
+    uint16_t l = min(len, IRDA_MAXBUF);
+    memcpy(tx_buf, buf, l);
 
     DISABLE_INTERRUPTS();
     tx_pos = 0;
-    tx_len = min(len, IRDA_MAXBUF);
+    tx_len = l;
     ENABLE_INTERRUPTS();
     return (int)tx_len;
 }
@@ -284,7 +285,7 @@ int8_t irda_init() {
  *
  * \return Nothing
  */
-void irda_enable(void (*receive_callback)(uint8_t *buf, int len)) {
+void irda_enable(void (*receive_callback)(uint8_t *buf, uint16_t len)) {
     irda_read_callback = receive_callback;
 	IRSD_set_level(false);	// enable IrDA
     toRx();

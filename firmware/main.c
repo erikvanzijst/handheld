@@ -1,26 +1,36 @@
 #include <atmel_start.h>
-#include <stdint.h>
 #include <stdio.h>
+#include <font.h>
+#include <wallclock.h>
+#include <screen.h>
 #include "1player.h"
+#include "2player.h"
 #include "button.h"
-
-void irda_receive(uint8_t *buf, uint16_t len) {
-    BATT_toggle_level();
-    printf("INFO: %d byte packet received: [", len);
-    for (uint16_t i = 0; i < len; i++) {
-        putchar(buf[i]);
-    }
-    printf("]\r\n");
-}
 
 int main(void)
 {
 	/* Initializes MCU, drivers and middleware */
 	atmel_start_init();
-
     OEB_set_level(false);
 
-    while(true) {
-        single_player();
+    clear_screen();
+    printf("Tetris firmware starting up...\r\n");
+    scroll("TETRIS      ", "", -1);
+    srand((unsigned int)millis());  // use human button press delay as random seed
+
+    while (true) {
+        printf("Game type selection screen.\r\n");
+        clear_screen();
+        button_t * button = scroll("A:1p  ", "B:2p  ", -1);
+
+        if (button == &btn_a) {
+            printf("Launching single player mode...\r\n");
+            while(true) single_player();
+        } else if (button == &btn_b) {
+            printf("Launching multiplayer mode...\r\n");
+            while(true) multi_player();
+        } else {
+            printf("Invalid selection\r\n");
+        }
     }
 }

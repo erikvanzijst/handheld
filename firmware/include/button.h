@@ -32,9 +32,10 @@ extern button_t btn_b;
 bool was_pressed(button_t *button);
 
 /*
- * Returns true if any button was pressed. False otherwise. Does not block.
+ * Returns a pointer to the button that was pressed. NULL otherwise. Does not
+ * block.
  */
-bool any_key();
+button_t * any_key();
 
 bool long_pressed(button_t *button);
 

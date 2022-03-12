@@ -6,7 +6,7 @@
 
 
 int8_t irda_init();
-void irda_enable(void (*receive_callback)(uint8_t *buf, int len));
+void irda_enable(void (*receive_callback)(uint8_t *buf, uint16_t len));
 
 bool irda_write_available();
 
@@ -21,6 +21,6 @@ bool irda_write_available();
  * On success, the number of bytes written is returned. Any negative value
  * indicates an error.
  */
-int irda_write(uint8_t *buf, int len);
+int irda_write(uint8_t *buf, uint16_t len);
 
 #endif

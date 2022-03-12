@@ -18,7 +18,6 @@
 #include "../include/util.h"
 #include "../include/tetris.h"
 
-
 void draw_hold(uint8_t brick_id) {
     // clear hold area:
     for (uint8_t row = 0; row < 5; row++) {
@@ -41,13 +40,36 @@ void print_brick(fallingbrick_t *brick) {
     printf("\r\n");
 }
 
+void drawboard(uint16_t *board, fallingbrick_t *brick) {
+    shape_t shape;
+    materialize(&shape, brick);
+
+    for (uint8_t i = 0; i < ROWS; i++) {
+        // clear the board section of the screen line:
+        screen[i][0] &= 0xfe;
+        screen[i][1] = 0;
+        screen[i][2] &= 0x7f;
+
+        // project the new board line:
+        screen[i][0] |= (board[i] >> 15);
+        screen[i][1] |= (board[i] >> 7);
+        screen[i][2] |= (board[i] << 1);
+    }
+
+    // paint the brick that is in motion:
+    for (uint8_t i = 0; i < 4; i++) {
+        set_pixel(shape.vertex[i].x + 7, shape.vertex[i].y, true);
+    }
+}
+
+/*
+ * Enters the Tetris main loop. This function does not return until the game
+ * exits.
+ */
 void single_player() {
 
     printf("Clear screen\r\n");
     clear_screen();
-    printf("Scrolling banner...\r\n");
-    scroll("TETRIS      ", "", -1);
-    srand((unsigned int)millis()); // use human button press delay as random seed
 
     uint16_t lines = 0;
     uint32_t score = 0;

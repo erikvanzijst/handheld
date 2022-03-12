@@ -19,20 +19,32 @@ button_t btn_a = {SW_A_get_level, false, false, 0, 0};
 button_t btn_y = {SW_Y_get_level, false, false, 0, 0};
 button_t btn_b = {SW_B_get_level, false, false, 0, 0};
 
-bool any_key() {
-    return
-        was_pressed(&btn_start) ||
-        was_pressed(&btn_select) ||
+button_t * any_key() {
+    if (was_pressed(&btn_start)) {
+        return &btn_start;
+    } else if (was_pressed(&btn_select)) {
+        return &btn_start;
 
-        was_pressed(&btn_up) ||
-        was_pressed(&btn_down) ||
-        was_pressed(&btn_left) ||
-        was_pressed(&btn_right) ||
+    } else if (was_pressed(&btn_up)) {
+        return &btn_up;
+    } else if (was_pressed(&btn_down)) {
+        return &btn_down;
+    } else if (was_pressed(&btn_left)) {
+        return &btn_left;
+    } else if (was_pressed(&btn_right)) {
+        return &btn_right;
 
-        was_pressed(&btn_a) ||
-        was_pressed(&btn_b) ||
-        was_pressed(&btn_x) ||
-        was_pressed(&btn_y);
+    } else if (was_pressed(&btn_a)) {
+        return &btn_a;
+    } else if (was_pressed(&btn_b)) {
+        return &btn_b;
+    } else if (was_pressed(&btn_x)) {
+        return &btn_x;
+    } else if (was_pressed(&btn_y)) {
+        return &btn_y;
+    } else {
+        return NULL;
+    }
 }
 
 bool was_pressed(button_t *button) {

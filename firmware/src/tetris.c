@@ -51,28 +51,6 @@ bool move(fallingbrick_t *dest, fallingbrick_t *src, int rot, vertex_t *vector, 
   return fits(dest, board);
 }
 
-void drawboard(uint16_t *board, fallingbrick_t *brick) {
-  shape_t shape;
-  materialize(&shape, brick);
-
-  for (uint8_t i = 0; i < ROWS; i++) {
-    // clear the board section of the screen line:
-    screen[i][0] &= 0xfe;
-    screen[i][1] = 0;
-    screen[i][2] &= 0x7f;
-
-    // project the new board line:
-    screen[i][0] |= (board[i] >> 15);
-    screen[i][1] |= (board[i] >> 7);
-    screen[i][2] |= (board[i] << 1);
-  }
-
-  // paint the brick that is in motion:
-  for (uint8_t i = 0; i < 4; i++) {
-    set_pixel(shape.vertex[i].x + 7, shape.vertex[i].y, true);
-  }
-}
-
 uint8_t merge(fallingbrick_t *brick, unsigned int *board) {
   uint8_t removed = 0;
   shape_t shape;
@@ -128,7 +106,7 @@ void gameover(uint16_t score, uint32_t hiscore) {
 
   _delay_ms(1000);
   clear_screen();
-  play_melody(&gameover_melody, 1);
+//  play_melody(&gameover_melody, 1);
 
   itoa(hiscore, (char *)(bottom + 5), 10);
   strcpy((char *)(bottom + strlen(bottom)), "  ");
