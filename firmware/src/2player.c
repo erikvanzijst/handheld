@@ -5,7 +5,6 @@
 
 #include "../include/2player.h"
 #include "../include/button.h"
-#include "../include/hiscore.h"
 #include "../include/melody.h"
 #include "../include/next.h"
 #include "../include/screen.h"
@@ -16,16 +15,29 @@
 #include "../include/tetris.h"
 #include "../utils/atomic.h"
 
-uint16_t their_board[ROWS];
+typedef struct {
+    /*
+     * The player's tetris board.
+     */
+    uint16_t board[ROWS];
+
+    /*
+     * The total number of lines cleared by the player since the start of the
+     * game.
+     */
+    uint16_t lines;
+} game_state_t;
+
+volatile game_state_t peer_game_state;
 
 void irda_receive(uint8_t *buf, uint16_t len) {
-    memcpy(their_board, buf, min(sizeof(their_board), len));
+    memcpy((uint8_t *)&peer_game_state, buf, min(sizeof(peer_game_state), len));
 }
 
 uint64_t last_stats = 0;
 void print_irda_stats() {
     uint64_t now = millis();
-    if (now - last_stats > 2000) {
+    if (now - last_stats > 4000) {
         link_stats_t stats;
         irda_stats(&stats);
         printf("IrDA:\r\n");
@@ -37,40 +49,38 @@ void print_irda_stats() {
     }
 }
 
-void draw_us(uint16_t *board, fallingbrick_t *brick) {
+void draw_and_publish(game_state_t *our_game_state, fallingbrick_t *brick) {
     shape_t shape;
+    game_state_t our_game_state_cp, their_game_state_cp;
+
     materialize(&shape, brick);
-
-    uint16_t us[ROWS];
-    uint16_t them[ROWS];
-
+    memcpy(&our_game_state_cp, our_game_state, sizeof(our_game_state_cp));
     DISABLE_INTERRUPTS();
-    memcpy(them, their_board, sizeof(their_board));
+    their_game_state_cp = peer_game_state;
     ENABLE_INTERRUPTS();
-    memcpy(us, board, sizeof(us));
 
     // paint the brick that is in motion onto our board copy:
     for (uint8_t i = 0; i < 4; i++) {
-        us[shape.vertex[i].y] |= (0x8000 >> (shape.vertex[i].x));
+        our_game_state_cp.board[shape.vertex[i].y] |= (0x8000 >> (shape.vertex[i].x));
     }
 
     for (uint8_t i = 0; i < ROWS; i++) {
-        // clear the left board section of the screen line:
+        // clear the two board sections of the screen line:
         screen[i][0] &= 0x80;
         screen[i][1] &= 0x18;
         screen[i][2] &= 0x01;
 
         // project our side of the new board line:
-        screen[i][0] |= (us[i] >> 9);
-        screen[i][1] |= (us[i] >> 1);
+        screen[i][0] |= (our_game_state_cp.board[i] >> 9);
+        screen[i][1] |= (our_game_state_cp.board[i] >> 1);
 
         // project their side of the new board line:
-        screen[i][1] |= (them[i] >> 13);
-        screen[i][2] |= (them[i] >> 5);
+        screen[i][1] |= (their_game_state_cp.board[i] >> 13);
+        screen[i][2] |= (their_game_state_cp.board[i] >> 5);
     }
 
     if (irda_write_available()) {
-        irda_write((uint8_t *)us, sizeof(us));
+        irda_write((uint8_t *)&our_game_state_cp, sizeof(our_game_state_cp));
     }
 }
 
@@ -81,12 +91,10 @@ void draw_us(uint16_t *board, fallingbrick_t *brick) {
 void multi_player() {
     clear_screen();
 
-    uint16_t lines = 0;
-    uint32_t score = 0;
-    uint16_t speed = get_speed(lines);
+    game_state_t game_state = {.lines = 0};
+    uint16_t speed = get_speed(game_state.lines);
+    memset(game_state.board, 0, sizeof(uint16_t) * ROWS);
     uint64_t now = millis();
-    uint16_t board[ROWS];
-    memset(board, 0, sizeof(uint16_t) * ROWS);
 
     // initialize the upcoming queue:
     initialize_upcoming();
@@ -113,25 +121,25 @@ void multi_player() {
     irda_enable(irda_receive);
     while (true) {
         if (was_pressed(&btn_left)) {
-            if (move(&copy, &brick, 0, &left, board)) {
+            if (move(&copy, &brick, 0, &left, game_state.board)) {
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_right)) {
-            if (move(&copy, &brick, 0, &right, board)) {
+            if (move(&copy, &brick, 0, &right, game_state.board)) {
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_b)) {
-            if (move(&copy, &brick, 1, &identity, board)) {
+            if (move(&copy, &brick, 1, &identity, game_state.board)) {
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_x)) {
-            if (move(&copy, &brick, -1, &identity, board)) {
+            if (move(&copy, &brick, -1, &identity, game_state.board)) {
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
             }
             last_press = millis();
@@ -142,11 +150,11 @@ void multi_player() {
         } else if (long_pressed(&btn_a)) {
             speed = 40;
         } else {
-            speed = get_speed(lines);
+            speed = get_speed(game_state.lines);
         }
         if ((millis() - now) > speed) {
 
-            if (move(&copy, &brick, 0, &down, board)) {
+            if (move(&copy, &brick, 0, &down, game_state.board)) {
                 now = millis();
 //                printf("Brick moved down.\r\n");
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
@@ -156,25 +164,23 @@ void multi_player() {
             } else {
                 now = millis();
                 printf("Could not move down; merging.\r\n");
-                const uint8_t removed = merge(&brick, board);
-                lines += removed;
-                score += linevalue[min(removed, 4)] + 1;
+                const uint8_t removed = merge(&brick, game_state.board);
+                game_state.lines += removed;
 
                 brick.id = take_upcoming();
                 brick.rotation = 0;
                 brick.location.x = 4;
                 brick.location.y = 0;
 
-                if (!move(&copy, &brick, 0, &down, board)) {
+                if (!move(&copy, &brick, 0, &down, game_state.board)) {
                     stop_melody();
-                    const uint32_t hiscore = get_and_set_hiscore(score);
-                    printf("Game over! Score: %d, highest: %d\r\n", score, hiscore);
+                    printf("Game over!\r\n");
 //                    gameover(score, hiscore);
                     return;
                 }
             }
         }
-        draw_us(board, &brick);
+        draw_and_publish(&game_state, &brick);
         print_irda_stats();
     }
 }
