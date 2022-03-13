@@ -25,7 +25,12 @@ typedef struct {
      * The total number of lines cleared by the player since the start of the
      * game.
      */
-    uint16_t lines;
+    uint8_t lines_cleared;
+
+    /*
+     * Total number of lines received from the peer and applied to our board.
+     */
+    uint8_t lines_added;
 } game_state_t;
 
 volatile game_state_t peer_game_state;
@@ -84,6 +89,25 @@ void draw_and_publish(game_state_t *our_game_state, fallingbrick_t *brick) {
     }
 }
 
+bool apply_peer_lines(game_state_t * our_game_state, game_state_t * their_game_state, fallingbrick_t * brick) {
+    fallingbrick_t brick_cp;
+    uint8_t peer_lines;
+    DISABLE_INTERRUPTS();
+    peer_lines = their_game_state->lines_cleared;
+    ENABLE_INTERRUPTS();
+
+    for (; peer_lines > our_game_state->lines_added; our_game_state->lines_added++) {
+        if (!move(&brick_cp, brick, 0, &down, our_game_state->board)) {
+            brick->location.y--;
+        }
+        for (int i = 0; i < ROWS - 1; i++) {
+            our_game_state->board[i] = our_game_state->board[i + 1];
+        }
+        our_game_state->board[ROWS - 1] = ~(0x0040 << rand_under(10));
+    }
+    return brick->location.y >= 0;          // whether we were able to insert all penalty lines
+}
+
 /*
  * Enters the Tetris main loop. This function does not return until the game
  * exits.
@@ -91,13 +115,19 @@ void draw_and_publish(game_state_t *our_game_state, fallingbrick_t *brick) {
 void multi_player() {
     clear_screen();
 
-    game_state_t game_state = {.lines = 0};
-    uint16_t speed = get_speed(game_state.lines);
+    game_state_t game_state = {.lines_cleared = 0};
+    fallingbrick_t brick, brick_cp;
+    uint16_t speed = get_speed(game_state.lines_cleared);
     memset(game_state.board, 0, sizeof(uint16_t) * ROWS);
     uint64_t now = millis();
 
     // initialize the upcoming queue:
     initialize_upcoming();
+
+    brick.id = take_upcoming();
+    brick.rotation = 0;
+    brick.location.x = 4;
+    brick.location.y = 0;
 
     // paint background:
     printf("Drawing background...\r\n");
@@ -107,13 +137,6 @@ void multi_player() {
         screen[row][2] = 0x01;
     }
 
-    fallingbrick_t brick = {
-            .id = take_upcoming(),
-            .rotation = 0,
-            .location = {.x = 4, .y = 0}
-    };
-    fallingbrick_t copy;
-
     printf("Game started...\r\n");
 
     uint64_t last_press = 0;
@@ -121,26 +144,26 @@ void multi_player() {
     irda_enable(irda_receive);
     while (true) {
         if (was_pressed(&btn_left)) {
-            if (move(&copy, &brick, 0, &left, game_state.board)) {
-                memcpy(&brick, &copy, sizeof(fallingbrick_t));
+            if (move(&brick_cp, &brick, 0, &left, game_state.board)) {
+                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_right)) {
-            if (move(&copy, &brick, 0, &right, game_state.board)) {
-                memcpy(&brick, &copy, sizeof(fallingbrick_t));
+            if (move(&brick_cp, &brick, 0, &right, game_state.board)) {
+                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_b)) {
-            if (move(&copy, &brick, 1, &identity, game_state.board)) {
-                memcpy(&brick, &copy, sizeof(fallingbrick_t));
+            if (move(&brick_cp, &brick, 1, &identity, game_state.board)) {
+                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_x)) {
-            if (move(&copy, &brick, -1, &identity, game_state.board)) {
-                memcpy(&brick, &copy, sizeof(fallingbrick_t));
+            if (move(&brick_cp, &brick, -1, &identity, game_state.board)) {
+                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
@@ -150,29 +173,34 @@ void multi_player() {
         } else if (long_pressed(&btn_a)) {
             speed = 40;
         } else {
-            speed = get_speed(game_state.lines);
+            speed = get_speed(game_state.lines_cleared);
         }
+
+        if (!apply_peer_lines(&game_state, &peer_game_state, &brick)) {
+            printf("Game over!\r\n");
+            return;
+        }
+
         if ((millis() - now) > speed) {
 
-            if (move(&copy, &brick, 0, &down, game_state.board)) {
+            if (move(&brick_cp, &brick, 0, &down, game_state.board)) {
                 now = millis();
 //                printf("Brick moved down.\r\n");
-                memcpy(&brick, &copy, sizeof(fallingbrick_t));
+                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
             } else if (last_press > now) {
                 // we hit the ground, but as long as we keep pressing buttons, we delay merging:
                 now += last_press - now;
             } else {
                 now = millis();
                 printf("Could not move down; merging.\r\n");
-                const uint8_t removed = merge(&brick, game_state.board);
-                game_state.lines += removed;
+                game_state.lines_cleared += merge(&brick, game_state.board);
 
                 brick.id = take_upcoming();
                 brick.rotation = 0;
                 brick.location.x = 4;
                 brick.location.y = 0;
 
-                if (!move(&copy, &brick, 0, &down, game_state.board)) {
+                if (!move(&brick_cp, &brick, 0, &down, game_state.board)) {
                     stop_melody();
                     printf("Game over!\r\n");
 //                    gameover(score, hiscore);

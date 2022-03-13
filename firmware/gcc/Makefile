@@ -63,7 +63,8 @@ src/next.o \
 src/tetrominos.o \
 src/sound.o \
 src/melody.o \
-src/irda.o
+src/irda.o \
+src/util.o
 
 OBJS_AS_ARGS +=  \
 "main.o" \
@@ -92,7 +93,8 @@ OBJS_AS_ARGS +=  \
 "src/tetrominos.o" \
 "src/sound.o" \
 "src/melody.o" \
-"src/irda.o"
+"src/irda.o" \
+"src/util.o"
 
 # List the dependency files
 DEPS := $(OBJS:%.o=%.d)
@@ -124,7 +126,8 @@ DEPS_AS_ARGS +=  \
 "src/tetrominos.d" \
 "src/sound.d" \
 "src/melody.d" \
-"src/irda.d"
+"src/irda.d" \
+"src/util.d"
 
 MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 OUTPUT_FILE_NAME :=handheld

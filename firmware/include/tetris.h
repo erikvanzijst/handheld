@@ -3,6 +3,7 @@
 
 #include "tetrominos.h"
 
+extern vertex_t up;
 extern vertex_t down;
 extern vertex_t left;
 extern vertex_t right;
