@@ -139,38 +139,18 @@ bool apply_peer_lines(game_state_t * our_game_state, game_state_t * their_game_s
 }
 
 void game_over_mp(volatile game_state_t * our_game_state, bool win) {
-    uint64_t now = millis();
+    // TODO: play a melody
     our_game_state->flags |= PLAYER_DEAD_bm;
-    if (win) {
-        printf("YOU WIN\r\n");
-        printf("Ack'ing peer's death...\r\n");
-        our_game_state->flags |= PLAYER_DEAD_ACK_bm;
+    if (win) our_game_state->flags |= PLAYER_DEAD_ACK_bm;
 
-        printf("Waiting for peer to ack our ack...\r\n");
-        while (!((peer_game_state.flags == 0x03) || peer_game_state.flags == 0)) {  // TODO: use the other one
-            if (millis() - now > 5000) {
-                printf("peer_game_state.flags = %x connected = %d\r\n", peer_game_state.flags, is_connected(millis()));
-                now = millis();
-            }
-            irda_write((uint8_t *)our_game_state, sizeof(game_state_t));
+    while (!((peer_game_state.flags == 0x03 && our_game_state->flags & PLAYER_DEAD_ACK_bm) ||
+             (peer_game_state.flags == 0 && our_game_state->flags & PLAYER_DEAD_ACK_bm))) {
+        if (peer_game_state.flags & PLAYER_DEAD_bm) {
+            our_game_state->flags |= PLAYER_DEAD_ACK_bm;
         }
-        printf("Peer either ack'd our ack, or restarted.\r\n");
-
-    } else {
-        printf("YOU LOSE\r\n");
-
-        printf("Waiting for peer to die also...\r\n");
-        while (!((peer_game_state.flags == 0x03 && our_game_state->flags & PLAYER_DEAD_ACK_bm) || (peer_game_state.flags == 0 && our_game_state->flags & PLAYER_DEAD_ACK_bm))) {
-            if (peer_game_state.flags & PLAYER_DEAD_bm && !(our_game_state->flags & PLAYER_DEAD_ACK_bm)) {
-                printf("Peer now also stopped; waiting for peer to ack our ack...\r\n");
-                our_game_state->flags |= PLAYER_DEAD_ACK_bm;
-            }
-            irda_write((uint8_t *)our_game_state, sizeof(game_state_t));
-        }
-        printf("Peer either ack'd our ack, or restarted; peer_game_state.flags = %x\r\n", peer_game_state.flags);
+        irda_write((uint8_t *)our_game_state, sizeof(game_state_t));
     }
 
-    printf("Press any key to start new game.\r\n");
     say(win ? "WIN " : "LOSE");
     while (!any_key()) {
         irda_write((uint8_t *)our_game_state, sizeof(game_state_t));
