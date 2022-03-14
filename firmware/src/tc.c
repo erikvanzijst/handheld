@@ -105,7 +105,7 @@ int8_t TIMER_0_init()
 	             | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
 	             | TC_WGMODE_NORMAL_gc; /* Normal Mode */
 	TCE0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
-			 		| TC_OVFINTLVL_LO_gc; /* Interrupt Enabled */
+			 		| TC_OVFINTLVL_HI_gc; /* high-priority interrupt to keep tones clear */
 	TCE0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
 	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */

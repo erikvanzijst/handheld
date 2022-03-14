@@ -1,6 +1,5 @@
 #include <stdint.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 #include "../include/2player.h"
@@ -139,9 +138,13 @@ bool apply_peer_lines(game_state_t * our_game_state, game_state_t * their_game_s
 }
 
 void game_over_mp(volatile game_state_t * our_game_state, bool win) {
-    // TODO: play a melody
     our_game_state->flags |= PLAYER_DEAD_bm;
-    if (win) our_game_state->flags |= PLAYER_DEAD_ACK_bm;
+    stop_melody();
+    if (win) {
+        our_game_state->flags |= PLAYER_DEAD_ACK_bm;
+    } else {
+        play_melody(&gameover_melody, 1);
+    }
 
     while (!((peer_game_state.flags == 0x03 && our_game_state->flags & PLAYER_DEAD_ACK_bm) ||
              (peer_game_state.flags == 0 && our_game_state->flags & PLAYER_DEAD_ACK_bm))) {
@@ -152,9 +155,12 @@ void game_over_mp(volatile game_state_t * our_game_state, bool win) {
     }
 
     say(win ? "WIN " : "LOSE");
-    while (!any_key()) {
+    uint64_t now = millis();
+    while (!any_key() || millis() - now < 2000) {
+        // suppress key presses for 2s to show the post-game result screen
         irda_write((uint8_t *)our_game_state, sizeof(game_state_t));
     }
+    stop_melody();
 }
 
 /*
@@ -195,6 +201,7 @@ void multi_player() {
 
     irda_enable(irda_receive);
     connect(&game_state);
+    play_melody(&tetris_melody, -1);
 
     while (true) {
         if (peer_game_state.flags & PLAYER_DEAD_bm) {
@@ -202,6 +209,9 @@ void multi_player() {
             return;
         }
 
+        if (was_pressed(&btn_select)) {
+            mute(!is_muted());
+        }
         if (was_pressed(&btn_left)) {
             if (move(&brick_cp, &brick, 0, &left, game_state.board)) {
                 memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));

@@ -122,7 +122,7 @@ typedef struct {
  * repeat       the number of times the melody should be repeated. To play
  *              the melody just once, use 1. Use 0 to repeat indefinitely.
  */
-void play_melody(melody_t *melody, uint16_t repeat);
+int play_melody(melody_t *melody, int16_t repeat);
 
 /*
  * Stops the current tone or melody.

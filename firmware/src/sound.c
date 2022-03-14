@@ -69,14 +69,15 @@ void play_next_note() {
     // printf("Staring new tone %uHz, %ums\r\n", frequency, duration);
 }
 
-void play_melody(melody_t *melody, uint16_t repeat) {
+int play_melody(melody_t *melody, int16_t repeat) {
     if (melody->len < 1) {
-        printf("WARNING: Ignoring zero-lenth melody\r\n");
+        printf("WARNING: Ignoring zero-length melody\r\n");
     }
     else {
+        stop_melody();
         curr_melody.melody = melody;
         curr_melody.current_note = 0;
-        curr_melody.remaining = (repeat == 0 ? -1 : repeat);
+        curr_melody.remaining = (repeat <= 0 ? -1 : repeat);
         play_next_note();
     }
 }
@@ -95,25 +96,27 @@ void mute(bool muted) {
 }
 
 void tone_isr() {
-    if (curr_tone.toggle_remaining != 0) {
-        if (sound_enabled && curr_tone.toggle_remaining < curr_tone.toggle_count * 0.9) {
-            // be quiet for the last 10% of note duration
-            BUZZER_toggle_level();
+    if (sound_enabled) {
+        if (curr_tone.toggle_remaining != 0) {
+            if (curr_tone.toggle_remaining < curr_tone.toggle_count * 0.9) {
+                // be quiet for the last 10% of note duration
+                BUZZER_toggle_level();
+            }
+            curr_tone.toggle_remaining--;
         }
-		curr_tone.toggle_remaining--;
-    }
-    else {
-        // queue the next tone
-        curr_melody.current_note = (curr_melody.current_note + 1) % curr_melody.melody->len;
-        if (curr_melody.current_note == 0 && curr_melody.remaining > 0) {
-            curr_melody.remaining--;
-            printf("Melody finished (%d loops remaining).\r\n", curr_melody.remaining);
-        }
-        if (curr_melody.remaining != 0) {
-            play_next_note();
-        } else {
-            printf("Melody loop finished.\r\n");
-            stop_melody();
+        else {
+            // queue the next tone
+            curr_melody.current_note = (curr_melody.current_note + 1) % curr_melody.melody->len;
+            if (curr_melody.current_note == 0 && curr_melody.remaining > 0) {
+                curr_melody.remaining--;
+                printf("Melody finished (%d loops remaining).\r\n", curr_melody.remaining);
+            }
+            if (curr_melody.remaining != 0) {
+                play_next_note();
+            } else {
+                printf("Melody loop finished.\r\n");
+                stop_melody();
+            }
         }
     }
 }

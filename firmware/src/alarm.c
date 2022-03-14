@@ -6,8 +6,8 @@
 
 
 uint16_t US_PER_TICK = 1000000 / (F_CPU / 64);  // number of microseconds per timer tick
-uint64_t ticks = 0;
-uint64_t alarm_at_tick = 0;
+volatile uint64_t ticks = 0;
+volatile uint64_t alarm_at_tick = 0;
 
 void noop() {}
 void (*alarm_cb)(void) = noop;
@@ -43,7 +43,7 @@ void set_alarm(uint64_t micros_from_now, void (*alarm_callback)(void)) {
 
     TCF0.CTRLA = TC_CLKSEL_OFF_gc;                  // turn off the alarm timer
     TCF0.CTRLFSET = TC_CMD_RESET_gc;
-    alarm_at_tick = micros_from_now / US_PER_TICK;
+    alarm_at_tick = micros_from_now >> 1;           // US_PER_TICK is 2, so use fast bitshift division
     alarm_cb = alarm_callback;
 
     if (alarm_at_tick <= 0xffff) {

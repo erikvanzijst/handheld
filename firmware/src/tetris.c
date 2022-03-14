@@ -106,7 +106,7 @@ void gameover(uint16_t score, uint32_t hiscore) {
 
   _delay_ms(1000);
   clear_screen();
-//  play_melody(&gameover_melody, 1);
+  play_melody(&gameover_melody, 1);
 
   itoa(hiscore, (char *)(bottom + 5), 10);
   strcpy((char *)(bottom + strlen(bottom)), "  ");
