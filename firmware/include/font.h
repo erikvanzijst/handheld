@@ -32,4 +32,6 @@ int to_glyphs(uint8_t *glyphs, const char *str);
  */
 button_t * scroll(const char *line1, const char *line2, long timeout);
 
+int say(char *str);
+
 #endif

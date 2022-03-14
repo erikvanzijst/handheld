@@ -4,6 +4,7 @@
 #include <util/delay.h>
 #include <string.h>
 #include <stdio.h>
+#include <util.h>
 #include "button.h"
 #include "screen.h"
 #include "wallclock.h"
@@ -120,4 +121,28 @@ button_t * scroll(const char *line1, const char *line2, long timeout) {
         }
         _delay_ms(75);
     }
+}
+
+int say(const char *str) {
+    uint8_t glyphs[strlen(str) * 5];
+    if (to_glyphs((uint8_t *) glyphs, str)) {
+        return -1;
+    }
+
+    uint32_t rows[5] = {0, 0, 0, 0, 0};
+    for (int row = 0; row < 5; row++) {
+        for (unsigned int i = 0; i < min(strlen(str), 4); i++) {
+            rows[row] |= ((uint32_t)glyphs[5 * i + row]) << (26 - (6 * i));
+        }
+    }
+
+    screen[4][0] = screen[4][1] = screen[4][2] = 0;
+    for (int16_t r = 4; r >= 0; r--) {
+        uint8_t row = 5 + r;
+        screen[row][0] = rows[r] >> 24;
+        screen[row][1] = (rows[r] >> 16) & 0xff;
+        screen[row][2] = (rows[r] >> 8) & 0xff;
+    }
+    screen[10][0] = screen[10][1] = screen[10][2] = 0;
+    return 0;
 }
