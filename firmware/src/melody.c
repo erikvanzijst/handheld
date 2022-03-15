@@ -38,13 +38,13 @@ int16_t tetris_notes[200] = {
     NOTE_GS5,2, REST, 2,
 };
 
-melody_t tetris_melody = {
+const melody_t tetris_melody = {
     .notes = tetris_notes,
     .len = 100,             // sizeof(tetris_notes) / 2
     .tempo = 144
 };
 
-uint16_t supermario_notes[618] = {
+const uint16_t supermario_notes[618] = {
     NOTE_E5,8, NOTE_E5,8, REST,8, NOTE_E5,8, REST,8, NOTE_C5,8, NOTE_E5,8, //1
     NOTE_G5,4, REST,4, NOTE_G4,8, REST,4, 
     NOTE_C5,-4, NOTE_G4,8, REST,4, NOTE_E4,-4, // 3
@@ -123,20 +123,58 @@ uint16_t supermario_notes[618] = {
     NOTE_C5,8, NOTE_E4,4, NOTE_E4,8, NOTE_C4,2,
 };
 
-melody_t supermario_melody = {
+const melody_t supermario_melody = {
     .notes = supermario_notes,
     .len = 618,
     .tempo = 200
 };
 
-int16_t gameover_notes[24] = {
+const int16_t gameover_notes[24] = {
     NOTE_C5,-4, NOTE_G4,-4, NOTE_E4,4, //45
     NOTE_A4,-8, NOTE_B4,-8, NOTE_A4,-8, NOTE_GS4,-8, NOTE_AS4,-8, NOTE_GS4,-8,
     NOTE_G4,8, NOTE_D4,8, NOTE_E4,-2,  
 };
 
-melody_t gameover_melody = {
+const melody_t gameover_melody = {
     .notes = gameover_notes,
     .len = 12,
     .tempo = 144
+};
+
+// Super Mario flagpole sequence
+const int16_t victory_notes[] = {
+        NOTE_G2, 9,
+        NOTE_C3, 9,
+        NOTE_E3, 9,
+        NOTE_G3, 9,
+        NOTE_C4, 9,
+        NOTE_E4, 9,
+        NOTE_G4, 3,
+        NOTE_E4, 3,
+
+        NOTE_GS2, 9,
+        NOTE_C3, 9,
+        NOTE_DS3, 9,
+        NOTE_GS3, 9,
+        NOTE_C4, 9,
+        NOTE_DS4, 9,
+        NOTE_GS4, 3,
+        NOTE_DS4, 3,
+        NOTE_AS2, 9,
+        NOTE_D3, 9,
+        NOTE_F3, 9,
+        NOTE_AS3, 9,
+        NOTE_D4, 9,
+        NOTE_F4, 9,
+        NOTE_AS4, 3,
+        NOTE_B4, 9,
+        NOTE_B4, 9,
+        NOTE_B4, 9,
+        NOTE_C5, 1
+};
+
+const melody_t victory_melody = {
+        .notes = victory_notes,
+        .len = sizeof(victory_notes) / 4,
+        .tempo = 188
 };

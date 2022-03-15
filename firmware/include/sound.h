@@ -105,14 +105,14 @@ typedef struct {
      * Negative numbers are used to represent dotted notes,
      * so -4 means a dotted quarter note, that is, a quarter plus an eighteenth.
      */
-    int16_t *notes;
+    const int16_t *notes;
 
     /*
      * Number of notes in `notes`.
      */
-    uint16_t len;
+    const uint16_t len;
 
-    uint16_t tempo;
+    const uint16_t tempo;
 } melody_t;
 
 /*

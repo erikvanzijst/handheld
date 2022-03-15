@@ -142,6 +142,7 @@ void game_over_mp(volatile game_state_t * our_game_state, bool win) {
     stop_melody();
     if (win) {
         our_game_state->flags |= PLAYER_DEAD_ACK_bm;
+        play_melody(&victory_melody, 1);
     } else {
         play_melody(&gameover_melody, 1);
     }
