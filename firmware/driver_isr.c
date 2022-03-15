@@ -63,14 +63,22 @@ ISR(RTC_OVF_vect, ISR_NAKED) {
    reti();
 }
 
-ISR(TCE0_OVF_vect) {
+ISR(TCC1_OVF_vect) {
    tone_isr();
 }
 
+ISR(TCE0_OVF_vect) {
+    alarm_ovf_isr(ALARM1);
+}
+
+ISR(TCE0_CCA_vect) {
+    alarm_cca_isr(ALARM1);
+}
+
 ISR(TCF0_OVF_vect) {
-    alarm_ovf_isr();
+    alarm_ovf_isr(ALARM2);
 }
 
 ISR(TCF0_CCA_vect) {
-    alarm_cca_isr();
+    alarm_cca_isr(ALARM2);
 }

@@ -98,20 +98,34 @@ int8_t TIMER_0_init()
 
 
 	// Timer for sound driver
-	TCE0.CTRLA = TC_CLKSEL_OFF_gc; 		/* Initially off */
-	TCE0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
+    TCC1.CTRLA = TC_CLKSEL_OFF_gc; 		/* Initially off */
+    TCC1.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
 	             | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
 	             | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
 	             | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: enabled */
 	             | TC_WGMODE_NORMAL_gc; /* Normal Mode */
-	TCE0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
+    TCC1.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
 			 		| TC_OVFINTLVL_HI_gc; /* high-priority interrupt to keep tones clear */
-	TCE0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
+    TCC1.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
 	                | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
 	                | TC_CCAINTLVL_OFF_gc /* Medium Level */;
 
-    // Timer used for alarm()
+    // Timer used for ALARM1
+    TCE0.CTRLA = TC_CLKSEL_OFF_gc;      // Start in disabled mode
+    TCE0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
+                 | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */
+                 | 0 << TC0_CCBEN_bp    /* Compare or Capture B Enable: disabled */
+                 | 0 << TC0_CCAEN_bp    /* Compare or Capture A Enable: disabled */
+                 | TC_WGMODE_NORMAL_gc; /* Normal Mode */
+    TCE0.INTCTRLA = TC_ERRINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_OVFINTLVL_OFF_gc; /* Interrupt Disabled */
+    TCE0.INTCTRLB = TC_CCDINTLVL_OFF_gc   /* Interrupt Disabled */
+                    | TC_CCCINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_CCBINTLVL_OFF_gc /* Interrupt Disabled */
+                    | TC_CCAINTLVL_MED_gc /* Medium Level */;
+
+    // Timer used for ALARM2
     TCF0.CTRLA = TC_CLKSEL_OFF_gc;      // Start in disabled mode
     TCF0.CTRLB = 0 << TC0_CCDEN_bp      /* Compare or Capture D Enable: disabled */
                  | 0 << TC0_CCCEN_bp    /* Compare or Capture C Enable: disabled */

@@ -82,7 +82,7 @@ ISR(USARTD0_RXC_vect) {
 
             // We have a half-duplex channel. Give our peer 1ms to transition out of TX
             // mode and enable its receiver and interrupts before we send our first frame.
-            set_alarm(1000, toTx);
+            set_alarm(ALARM1, 1000, toTx);
 
         } else {
             if (rx_pos >= IRDA_MAXBUF) {
@@ -90,7 +90,7 @@ ISR(USARTD0_RXC_vect) {
             } else {
                 rx_buf[rx_pos++] = data;
             }
-            set_alarm(1000, read_timeout);
+            set_alarm(ALARM1, 1000, read_timeout);
         }
     } else {
         printf("ERR: USARTD0_RXC_vect with USART_RXCIF_bm unset!\r\n");
@@ -102,7 +102,7 @@ void enableUDRE() {
 }
 
 void toTx() {
-    clr_alarm();
+    clr_alarm(ALARM1);
     USARTD0.CTRLB &= ~USART_RXEN_bm;            // disable RX
 
     CRC.CTRL = CRC_SOURCE_DISABLE_gc;           // disable CRC engine
@@ -158,7 +158,7 @@ void toRx() {
 //    printf("INFO: TX -> RX\r\n");
     tx_len = 0;                                 // accept new outbound frame from application
     rx_pos = 0;                                 // rewind receive buffer
-    set_alarm(100000, read_timeout);
+    set_alarm(ALARM1, 100000, read_timeout);
 }
 
 void read_timeout() {

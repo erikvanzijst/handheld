@@ -1,6 +1,5 @@
 #include <atmel_start_pins.h>
 #include <compiler.h>
-#include <port.h>
 #include <stdint.h>
 #include <stdio.h>
 #include "sound.h"
@@ -63,8 +62,8 @@ void play_next_note() {
     } else {
         curr_tone.toggle_count = curr_tone.toggle_remaining = -1;
     }
-    TCE0.CTRLA = prescalar;
-    TCE0.PER = period;
+    TCC1.CTRLA = prescalar;
+    TCC1.PER = period;
 
     // printf("Staring new tone %uHz, %ums\r\n", frequency, duration);
 }
@@ -84,7 +83,7 @@ int play_melody(melody_t *melody, int16_t repeat) {
 
 void stop_melody() {
     curr_tone.toggle_remaining = -1;
-    TCE0.CTRLA = TC_CLKSEL_OFF_gc;
+    TCC1.CTRLA = TC_CLKSEL_OFF_gc;
 }
 
 bool is_muted() {
