@@ -3,6 +3,7 @@
 #include <font.h>
 #include <wallclock.h>
 #include <screen.h>
+#include <util.h>
 #include "1player.h"
 #include "2player.h"
 #include "button.h"
@@ -14,7 +15,7 @@ int main(void)
     OEB_set_level(false);
 
     clear_screen();
-    printf("Tetris firmware starting up...\r\n");
+    printf("Tetris firmware %s starting up...\r\n", VERSION_STR);
     scroll("TETRIS      ", "", -1);
     srand((unsigned int)millis());  // use human button press delay as random seed
 
