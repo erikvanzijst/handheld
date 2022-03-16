@@ -77,10 +77,25 @@ bool is_connected(uint64_t now) {
 
 void connect() {
     printf("Waiting for peer...\r\n");
+
+    uint8_t screen_cp[ROWS][3];
+    memcpy(&screen_cp, &screen, sizeof(screen_cp));             // save the screen
+
+    uint8_t pos[4] = {0, 1, 3, 2};
+    uint8_t idx = 0;
+
+    uint64_t last = millis();
     while (!is_connected(millis()) || (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm))) {
-        // TODO: draw something on the screen
+        if (millis() - last > 200) {
+            set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 0);
+            idx = (idx + 1) % 4;
+            set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 1);
+            last = millis();
+        }
     }
-    printf("Connected to peer! connected = %d, peer.flags = %d\r\n", is_connected(millis()), peer_game_state.flags);
+
+    memcpy(&screen, &screen_cp, sizeof(screen_cp));             // restore screen
+    printf("Connected to peer!\r\n");
 }
 
 void irda_receive(uint8_t *buf, uint16_t len) {
@@ -185,6 +200,7 @@ void game_over_mp(bool win) {
  */
 void multi_player() {
     fallingbrick_t brick_cp;
+    bool muted = false;
     clear_screen();
 
     memset(&our_game_state, 0, sizeof(game_state_t));
@@ -221,6 +237,19 @@ void multi_player() {
             game_over_mp(true);
             return;
         }
+        if (!apply_peer_lines()) {
+            game_over_mp(false);
+            return;
+        }
+
+        draw_screen();
+        print_irda_stats();
+
+        bool pre = is_muted();
+        while (!is_connected(millis())) {
+            mute(true);                 // pause the sound while disconnected
+        }
+        mute(pre);
 
         if (was_pressed(&btn_select)) {
             mute(!is_muted());
@@ -258,11 +287,6 @@ void multi_player() {
             speed = get_speed(our_game_state.lines_cleared);
         }
 
-        if (!apply_peer_lines()) {
-            game_over_mp(false);
-            return;
-        }
-
         if ((millis() - now) > speed) {
 
             if (move(&brick_cp, &brick, 0, &down, our_game_state.board)) {
@@ -295,7 +319,5 @@ void multi_player() {
                 }
             }
         }
-        draw_screen();
-        print_irda_stats();
     }
 }

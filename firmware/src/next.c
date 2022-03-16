@@ -22,21 +22,16 @@ void print_queue()
 
 void initialize_upcoming()
 {
-    // initialize the upcoming queue:
-    for (uint8_t i = 0; i < sizeof(upcoming); i++)
-    {
+    for (uint8_t i = 0; i < sizeof(upcoming); i++) {
         upcoming[i] = (uint8_t)(rand() % 7);
     }
     head = 0;
-    printf("Initializing upcoming tetrominos: ");
-    print_queue();
 }
 
 void draw_upcoming()
 {
     // clear preview area:
-    for (uint8_t row = 0; row < ROWS; row++)
-    {
+    for (uint8_t row = 0; row < ROWS; row++) {
         screen[row][2] &= 0xc0;
     }
 
@@ -61,6 +56,5 @@ uint8_t take_upcoming()
     const uint8_t retval = upcoming[head];
     upcoming[head] = (uint8_t)(rand() % 7); // new tail
     head = (head + 1) % sizeof(upcoming);
-    print_queue();
     return retval;
 }

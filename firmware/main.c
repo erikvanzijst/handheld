@@ -15,7 +15,9 @@ int main(void)
     OEB_set_level(false);
 
     clear_screen();
-    printf("Tetris firmware %s starting up...\r\n", VERSION_STR);
+    printf("Tetris firmware build: %s\r\n", VERSION_STR);
+    printf("https://github.com/erikvanzijst/handheld\r\n");
+    printf("Erik van Zijst <erik.van.zijst@gmail.com>\r\n\r\n");
     scroll("TETRIS      ", "", -1);
     srand((unsigned int)millis());  // use human button press delay as random seed
 

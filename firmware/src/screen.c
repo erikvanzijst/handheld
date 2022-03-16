@@ -37,10 +37,10 @@ void set_pixel(uint8_t x, uint8_t y, bool on) {
          screen[y][0] &= ((0x80 >> x) ^ 0xff);
          break;
       case 1:
-         screen[y][1] |= ((0x8000 >> x) ^ 0xff);
+         screen[y][1] &= ((0x8000 >> x) ^ 0xff);
          break;
       case 2:
-         screen[y][2] |= ((0x800000 >> x) ^ 0xff);
+         screen[y][2] &= ((0x800000 >> x) ^ 0xff);
          break;
       default:
          break;
