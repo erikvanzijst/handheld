@@ -67,12 +67,12 @@ void publish_board() {
     set_alarm(ALARM2, 200, publish_board);
 }
 
-bool is_connected(uint64_t now) {
-    uint64_t last_packet_ms_cp;
+bool is_connected() {
+    volatile uint64_t last_packet_ms_cp;
     DISABLE_INTERRUPTS();
     last_packet_ms_cp = last_packet_ms;
     ENABLE_INTERRUPTS();
-    return now - last_packet_ms_cp < CONNECTION_TIMEOUT_MS;
+    return (millis() - last_packet_ms_cp) < CONNECTION_TIMEOUT_MS;
 }
 
 void connect() {
@@ -83,9 +83,15 @@ void connect() {
 
     uint8_t pos[4] = {0, 1, 3, 2};
     uint8_t idx = 0;
+    uint64_t last = 0;
 
-    uint64_t last = millis();
-    while (!is_connected(millis()) || (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm))) {
+    screen[6][2] &= 0x0f;
+    screen[7][2] &= 0x0f;
+    screen[8][2] &= 0x0f;
+    screen[9][2] &= 0x0f;
+
+    // display a spinner in the right-hand section:
+    while (!is_connected() || (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm))) {
         if (millis() - last > 200) {
             set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 0);
             idx = (idx + 1) % 4;
@@ -246,8 +252,9 @@ void multi_player() {
         print_irda_stats();
 
         bool pre = is_muted();
-        while (!is_connected(millis())) {
+        if (!is_connected()) {
             mute(true);                 // pause the sound while disconnected
+            connect();
         }
         mute(pre);
 
