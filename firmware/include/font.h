@@ -29,6 +29,9 @@ int to_glyphs(uint8_t *glyphs, const char *str);
  * This function returns either when the specified timeout runs out, or when a
  * key is pressed. In case of the former, NULL is returned, else a pointer to
  * the key that was pressed is returned.
+ *
+ * If no buttons are pressed, the function returns after `timeout` milliseconds.
+ * -1 scrolls indefinitely.
  */
 button_t * scroll(const char *line1, const char *line2, long timeout);
 

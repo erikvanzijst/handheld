@@ -48,7 +48,6 @@ void alarm_cca_isr(alarm_t * alarm) {
 }
 
 void set_alarm(alarm_t * alarm, uint64_t micros_from_now, void (*alarm_callback)(void)) {
-    DISABLE_INTERRUPTS();
 
     alarm->timer->CTRLA = TC_CLKSEL_OFF_gc;                  // turn off the alarm timer
     alarm->timer->CTRLFSET = TC_CMD_RESET_gc;
@@ -69,7 +68,6 @@ void set_alarm(alarm_t * alarm, uint64_t micros_from_now, void (*alarm_callback)
         alarm->timer->INTCTRLB = 0;                          // disable all CCAs
     }
     alarm->ticks = 0;
-    ENABLE_INTERRUPTS();
     alarm->timer->CTRLA = TC_CLKSEL_DIV64_gc;                // turn on the alarm timer
 }
 

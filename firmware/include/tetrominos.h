@@ -1,8 +1,10 @@
 #ifndef TETROMINOS_INCLUDED
 #define TETROMINOS_INCLUDED
 
+#include <stdint.h>
+
 typedef struct {
-    int x, y;
+    int8_t x, y;
 } vertex_t;
 
 typedef struct {

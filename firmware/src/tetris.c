@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <util/delay.h>
+#include <atomic.h>
 #include "button.h"
 #include "font.h"
 #include "melody.h"
@@ -21,14 +22,14 @@ vertex_t right = {1, 0};
 vertex_t identity = {0, 0};
 uint16_t linevalue[] = {0, 40, 100, 300, 1200};
 
-void materialize(shape_t *dest, fallingbrick_t *brick) {
+void materialize(shape_t *dest, volatile fallingbrick_t *brick) {
   for (uint8_t i = 0; i < 4; i++) {
     dest->vertex[i].x = brickdefs[brick->id].shape[brick->rotation].vertex[i].x + brick->location.x;
     dest->vertex[i].y = brickdefs[brick->id].shape[brick->rotation].vertex[i].y + brick->location.y;
   }
 }
 
-bool fits(fallingbrick_t *brick, uint16_t *board) {
+bool fits(fallingbrick_t *brick, const volatile uint16_t *board) {
   shape_t shape;
   materialize(&shape, brick);
 
@@ -41,7 +42,7 @@ bool fits(fallingbrick_t *brick, uint16_t *board) {
   return true;
 }
 
-bool move(fallingbrick_t *dest, fallingbrick_t *src, int rot, vertex_t *vector, uint16_t *board) {
+bool move(fallingbrick_t *dest, volatile fallingbrick_t *src, int rot, vertex_t *vector, volatile uint16_t *board) {
   memcpy(dest, src, sizeof(fallingbrick_t));
 
   dest->rotation = (dest->rotation + rot + 4) % 4;
@@ -51,27 +52,27 @@ bool move(fallingbrick_t *dest, fallingbrick_t *src, int rot, vertex_t *vector, 
   return fits(dest, board);
 }
 
-uint8_t merge(fallingbrick_t *brick, unsigned int *board) {
-  uint8_t removed = 0;
-  shape_t shape;
-  materialize(&shape, brick);
-  for (uint8_t i = 0; i < 4; i++) {
-    board[shape.vertex[i].y] |= (0x8000 >> shape.vertex[i].x);
-  }
-
-  // remove completed lines:
-  int row = ROWS - 1;
-  for (int i = ROWS - 1; i >= 0; i--) {
-    if (board[i] < 0xffc0) {
-      board[row--] = board[i];
-    } else {
-      removed++;
+uint8_t merge(volatile fallingbrick_t *brick, volatile uint16_t *board) {
+    uint8_t removed = 0;
+    shape_t shape;
+    materialize(&shape, brick);
+    for (uint8_t i = 0; i < 4; i++) {
+        board[shape.vertex[i].y] |= (0x8000 >> shape.vertex[i].x);
     }
-  }
-  for (; row >= 0; row--) {
-    board[row] = 0;
-  }
-  return removed;
+
+    // remove completed lines:
+    int row = ROWS - 1;
+    for (int i = ROWS - 1; i >= 0; i--) {
+        if (board[i] < 0xffc0) {
+            board[row--] = board[i];
+        } else {
+            removed++;
+        }
+    }
+    for (; row >= 0; row--) {
+        board[row] = 0;
+    }
+    return removed;
 }
 
 /*
@@ -100,6 +101,7 @@ void pause() {
   }
 }
 
+// TODO: Move to 1player.c
 void gameover(uint16_t score, uint32_t hiscore) {
   char top[]    = "YOU :             ";
   char bottom[] = "BEST:             ";
