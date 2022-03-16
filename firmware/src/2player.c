@@ -55,7 +55,7 @@ void publish_board() {
 
     if (irda_write_available()) {
         materialize(&shape, &brick);
-        memcpy(&our_game_state_cp, &our_game_state, sizeof(game_state_t));
+        memcpy(&our_game_state_cp, (void *)&our_game_state, sizeof(game_state_t));
 
         // paint the brick that is in motion onto our board copy:
         for (uint8_t i = 0; i < 4; i++) {
@@ -92,7 +92,7 @@ void connect() {
 
     // display a spinner in the right-hand section:
     while (!is_connected() || (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm))) {
-        if (millis() - last > 200) {
+        if (millis() - last > 150) {
             set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 0);
             idx = (idx + 1) % 4;
             set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 1);
@@ -129,9 +129,9 @@ void draw_screen() {
     game_state_t our_game_state_cp, their_game_state_cp;
 
     materialize(&shape, &brick);
-    memcpy(&our_game_state_cp, &our_game_state, sizeof(our_game_state_cp));
+    memcpy(&our_game_state_cp, (void *)&our_game_state, sizeof(game_state_t));
     DISABLE_INTERRUPTS();
-    their_game_state_cp = peer_game_state;
+    memcpy(&their_game_state_cp, (void *)&peer_game_state, sizeof(game_state_t));
     ENABLE_INTERRUPTS();
 
     // paint the brick that is in motion onto our board copy:
@@ -141,9 +141,9 @@ void draw_screen() {
 
     for (uint8_t i = 0; i < ROWS; i++) {
         // project our side of the new board line:
-        screen[i][0] = 0x80 | (our_game_state_cp.board[i] >> 9);
-        screen[i][1] = (our_game_state_cp.board[i] >> 1) | 0x18 | (their_game_state_cp.board[i] >> 13);
-        screen[i][2] = (their_game_state_cp.board[i] >> 5) | 0x01;
+        screen[i][0] = (uint8_t)0x80 | (uint8_t)(our_game_state_cp.board[i] >> 9);
+        screen[i][1] = (uint8_t)((our_game_state_cp.board[i] & 0xffc0) >> 1) | (uint8_t)0x18 | (uint8_t)(their_game_state_cp.board[i] >> 13);
+        screen[i][2] = (uint8_t)(their_game_state_cp.board[i] >> 5) | (uint8_t)0x01;
     }
 }
 
@@ -155,7 +155,7 @@ bool apply_peer_lines() {
     DISABLE_INTERRUPTS();                   // Avoid race conditions with publishing ISR
     peer_lines = peer_game_state.lines_cleared;
     ENABLE_INTERRUPTS();
-    memcpy(&our_game_state_cp, &our_game_state, sizeof(game_state_t));
+    memcpy(&our_game_state_cp, (void *)&our_game_state, sizeof(game_state_t));
 
     for (; peer_lines > our_game_state_cp.lines_added; our_game_state_cp.lines_added++) {
         if (!move(&brick_cp, &brick, 0, &down, our_game_state_cp.board)) {
@@ -164,16 +164,19 @@ bool apply_peer_lines() {
         for (int i = 0; i < ROWS - 1; i++) {
             our_game_state_cp.board[i] = our_game_state_cp.board[i + 1];
         }
-        our_game_state_cp.board[ROWS - 1] = ~(0x0040 << rand_under(10));
+        our_game_state_cp.board[ROWS - 1] = (0xffbf << rand_under(10)) & 0xffc0;
     }
     DISABLE_INTERRUPTS();                   // Avoid race conditions with publishing ISR
-    memcpy(&our_game_state, &our_game_state_cp, sizeof(game_state_t));
+    memcpy((void *)&our_game_state, &our_game_state_cp, sizeof(game_state_t));
     ENABLE_INTERRUPTS();
 
-    return brick.location.y >= 0;          // whether we were able to insert all penalty lines
+    return brick.location.y >= 0;           // whether we were able to insert all penalty lines
 }
 
 void game_over_mp(bool win) {
+    game_state_t their_game_state_cp;
+
+    draw_screen();                          // final update to capture the new block
     stop_melody();
     if (win) {
         our_game_state.flags |= (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm);
@@ -182,6 +185,15 @@ void game_over_mp(bool win) {
         our_game_state.flags |= PLAYER_DEAD_bm;
         play_melody(&gameover_melody, 1);
     }
+
+    DISABLE_INTERRUPTS();
+    memcpy(&their_game_state_cp, (void *)&peer_game_state, sizeof(game_state_t));
+    ENABLE_INTERRUPTS();
+    printf("GAME OVER:\r\n");
+    printf("US (%s):\r\n", win ? "winner" : "loser");
+    dump_boad((uint16_t *) our_game_state.board);
+    printf("\r\nTHEM (%s):\r\n", win ? "loser" : "winner");
+    dump_boad(their_game_state_cp.board);
 
     while (!((peer_game_state.flags == 0x03 && our_game_state.flags & PLAYER_DEAD_ACK_bm) ||
              (peer_game_state.flags == 0 && our_game_state.flags & PLAYER_DEAD_ACK_bm))) {
@@ -206,10 +218,9 @@ void game_over_mp(bool win) {
  */
 void multi_player() {
     fallingbrick_t brick_cp;
-    bool muted = false;
     clear_screen();
 
-    memset(&our_game_state, 0, sizeof(game_state_t));
+    memset((void *)&our_game_state, 0, sizeof(game_state_t));
     uint16_t speed = get_speed(our_game_state.lines_cleared);
     uint64_t now = millis();
 
@@ -296,7 +307,7 @@ void multi_player() {
 
         if ((millis() - now) > speed) {
 
-            if (move(&brick_cp, &brick, 0, &down, our_game_state.board)) {
+            if (move(&brick_cp, &brick, 0, &down, (uint16_t *)our_game_state.board)) {
                 now = millis();
                 memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
 
@@ -306,13 +317,12 @@ void multi_player() {
 
             } else {
                 now = millis();
-                printf("Could not move down; merging.\r\n");
                 uint16_t board_cp[ROWS];
-                memcpy(&board_cp, our_game_state.board, sizeof(board_cp));
+                memcpy(&board_cp, (uint16_t *)our_game_state.board, sizeof(board_cp));
                 our_game_state.lines_cleared += merge(&brick, board_cp);
                 DISABLE_INTERRUPTS();
                 // atomically modify the board to avoid possible race conditions with interrupt-driven irda_write()
-                memcpy(our_game_state.board, &board_cp, sizeof(board_cp));
+                memcpy((uint16_t *)our_game_state.board, &board_cp, sizeof(board_cp));
                 ENABLE_INTERRUPTS();
 
                 brick.id = take_upcoming();
@@ -320,7 +330,7 @@ void multi_player() {
                 brick.location.x = 4;
                 brick.location.y = 0;
 
-                if (!move(&brick_cp, &brick, 0, &down, our_game_state.board)) {
+                if (!move(&brick_cp, &brick, 0, &down, (uint16_t *)our_game_state.board)) {
                     game_over_mp(false);
                     return;
                 }

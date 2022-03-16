@@ -164,8 +164,6 @@ void single_player() {
 
             if (move(&copy, &brick, 0, &down, board)) {
                 now = millis();
-                printf("Brick moved down. ");
-                print_brick(&brick);
                 memcpy(&brick, &copy, sizeof(fallingbrick_t));
             }
             else if (last_press > now) {
@@ -189,8 +187,7 @@ void single_player() {
                 if (!move(&copy, &brick, 0, &down, board)) {
                     stop_melody();
                     const uint32_t hiscore = get_and_set_hiscore(score);
-                    printf("Game over! Score: %d, highest: %d\r\n", score, hiscore);
-                    gameover(score, hiscore);
+                    gameover(board, score, hiscore);
                     return;
                 }
             }

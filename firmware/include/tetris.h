@@ -22,6 +22,7 @@ bool move(fallingbrick_t *dest, volatile fallingbrick_t *src, int rot, vertex_t 
 uint8_t merge(volatile fallingbrick_t *brick, volatile uint16_t *board);
 uint16_t get_speed(uint16_t lines);
 void pause();
-void gameover(uint16_t score, uint32_t hiscore);
+void gameover(const uint16_t * board, uint16_t score, uint32_t hiscore);
+void dump_boad(const uint16_t * board);
 
 #endif

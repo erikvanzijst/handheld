@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <util/delay.h>
-#include <atomic.h>
 #include "button.h"
 #include "font.h"
 #include "melody.h"
@@ -43,7 +42,7 @@ bool fits(fallingbrick_t *brick, const volatile uint16_t *board) {
 }
 
 bool move(fallingbrick_t *dest, volatile fallingbrick_t *src, int rot, vertex_t *vector, volatile uint16_t *board) {
-  memcpy(dest, src, sizeof(fallingbrick_t));
+  memcpy(dest, (void *)src, sizeof(fallingbrick_t));
 
   dest->rotation = (dest->rotation + rot + 4) % 4;
   dest->location.x += vector->x;
@@ -102,21 +101,35 @@ void pause() {
 }
 
 // TODO: Move to 1player.c
-void gameover(uint16_t score, uint32_t hiscore) {
-  char top[]    = "YOU :             ";
-  char bottom[] = "BEST:             ";
+void gameover(const uint16_t * board, uint16_t score, uint32_t hiscore) {
+    char top[] = "YOU :             ";
+    char bottom[] = "BEST:             ";
 
-  _delay_ms(1000);
-  clear_screen();
-  play_melody(&gameover_melody, 1);
+    _delay_ms(1000);
+    clear_screen();
+    play_melody(&gameover_melody, 1);
 
-  itoa(hiscore, (char *)(bottom + 5), 10);
-  strcpy((char *)(bottom + strlen(bottom)), "  ");
+    itoa(hiscore, (char *) (bottom + 5), 10);
+    strcpy((char *) (bottom + strlen(bottom)), "  ");
 
-  itoa(score, (char *)(top + 5), 10);
-  memset((char *)(top + strlen(top)), 0x20, sizeof(top) - strlen(top));
-  top[strlen(bottom)] = 0;
+    itoa(score, (char *) (top + 5), 10);
+    memset((char *) (top + strlen(top)), 0x20, sizeof(top) - strlen(top));
+    top[strlen(bottom)] = 0;
 
-  any_key();  // clear button state
-  scroll(top, bottom, -1);
+    printf("GAME OVER\r\n");
+    printf("Score: %u\r\n", score);
+    printf("Hiscore: %lu\r\n", hiscore);
+    dump_boad(board);
+
+    any_key();  // clear button state
+    scroll(top, bottom, -1);
+}
+
+void dump_boad(const uint16_t * board) {
+    for (uint8_t row = 0; row < ROWS; row++) {
+        for (uint16_t bm = 0x8000; bm >= 0x40; bm = bm >> 1) {
+            printf("%c ", (board[row] & bm) ? '#' : '.');
+        }
+        printf("\r\n");
+    }
 }
