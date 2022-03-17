@@ -39,6 +39,9 @@
 *asm_relax:
 	%{mrelax:--mlink-relax} 
 
+*asm_gccisr:
+	%{!mno-gas-isr-prologues: -mgcc-isr}
+
 *asm_rmw:
 	%{!mno-rmw: -mrmw}
 

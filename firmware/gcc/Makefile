@@ -169,7 +169,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 %.o: %.c
 	@echo Building file: $<
 	@echo AVR/GNU C Compiler
-	$(QUOTE)avr-gcc$(QUOTE) -x c -DF_CPU=32000000 -DDEBUG -DVERSION=$(BUILD) -Os -ffunction-sections -g3 -Wa,-mgcc-isr -c -std=gnu99 \
+	$(QUOTE)avr-gcc$(QUOTE) -x c -DF_CPU=32000000 -DDEBUG -DVERSION=$(BUILD) -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mmcu=atxmega256c3 -B "$(MAKEFILE_DIR)../gcc/dev/atxmega256c3" \
     -D__xmega256C3__ \
 -I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
