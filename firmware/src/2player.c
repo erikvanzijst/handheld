@@ -75,7 +75,7 @@ bool is_connected() {
     return (millis() - last_packet_ms_cp) < CONNECTION_TIMEOUT_MS;
 }
 
-void connect() {
+void connect(bool ignore_death) {
     printf("Waiting for peer...\r\n");
 
     uint8_t screen_cp[ROWS][3];
@@ -91,7 +91,7 @@ void connect() {
     screen[9][2] &= 0x0f;
 
     // display a spinner in the right-hand section:
-    while (!is_connected() || (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm))) {
+    while (!is_connected() || (ignore_death && (peer_game_state.flags & (PLAYER_DEAD_bm | PLAYER_DEAD_ACK_bm)))) {
         if (millis() - last > 150) {
             set_pixel(17 + ((pos[idx] & 0x1) ? 1 : 0), 7 + ((pos[idx] & 0x2) ? 1 : 0), 0);
             idx = (idx + 1) % 4;
@@ -246,7 +246,7 @@ void multi_player() {
 
     irda_enable(irda_receive);
     publish_board();                            // starts automatic background publishing
-    connect();                                  // wait for connection to be established
+    connect(true);                  // wait for connection to be established
     play_melody(&tetris_melody, -1);
 
     while (true) {
@@ -265,7 +265,7 @@ void multi_player() {
         bool pre = is_muted();
         if (!is_connected()) {
             mute(true);                 // pause the sound while disconnected
-            connect();
+            connect(false);
         }
         mute(pre);
 
@@ -274,25 +274,25 @@ void multi_player() {
         }
         if (was_pressed(&btn_left)) {
             if (move(&brick_cp, &brick, 0, &left, our_game_state.board)) {
-                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
+                memcpy((void *)&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_right)) {
             if (move(&brick_cp, &brick, 0, &right, our_game_state.board)) {
-                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
+                memcpy((void *)&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_b)) {
             if (move(&brick_cp, &brick, 1, &identity, our_game_state.board)) {
-                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
+                memcpy((void *)&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
         if (was_pressed(&btn_x)) {
             if (move(&brick_cp, &brick, -1, &identity, our_game_state.board)) {
-                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
+                memcpy((void *)&brick, &brick_cp, sizeof(fallingbrick_t));
             }
             last_press = millis();
         }
@@ -309,7 +309,7 @@ void multi_player() {
 
             if (move(&brick_cp, &brick, 0, &down, (uint16_t *)our_game_state.board)) {
                 now = millis();
-                memcpy(&brick, &brick_cp, sizeof(fallingbrick_t));
+                memcpy((void *)&brick, &brick_cp, sizeof(fallingbrick_t));
 
             } else if (last_press > now) {
                 // we hit the ground, but as long as we keep pressing buttons, we delay merging:
