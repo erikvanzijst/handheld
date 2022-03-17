@@ -1,3 +1,5 @@
+![example workflow](https://github.com/erikvanzijst/handheld/actions/workflows/build-firmware.yml/badge.svg)
+
 # Firmware for XMega256C3
 
 ## Requirements
