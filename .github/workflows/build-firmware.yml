@@ -1,0 +1,21 @@
+name: Build firmware
+on: [ push ]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install compiler toolkit
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y python3 build-essential gcc-arm-none-eabi
+          sudo apt-get install -y gcc-avr avr-libc uisp avrdude flex byacc bison
+
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+
+      - name: List files in the repository
+        run: cd ${{ github.workspace }}/firmware/gcc && make
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
