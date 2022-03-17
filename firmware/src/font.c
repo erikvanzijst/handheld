@@ -121,6 +121,7 @@ button_t * scroll(const char *line1, const char *line2, long timeout) {
         }
         _delay_ms(75);
     }
+    return NULL;
 }
 
 int say(const char *str) {

@@ -71,6 +71,7 @@ void play_next_note() {
 int play_melody(melody_t *melody, int16_t repeat) {
     if (melody->len < 1) {
         printf("WARNING: Ignoring zero-length melody\r\n");
+        return -1;
     }
     else {
         stop_melody();
@@ -79,6 +80,7 @@ int play_melody(melody_t *melody, int16_t repeat) {
         curr_melody.remaining = (repeat <= 0 ? -1 : repeat);
         play_next_note();
     }
+    return 0;
 }
 
 void stop_melody() {
