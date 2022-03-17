@@ -11,9 +11,11 @@ $ brew install avr-gcc
 $ brew install dfu-programmer
 ```
 
-For Linux:
+For Linux (Ubuntu 20.04):
 
 ```
+$ sudo apt-get update -y
+$ sudo apt-get install -y python3 build-essential git gcc-avr avr-libc uisp avrdude flex byacc bison
 ```
 
 ## Programming
@@ -73,4 +75,28 @@ avrdude: 812 bytes of flash verified
 
 avrdude done.  Thank you.
 $
+```
+
+## Docker
+
+Compiling can also be done in Docker:
+
+```
+$ docker build -t avr:latest -f firmware/Dcckerfile .
+$ docker run --rm -v $PWD/firmware:/src avr:latest bash -c "cd /src/gcc && make"
+...
+Finished building target: handheld.elf
+"avr-objcopy" -O binary "handheld.elf" "handheld.bin"
+"avr-objcopy" -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures \
+        "handheld.elf" "handheld.hex"
+"avr-objcopy" -j .eeprom --set-section-flags=.eeprom=alloc,load --change-section-lma \
+        .eeprom=0 --no-change-warnings -O binary "handheld.elf" \
+        "handheld.eep" || exit 0
+"avr-objdump" -h -S "handheld.elf" > "handheld.lss"
+"avr-size" "handheld.elf"
+   text	   data	    bss	    dec	    hex	filename
+  19104	   3342	   1237	  23683	   5c83	handheld.elf
+
+$ ls -l firmware/gcc/handheld.hex 
+-rw-r--r--  1 erik  staff  63144 Mar 17 14:13 firmware/gcc/handheld.hex
 ```
