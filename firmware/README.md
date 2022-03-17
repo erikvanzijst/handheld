@@ -1,6 +1,15 @@
-![example workflow](https://github.com/erikvanzijst/handheld/actions/workflows/build-firmware.yml/badge.svg)
+![ci workflow](https://github.com/erikvanzijst/handheld/actions/workflows/build-firmware.yml/badge.svg)
 
-# Firmware for XMega256C3
+# Firmware for ATxmega256C3
+
+This firmware contains a Tetris implementation with both single player and
+multiplayer modes.
+
+Multiplayer uses the board's IrDA transceivers to pit two players against each
+other in deathmatch mode where completed lines are added to the opponent's
+screen as garbage lines. Multiplayer games are quick with a winner and a
+loser.
+
 
 ## Requirements
 
