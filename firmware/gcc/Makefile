@@ -213,6 +213,10 @@ flash:  $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 	@echo Writing flash over Atmel ICE in PDI mode...
 	avrdude -c atmelice_pdi -p x256c3 -U flash:w:$(OUTPUT_FILE_NAME).hex
 
+erase:
+	@echo Erasing flash over USB...
+	dfu-programmer atxmega256c3 erase
+
 dfu: $(SUB_DIRS) $(OUTPUT_FILE_PATH) erase
 	@echo Writing flash using DFU bootloader over USB...
 	dfu-programmer atxmega256c3 flash --force $(OUTPUT_FILE_NAME).hex

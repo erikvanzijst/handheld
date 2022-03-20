@@ -127,9 +127,13 @@ void gameover(const uint16_t * board, uint16_t score, uint32_t hiscore) {
 
 void dump_boad(const uint16_t * board) {
     for (uint8_t row = 0; row < ROWS; row++) {
-        for (uint16_t bm = 0x8000; bm >= 0x40; bm = bm >> 1) {
-            printf("%c ", (board[row] & bm) ? '#' : '.');
-        }
-        printf("\r\n");
+        dump_row(board[row]);
     }
+}
+
+void dump_row(const uint16_t row) {
+    for (uint16_t bm = 0x8000; bm >= 0x40; bm = bm >> 1) {
+        printf("%c ", (row & bm) ? '#' : '.');
+    }
+    printf("\r\n");
 }

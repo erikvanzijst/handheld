@@ -24,5 +24,6 @@ uint16_t get_speed(uint16_t lines);
 void pause();
 void gameover(const uint16_t * board, uint16_t score, uint32_t hiscore);
 void dump_boad(const uint16_t * board);
+void dump_row(const uint16_t row);
 
 #endif

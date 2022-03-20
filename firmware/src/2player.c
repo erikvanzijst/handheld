@@ -164,7 +164,7 @@ bool apply_peer_lines() {
         for (int i = 0; i < ROWS - 1; i++) {
             our_game_state_cp.board[i] = our_game_state_cp.board[i + 1];
         }
-        our_game_state_cp.board[ROWS - 1] = (0xffbf << rand_under(10)) & 0xffc0;
+        our_game_state_cp.board[ROWS - 1] = (~(0x0040 << rand_under(10))) & 0xffc0;
     }
     DISABLE_INTERRUPTS();                   // Avoid race conditions with publishing ISR
     memcpy((void *)&our_game_state, &our_game_state_cp, sizeof(game_state_t));
