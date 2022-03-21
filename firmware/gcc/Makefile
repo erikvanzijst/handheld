@@ -30,8 +30,7 @@ endif
 # List the subdirectories for creating object files
 SUB_DIRS +=  \
  \
-src \
-examples/src
+src
 
 # List the object files
 OBJS +=  \
@@ -43,7 +42,6 @@ src/pmic.o \
 src/sleep.o \
 src/osc.o \
 src/tc.o \
-examples/src/usart_basic_example.o \
 driver_isr.o \
 atmel_start.o \
 src/clk.o \
@@ -73,7 +71,6 @@ OBJS_AS_ARGS +=  \
 "src/sleep.o" \
 "src/osc.o" \
 "src/tc.o" \
-"examples/src/usart_basic_example.o" \
 "driver_isr.o" \
 "atmel_start.o" \
 "src/clk.o" \
@@ -104,7 +101,6 @@ DEPS_AS_ARGS +=  \
 "src/tc.d" \
 "src/osc.d" \
 "main.d" \
-"examples/src/usart_basic_example.d" \
 "src/rtc.d" \
 "src/pmic.d" \
 "src/sleep.d" \
@@ -174,7 +170,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)avr-gcc$(QUOTE) -x c -DF_CPU=32000000 -DDEBUG -DVERSION=$(BUILD) -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mmcu=atxmega256c3 -B "$(MAKEFILE_DIR)../gcc/dev/atxmega256c3" \
     -D__xmega256C3__ \
--I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
+-I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<
@@ -185,7 +181,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)avr-gcc$(QUOTE) -x assembler-with-cpp -DF_CPU=32000000 -DVERSION=$(BUILD) -DDEBUG -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mmcu=atxmega256c3 -B "$(MAKEFILE_DIR)../gcc/dev/atxmega256c3" \
     -D__xmega256C3__ \
--I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
+-I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<
@@ -196,7 +192,7 @@ $(OUTPUT_FILE_PATH): $(OBJS)
 	$(QUOTE)avr-gcc$(QUOTE) -x assembler-with-cpp -DF_CPU=32000000 -DVERSION=$(BUILD) -DDEBUG -Os -ffunction-sections -g3 -Wall -c -std=gnu99 \
 -mmcu=atxmega256c3 -B "$(MAKEFILE_DIR)../gcc/dev/atxmega256c3" \
     -D__xmega256C3__ \
--I"../config" -I"../examples/include" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
+-I"../config" -I"../include" -I"../utils" -I"../utils/assembler" -I"../" -I"../include"  \
 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"  -o "$@" "$<"
 
 	@echo Finished building: $<
