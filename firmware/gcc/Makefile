@@ -132,6 +132,8 @@ OUTPUT_FILE_NAME :=handheld
 QUOTE := "
 OUTPUT_FILE_PATH +=$(OUTPUT_FILE_NAME).elf
 OUTPUT_FILE_PATH_AS_ARGS +=$(OUTPUT_FILE_NAME).elf
+BOOTLOADER_FILE_NAME := ../bootloader/atxmega256c3_104.hex
+FUSE2_FILE_NAME := ../bootloader/fuse2.bin
 
 vpath %.c ../
 vpath %.s ../
@@ -209,6 +211,12 @@ endif
 $(SUB_DIRS):
 	$(MK_DIR) "$@"
 
+bootloader:
+	@echo Installing the bootloader over PDI...
+	avrdude -c atmelice_pdi -p x256c3 -U flash:w:$(BOOTLOADER_FILE_NAME)
+	@echo Writing fuse byte 2 to enable bootloader reset vector...
+	avrdude -c atmelice_pdi -p x256c3 -U fuse2:w:$(FUSE2_FILE_NAME)
+
 flash:  $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 	@echo Writing flash over Atmel ICE in PDI mode...
 	avrdude -c atmelice_pdi -p x256c3 -U flash:w:$(OUTPUT_FILE_NAME).hex
@@ -219,7 +227,8 @@ erase:
 
 dfu: $(SUB_DIRS) $(OUTPUT_FILE_PATH) erase
 	@echo Writing flash using DFU bootloader over USB...
-	dfu-programmer atxmega256c3 flash --force $(OUTPUT_FILE_NAME).hex
+	dfu-programmer atxmega256c3 flash $(OUTPUT_FILE_NAME).hex
+	dfu-programmer atxmega256c3 launch
 
 clean:
 	rm -f $(OBJS_AS_ARGS)
