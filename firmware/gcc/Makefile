@@ -1,4 +1,4 @@
-VERSION=0.9
+VERSION=1.0
 BUILD="$(VERSION)-$(shell git rev-parse HEAD | cut -c 1-9) $(shell date)"
 
 MK_DIR = mkdir -p
@@ -218,12 +218,12 @@ flash:  $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 	avrdude -c atmelice_pdi -p x256c3 -U flash:w:$(OUTPUT_FILE_NAME).hex
 
 erase:
-	@echo Erasing flash over USB...
+	@echo "Erasing flash over USB (warning: also erases EEPROM highscore)..."
 	dfu-programmer atxmega256c3 erase
 
-dfu: $(SUB_DIRS) $(OUTPUT_FILE_PATH) erase
+dfu: $(SUB_DIRS) $(OUTPUT_FILE_PATH)
 	@echo Writing flash using DFU bootloader over USB...
-	dfu-programmer atxmega256c3 flash $(OUTPUT_FILE_NAME).hex
+	dfu-programmer atxmega256c3 flash --force $(OUTPUT_FILE_NAME).hex
 	dfu-programmer atxmega256c3 launch
 
 clean:
