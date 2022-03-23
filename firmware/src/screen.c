@@ -102,6 +102,4 @@ void redraw() {
    VPORT0.OUT |= LE;
    VPORT0.OUT &= ~LE;
    row = (row + 1) % ROWS;
-
-   PORTB_toggle_pin_level(PB2);  // for logic analyzer debugging
 }
